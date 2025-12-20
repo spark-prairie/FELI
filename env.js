@@ -38,8 +38,8 @@ require('dotenv').config({
 const BUNDLE_ID = 'com.feli'; // ios bundle id
 const PACKAGE = 'com.feli'; // android package name
 const NAME = 'FELI'; // app name
-const EXPO_ACCOUNT_OWNER = 'expo-owner'; // expo account owner
-const EAS_PROJECT_ID = 'c3e1075b-6fe7-4686-aa49-35b46a229044'; // eas project id
+const EXPO_ACCOUNT_OWNER = 'sparkprairie'; // expo account owner
+const EAS_PROJECT_ID = 'efe4c6ac-1f13-4b1b-998a-b6ce2f800a18'; // eas project id
 const SCHEME = 'FELI'; // app scheme
 
 /**

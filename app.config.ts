@@ -26,7 +26,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   description: `${Env.NAME} Mobile App`,
   owner: Env.EXPO_ACCOUNT_OWNER,
   scheme: Env.SCHEME,
-  slug: 'obytesapp',
+  slug: 'feli',
   version: Env.VERSION.toString(),
   orientation: 'portrait',
   icon: './assets/icon.png',
@@ -34,6 +34,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   newArchEnabled: true,
   updates: {
     fallbackToCacheTimeout: 0,
+    url: 'https://u.expo.dev/efe4c6ac-1f13-4b1b-998a-b6ce2f800a18',
+  },
+  runtimeVersion: {
+    policy: 'appVersion',
   },
   assetBundlePatterns: ['**/*'],
   ios: {
