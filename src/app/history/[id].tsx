@@ -17,20 +17,17 @@ export default function HistoryDetail() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const history = useAnalysisStore((state) => state.history);
-
   const result = history.find((item) => item.result_id === id);
 
   if (!result) {
     return (
       <>
-        <Stack.Screen options={{ title: 'Analysis Not Found' }} />
+        <Stack.Screen options={{ title: 'Not Found' }} />
         <FocusAwareStatusBar />
-        <View className="flex-1 items-center justify-center bg-neutral-50 px-6 dark:bg-neutral-900">
-          <Text className="mb-2 text-center text-4xl">🔍</Text>
-          <Text className="mb-4 text-center text-lg font-semibold text-neutral-800 dark:text-neutral-200">
-            Analysis Not Found
-          </Text>
-          <Button label="Back to History" onPress={() => router.back()} />
+        <View className="flex-1 items-center justify-center px-6">
+          <Text className="mb-2 text-4xl">🔍</Text>
+          <Text className="mb-4 text-lg font-semibold">Analysis Not Found</Text>
+          <Button label="Back" onPress={() => router.back()} />
         </View>
       </>
     );
@@ -38,14 +35,9 @@ export default function HistoryDetail() {
 
   const { primary_emotion, reasoning, suggestions, disclaimer, confidence_note } =
     result;
-
-  const savedDate = result.meta.created_at
-    ? new Date(result.meta.created_at).toLocaleDateString('en-US', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
-      })
-    : 'Unknown date';
+  const date = result.meta.created_at
+    ? new Date(result.meta.created_at).toLocaleDateString()
+    : 'Unknown';
 
   return (
     <>
@@ -55,7 +47,7 @@ export default function HistoryDetail() {
         <View className="p-6">
           <View className="mb-4 rounded-lg bg-blue-50 px-3 py-2 dark:bg-blue-950">
             <Text className="text-center text-xs text-blue-800 dark:text-blue-200">
-              Saved on {savedDate}
+              Saved on {date}
             </Text>
           </View>
 
@@ -63,7 +55,6 @@ export default function HistoryDetail() {
             emotion={primary_emotion}
             confidenceNote={confidence_note}
           />
-
           <ReasoningList items={reasoning} />
           <ActionSuggestionList items={suggestions} />
 
