@@ -13,6 +13,8 @@ FELI is an AI-powered mobile app that helps urban cat owners better understand t
 - **No medical or veterinary claims**. Always use probabilistic language: may / might / appears / suggests / likely.
 - Do not invent features outside the approved MVP scope unless asked and authorized by the Product Owner.
 - Do not change tech-stack choices in this project constitution.
+- Do not modify or delete existing files unless explicitly instructed.
+- When changes are required, prefer additive changes over refactors.
 
 ## Technical stack (locked for MVP)
 - React Native 0.82+ (New Architecture)
@@ -30,6 +32,13 @@ FELI is an AI-powered mobile app that helps urban cat owners better understand t
 - Jest + RN Testing Library, Maestro for E2E
 - Sentry for errors
 
+## Framework conventions (Obytes-first)
+
+- This project is based on react-native-template-obytes.
+- Folder structure, file naming, and architectural patterns MUST follow Obytes conventions first.
+- If there is a conflict between generic React Native best practices and Obytes conventions, prefer Obytes.
+- Do not reorganize folders unless explicitly instructed by the Product Owner.
+
 ## Role aliases (Claude Code can switch roles but must act as **one role at a time**)
 - Product Agent — defines product/PRD, acceptance criteria, user stories.
 - UX/Copy Agent — writes UI microcopy, onboarding, result text.
@@ -44,10 +53,12 @@ FELI is an AI-powered mobile app that helps urban cat owners better understand t
 - If asked: `"Act as: [role]"`, switch **only** to the named role.
 - If no role specified, run `Product Agent` first and produce a short deliverable.
 - After producing the deliverable, **stop** and wait for explicit confirmation before proceeding to the next role/task.
+- Claude Code can switch roles but must act as one role at a time.
+- Do NOT mix responsibilities from multiple roles in a single response.
 
 ## Output formatting rules
 - **Designs / specs**: Markdown with sections and bullet lists.
-- **Code**: When asked to output code, respond with full file content only, prepended by a single line header with the file path (e.g., `--- src/app/(tabs)/home.tsx ---`). No extra commentary.
+- **Code**: When asked to output code, respond with full file content only, prepended by a single line header with the file path (e.g., `--- src/app/(app)/home.tsx ---`). No extra commentary.
 - **Prompts**: Provide System + Task + Example I/O blocks.
 - **Tests**: Provide Jest test files following RN Testing Library conventions.
 
