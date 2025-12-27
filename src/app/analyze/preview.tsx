@@ -12,24 +12,30 @@ export default function AnalyzePreview() {
 
   const { mutate, isPending } = useAnalyze();
   const { isPro, clearCurrentResult } = useAnalysisStore();
+  const analyze = useAnalyze();
+  console.log('[Preview] useAnalyze return:', analyze);
 
   useEffect(() => clearCurrentResult(), [clearCurrentResult]);
 
   const handleAnalyze = useCallback(() => {
-    if (!imageUri) return;
+    console.log('[handleAnalyze] Called');
+    console.log('[handleAnalyze] imageUri:', imageUri);
 
-    mutate(
-      {
-        image_base64: decodeURIComponent(imageUri),
-        isPro,
-        timestamp: new Date().toISOString(),
-      },
-      {
-        onSuccess: () => {
-          router.push('/analyze/loading');
-        },
-      }
-    );
+    if (!imageUri) {
+      console.log('[handleAnalyze] No imageUri, returning');
+      return;
+    }
+
+    // Navigate immediately, before mutation
+    router.push('/analyze/loading');
+
+    console.log('[handleAnalyze] Calling mutate...');
+    mutate({
+      image_base64: decodeURIComponent(imageUri),
+      isPro,
+      timestamp: new Date().toISOString(),
+    });
+    console.log('[handleAnalyze] mutate called (async)');
   }, [imageUri, isPro, mutate, router]);
 
   if (!imageUri) {

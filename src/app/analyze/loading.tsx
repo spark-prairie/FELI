@@ -26,23 +26,36 @@ export default function AnalyzeLoading() {
   }, [currentResult, isAnalyzing, router]);
 
   if (error) {
+    const is404 = error.response?.status === 404;
+    const errorMessage = is404
+      ? 'Analysis service is not available yet'
+      : error.response?.data?.message || 'Please check your connection and try again';
+
     return (
       <>
         <Stack.Screen options={{ title: 'Analysis', headerBackVisible: false }} />
         <FocusAwareStatusBar />
         <View className="flex-1 items-center justify-center p-6">
+          <Text className="mb-2 text-center text-6xl">😿</Text>
           <Text className="mb-4 text-center text-lg font-semibold text-neutral-800 dark:text-neutral-200">
-            Unable to Complete Analysis
+            Unable to Analyze
           </Text>
           <Text className="mb-8 text-center text-sm text-neutral-600 dark:text-neutral-400">
-            {error.response?.data?.message || 'Please try again'}
+            {errorMessage}
           </Text>
-          <Button
-            label="Try Again"
-            onPress={() => router.back()}
-            variant="outline"
-            testID="retry-button"
-          />
+          <View className="w-full gap-3">
+            <Button
+              label="Try Again"
+              onPress={() => router.back()}
+              testID="retry-button"
+            />
+            <Button
+              label="Back to Home"
+              onPress={() => router.push('/(app)/home')}
+              variant="outline"
+              testID="back-home-button"
+            />
+          </View>
         </View>
       </>
     );

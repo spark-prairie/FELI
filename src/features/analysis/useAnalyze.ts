@@ -25,6 +25,7 @@ export const useAnalyze = createMutation<
   AxiosError<AnalyzeErrorResponse>
 >({
   mutationFn: async (variables) => {
+    console.log('[useAnalyze] mutationFn called with:', variables);
     const formData = new FormData();
 
     if (variables.image) {
@@ -45,6 +46,7 @@ export const useAnalyze = createMutation<
       formData.append('timestamp', variables.timestamp);
     }
 
+    console.log('[useAnalyze] Sending API request...');
     const response = await client({
       url: '/api/v1/analyze',
       method: 'POST',
@@ -54,20 +56,26 @@ export const useAnalyze = createMutation<
       },
     });
 
+    console.log('[useAnalyze] Response received:', response.data);
     const validatedData = EmotionResultSchema.parse(response.data);
+    console.log('[useAnalyze] Validation successful');
     return validatedData;
   },
   onMutate: () => {
+    console.log('[useAnalyze] onMutate called');
     useAnalysisStore.getState().setAnalyzing(true);
   },
   onSuccess: (data) => {
+    console.log('[useAnalyze] onSuccess called with:', data);
     useAnalysisStore.getState().saveResult(data);
     useAnalysisStore.getState().incrementUsage();
   },
-  onError: () => {
+  onError: (error) => {
+    console.log('[useAnalyze] onError called:', error);
     useAnalysisStore.getState().setAnalyzing(false);
   },
   onSettled: () => {
+    console.log('[useAnalyze] onSettled called');
     useAnalysisStore.getState().setAnalyzing(false);
   },
 });
