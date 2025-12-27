@@ -2,7 +2,7 @@ import { Stack } from 'expo-router';
 import React, { useEffect } from 'react';
 
 import { FocusAwareStatusBar, ScrollView, Text, View } from '@/components/ui';
-import { HistoryItem } from '@/features/analysis/components/HistoryItem';
+import { HistoryItem } from '@/features/history/components/HistoryItem';
 import { useAnalysisStore } from '@/stores/analysisStore';
 
 export default function History() {
