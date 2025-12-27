@@ -6,6 +6,9 @@ import { useAnalysisStore } from '@/stores/analysisStore';
 import type { EmotionResult } from '@/types/emotion';
 import { EmotionResultSchema } from '@/types/validators';
 
+// DEV-only mock flag - set to true to test without backend
+const USE_MOCK_ANALYZE = __DEV__ && true;
+
 interface AnalyzeVariables {
   image?: File;
   image_base64?: string;
@@ -19,6 +22,37 @@ interface AnalyzeErrorResponse {
   message: string;
 }
 
+// Mock data for DEV testing
+const MOCK_EMOTION_RESULT: EmotionResult = {
+  result_id: `mock-${Date.now()}`,
+  primary_emotion: {
+    type: 'relaxed',
+    confidence_percentage: 72,
+  },
+  secondary_emotion: {
+    type: 'alert',
+    confidence_percentage: 38,
+  },
+  reasoning: [
+    'Eyes are half-closed with soft eyelids, indicating contentment',
+    'Whiskers are relaxed and pointing slightly forward',
+    'Body posture appears loose and comfortable without tension',
+  ],
+  suggestions: [
+    'Continue providing this calm environment',
+    'Gentle petting may be appreciated in this relaxed state',
+  ],
+  confidence_note: 'high',
+  disclaimer:
+    'This analysis is based on visual cues and should not replace veterinary advice. Cat emotions are complex and context-dependent.',
+  meta: {
+    visibility: 'clear',
+    face_coverage: 0.85,
+    created_at: new Date().toISOString(),
+    model_version: 'mock-v1.0',
+  },
+};
+
 export const useAnalyze = createMutation<
   EmotionResult,
   AnalyzeVariables,
@@ -26,6 +60,36 @@ export const useAnalyze = createMutation<
 >({
   mutationFn: async (variables) => {
     console.log('[useAnalyze] mutationFn called with:', variables);
+
+    // DEV-only mock path
+    if (USE_MOCK_ANALYZE) {
+      console.log('[useAnalyze] Using mock data (DEV mode)');
+      const delay = 1000 + Math.random() * 500; // 1000-1500ms
+      await new Promise((resolve) => setTimeout(resolve, delay));
+
+      // Adjust mock based on isPro flag
+      const mockResult: EmotionResult = {
+        ...MOCK_EMOTION_RESULT,
+        result_id: `mock-${Date.now()}`,
+        primary_emotion: {
+          ...MOCK_EMOTION_RESULT.primary_emotion,
+          confidence_percentage: variables.isPro ? 72 : undefined,
+        },
+        secondary_emotion: variables.isPro
+          ? MOCK_EMOTION_RESULT.secondary_emotion
+          : null,
+        confidence_note: variables.isPro ? undefined : 'high',
+        meta: {
+          ...MOCK_EMOTION_RESULT.meta,
+          created_at: new Date().toISOString(),
+        },
+      };
+
+      console.log('[useAnalyze] Mock response ready:', mockResult);
+      return mockResult;
+    }
+
+    // Real API path
     const formData = new FormData();
 
     if (variables.image) {
