@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { Text, View } from '@/components/ui';
-import type { CatEmotion, ConfidenceNote, EmotionScore } from '@/types/emotion';
+import type {
+  CatEmotion,
+  ConfidenceNote,
+  EmotionConfidence,
+} from '@/types/emotion';
 
 const EMOTION_EMOJI: Record<CatEmotion, string> = {
   relaxed: '😌',
@@ -18,7 +22,7 @@ const CONFIDENCE_COLORS: Record<ConfidenceNote, string> = {
 };
 
 interface Props {
-  emotion: EmotionScore;
+  emotion: EmotionConfidence;
   confidenceNote?: ConfidenceNote;
 }
 

@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { storage } from '@/lib/storage';
-import type { EmotionResult } from '@/types/emotion';
+import type { EmotionResult, StoredEmotionResult } from '@/types/emotion';
 
 const MAX_HISTORY_ITEMS = 10;
 export const DAILY_LIMIT_FREE = 2;
@@ -11,7 +11,7 @@ interface AnalysisState {
   currentImageUri: string | null;
   isAnalyzing: boolean;
   currentResult: EmotionResult | null;
-  history: EmotionResult[];
+  history: StoredEmotionResult[];
   isPro: boolean;
   dailyUsageCount: number;
   lastResetDate: string | null;
@@ -57,7 +57,12 @@ export const useAnalysisStore = create<AnalysisStore>()(
 
       saveResult: (result) => {
         const { history } = get();
-        const newHistory = [result, ...history].slice(0, MAX_HISTORY_ITEMS);
+        const storedResult: StoredEmotionResult = {
+          ...result,
+          result_id: `result-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          created_at: new Date().toISOString(),
+        };
+        const newHistory = [storedResult, ...history].slice(0, MAX_HISTORY_ITEMS);
         set({
           currentResult: result,
           history: newHistory,

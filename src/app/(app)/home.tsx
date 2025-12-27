@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from 'react';
 import { Alert } from 'react-native';
 
 import { PhotoCaptureButton } from '@/components/photo-capture-button';
-import { UsageBanner } from '@/components/UsageBanner';
+import { UsageBanner } from '@/components/usage-banner';
 import { FocusAwareStatusBar, Text, View } from '@/components/ui';
 import { usePhotoCapture } from '@/lib/hooks/use-photo-capture';
 import { DAILY_LIMIT_FREE, useAnalysisStore } from '@/stores/analysisStore';

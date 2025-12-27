@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Text, View } from '@/components/ui';
-import type { CatEmotion, EmotionScore } from '@/types/emotion';
+import type { CatEmotion, EmotionConfidence } from '@/types/emotion';
 
 const EMOTION_EMOJI: Record<CatEmotion, string> = {
   relaxed: '😌',
@@ -12,7 +12,7 @@ const EMOTION_EMOJI: Record<CatEmotion, string> = {
 };
 
 type Props = {
-  emotion: EmotionScore;
+  emotion: EmotionConfidence;
   confidenceNote?: string;
   variant?: 'primary' | 'secondary';
 };

@@ -23,8 +23,8 @@ interface AnalyzeErrorResponse {
 }
 
 // Mock data for DEV testing
+// Conforms EXACTLY to EmotionResultSchema
 const MOCK_EMOTION_RESULT: EmotionResult = {
-  result_id: `mock-${Date.now()}`,
   primary_emotion: {
     type: 'relaxed',
     confidence_percentage: 72,
@@ -34,22 +34,20 @@ const MOCK_EMOTION_RESULT: EmotionResult = {
     confidence_percentage: 38,
   },
   reasoning: [
-    'Eyes are half-closed with soft eyelids, indicating contentment',
-    'Whiskers are relaxed and pointing slightly forward',
-    'Body posture appears loose and comfortable without tension',
+    'Eyes appear half-closed with soft eyelids, which may indicate contentment',
+    'Whiskers appear relaxed and pointing slightly forward',
+    'Body posture shows a loose and comfortable position without visible tension',
   ],
   suggestions: [
-    'Continue providing this calm environment',
-    'Gentle petting may be appreciated in this relaxed state',
+    'Continue providing this calm, comfortable environment',
+    'Gentle interaction may be welcomed while the cat appears relaxed',
   ],
   confidence_note: 'high',
   disclaimer:
-    'This analysis is based on visual cues and should not replace veterinary advice. Cat emotions are complex and context-dependent.',
+    "This interpretation is based on visible behavioral cues and is not a substitute for professional veterinary advice. Always consult a vet if you have concerns about your cat's health or wellbeing.",
   meta: {
     visibility: 'clear',
     face_coverage: 0.85,
-    created_at: new Date().toISOString(),
-    model_version: 'mock-v1.0',
   },
 };
 
@@ -67,26 +65,8 @@ export const useAnalyze = createMutation<
       const delay = 1000 + Math.random() * 500; // 1000-1500ms
       await new Promise((resolve) => setTimeout(resolve, delay));
 
-      // Adjust mock based on isPro flag
-      const mockResult: EmotionResult = {
-        ...MOCK_EMOTION_RESULT,
-        result_id: `mock-${Date.now()}`,
-        primary_emotion: {
-          ...MOCK_EMOTION_RESULT.primary_emotion,
-          confidence_percentage: variables.isPro ? 72 : undefined,
-        },
-        secondary_emotion: variables.isPro
-          ? MOCK_EMOTION_RESULT.secondary_emotion
-          : null,
-        confidence_note: variables.isPro ? undefined : 'high',
-        meta: {
-          ...MOCK_EMOTION_RESULT.meta,
-          created_at: new Date().toISOString(),
-        },
-      };
-
-      console.log('[useAnalyze] Mock response ready:', mockResult);
-      return mockResult;
+      console.log('[useAnalyze] Mock response ready:', MOCK_EMOTION_RESULT);
+      return MOCK_EMOTION_RESULT;
     }
 
     // Real API path

@@ -26,7 +26,6 @@ export function StoreTester() {
   } = useAnalysisStore();
 
   const mockResult: EmotionResult = {
-    result_id: `test-${Date.now()}`,
     primary_emotion: {
       type: 'relaxed',
       confidence_percentage: 85,
@@ -44,12 +43,11 @@ export function StoreTester() {
       'Continue providing a calm environment',
       'Maintain regular feeding schedule',
     ],
+    confidence_note: 'high',
     disclaimer: 'This is a test result for debugging purposes',
     meta: {
       visibility: 'clear',
       face_coverage: 0.95,
-      created_at: new Date().toISOString(),
-      model_version: 'v1.0-test',
     },
   };
 
@@ -66,7 +64,7 @@ export function StoreTester() {
           </Text>
           <Text className="text-sm">Analyzing: {String(isAnalyzing)}</Text>
           <Text className="text-sm">
-            Current Result: {currentResult ? currentResult.result_id : 'null'}
+            Current Result: {currentResult ? currentResult.primary_emotion.type : 'null'}
           </Text>
           <Text className="text-sm">History Count: {history.length}</Text>
           <Text className="text-sm">Pro Status: {String(isPro)}</Text>
@@ -130,10 +128,7 @@ export function StoreTester() {
               label="Add 5 Mock Results"
               onPress={() => {
                 for (let i = 0; i < 5; i++) {
-                  saveResult({
-                    ...mockResult,
-                    result_id: `bulk-test-${Date.now()}-${i}`,
-                  });
+                  saveResult(mockResult);
                 }
               }}
             />
@@ -170,7 +165,7 @@ export function StoreTester() {
                   {item.primary_emotion.confidence_percentage}%)
                 </Text>
                 <Text className="text-xs">
-                  Created: {item.meta.created_at?.slice(0, 19) || 'N/A'}
+                  Created: {item.created_at.slice(0, 19)}
                 </Text>
               </View>
             ))}

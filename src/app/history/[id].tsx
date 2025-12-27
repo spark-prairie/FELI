@@ -1,4 +1,4 @@
-import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import React from 'react';
 
 import {
@@ -8,9 +8,9 @@ import {
   Text,
   View,
 } from '@/components/ui';
-import { ActionSuggestionList } from '@/features/analysis/components/ActionSuggestionList';
-import { EmotionBadge } from '@/features/analysis/components/EmotionBadge';
-import { ReasoningList } from '@/features/analysis/components/ReasoningList';
+import { ActionSuggestionList } from '@/features/analysis/components/action-suggestion-list';
+import { EmotionBadge } from '@/features/analysis/components/emotion-badge';
+import { ReasoningList } from '@/features/analysis/components/reasoning-list';
 import { useAnalysisStore } from '@/stores/analysisStore';
 
 export default function HistoryDetail() {
@@ -22,11 +22,12 @@ export default function HistoryDetail() {
   if (!result) {
     return (
       <>
-        <Stack.Screen options={{ title: 'Not Found' }} />
         <FocusAwareStatusBar />
-        <View className="flex-1 items-center justify-center px-6">
+        <View className="flex-1 items-center justify-center bg-neutral-50 px-6 dark:bg-neutral-900">
           <Text className="mb-2 text-4xl">🔍</Text>
-          <Text className="mb-4 text-lg font-semibold">Analysis Not Found</Text>
+          <Text className="mb-4 text-lg font-semibold text-neutral-800 dark:text-neutral-200">
+            Analysis Not Found
+          </Text>
           <Button label="Back" onPress={() => router.back()} />
         </View>
       </>
@@ -35,13 +36,10 @@ export default function HistoryDetail() {
 
   const { primary_emotion, reasoning, suggestions, disclaimer, confidence_note } =
     result;
-  const date = result.meta.created_at
-    ? new Date(result.meta.created_at).toLocaleDateString()
-    : 'Unknown';
+  const date = new Date(result.created_at).toLocaleDateString();
 
   return (
     <>
-      <Stack.Screen options={{ title: 'Saved Analysis' }} />
       <FocusAwareStatusBar />
       <ScrollView className="flex-1 bg-neutral-50 dark:bg-neutral-900">
         <View className="p-6">

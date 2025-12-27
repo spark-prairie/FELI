@@ -1,3 +1,11 @@
+/**
+ * FELI Emotion Analysis Types
+ * Must match AI JSON output schema exactly
+ */
+
+/**
+ * Allowed cat emotions (exhaustive list)
+ */
 export type CatEmotion =
   | 'relaxed'
   | 'alert'
@@ -5,25 +13,52 @@ export type CatEmotion =
   | 'irritated'
   | 'possible_discomfort';
 
+/**
+ * Confidence level for overall interpretation quality
+ */
 export type ConfidenceNote = 'low' | 'medium' | 'high';
 
-export interface EmotionScore {
+/**
+ * Photo visibility quality assessment
+ */
+export type PhotoVisibility = 'clear' | 'partial' | 'unclear';
+
+/**
+ * Emotion with confidence percentage
+ */
+export interface EmotionConfidence {
   type: CatEmotion;
-  confidence_percentage?: number; // present for Pro; optional for Free
+  confidence_percentage: number;
 }
 
+/**
+ * Photo quality metadata
+ */
+export interface PhotoMeta {
+  visibility: PhotoVisibility;
+  face_coverage: number;
+}
+
+/**
+ * Complete emotion analysis result from AI
+ * Matches AI JSON output schema exactly
+ */
 export interface EmotionResult {
-  result_id: string;
-  primary_emotion: EmotionScore;
-  secondary_emotion?: EmotionScore | null;
-  reasoning: string[]; // 1..6 bullets
-  suggestions: string[]; // 1..4 suggestions
-  confidence_note?: ConfidenceNote; // for free users
+  primary_emotion: EmotionConfidence;
+  secondary_emotion: EmotionConfidence;
+  reasoning: string[];
+  suggestions: string[];
+  confidence_note: ConfidenceNote;
   disclaimer: string;
-  meta: {
-    visibility: 'clear' | 'partial' | 'occluded';
-    face_coverage?: number; // 0..1
-    created_at?: string; // ISO timestamp
-    model_version?: string;
-  };
+  meta: PhotoMeta;
+}
+
+/**
+ * Stored analysis result with additional metadata
+ * Used for history persistence
+ */
+export interface StoredEmotionResult extends EmotionResult {
+  result_id: string;
+  created_at: string;
+  image_uri?: string;
 }

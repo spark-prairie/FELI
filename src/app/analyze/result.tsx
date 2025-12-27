@@ -8,9 +8,9 @@ import {
   Text,
   View,
 } from '@/components/ui';
-import { ActionSuggestionList } from '@/features/analysis/components/ActionSuggestionList';
-import { EmotionBadge } from '@/features/analysis/components/EmotionBadge';
-import { ReasoningList } from '@/features/analysis/components/ReasoningList';
+import { ActionSuggestionList } from '@/features/analysis/components/action-suggestion-list';
+import { EmotionBadge } from '@/features/analysis/components/emotion-badge';
+import { ReasoningList } from '@/features/analysis/components/reasoning-list';
 import { useAnalysisStore } from '@/stores/analysisStore';
 
 export default function AnalyzeResult() {

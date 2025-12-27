@@ -31,7 +31,7 @@ src/
 │  ├─ emotion.ts             # Emotion types
 │  └─ validators.ts          # Zod validation schemas
 ├─ debug/                    # Debug/testing components
-│  └─ StoreTester.tsx        # Manual QA for store
+│  └─ store-tester.tsx        # Manual QA for store
 └─ assets/
 ```
 
@@ -147,7 +147,7 @@ React Query mutation that:
 5. Manages loading state via store
 
 ### Debug Tools
-- **StoreTester.tsx**: Manual QA component
+- **store-tester.tsx**: Manual QA component
   - View current store state
   - Test all store actions
   - Simulate analysis flow
@@ -177,7 +177,7 @@ React Query mutation that:
 - Proper error handling and validation
 
 ✅ **Debug/QA**:
-- `src/debug/StoreTester.tsx` loads and renders
+- `src/debug/store-tester.tsx` loads and renders
 - Can manually set image URI and save results
 - `src/app/debug.tsx` accessible in dev mode
 - All store actions testable via UI

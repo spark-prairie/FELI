@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Pressable, Text, View } from '@/components/ui';
-import type { CatEmotion, EmotionResult } from '@/types/emotion';
+import type { CatEmotion, StoredEmotionResult } from '@/types/emotion';
 
 const EMOTION_EMOJI: Record<CatEmotion, string> = {
   relaxed: '😌',
@@ -12,7 +12,7 @@ const EMOTION_EMOJI: Record<CatEmotion, string> = {
 };
 
 interface HistoryItemProps {
-  result: EmotionResult;
+  result: StoredEmotionResult;
   onPress?: () => void;
 }
 
@@ -21,13 +21,11 @@ export function HistoryItem({ result, onPress }: HistoryItemProps) {
   const emoji = EMOTION_EMOJI[primary_emotion.type];
   const emotionName = primary_emotion.type.replace('_', ' ');
 
-  const createdAt = meta.created_at
-    ? new Date(meta.created_at).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-      })
-    : 'Unknown date';
+  const createdAt = new Date(result.created_at).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
 
   return (
     <Pressable
