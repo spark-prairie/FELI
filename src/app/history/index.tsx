@@ -1,4 +1,4 @@
-import { Stack, useRouter } from 'expo-router';
+import { Link, Stack } from 'expo-router';
 import React, { useEffect } from 'react';
 
 import {
@@ -20,7 +20,6 @@ const EMOTION_EMOJI: Record<CatEmotion, string> = {
 };
 
 export default function HistoryIndex() {
-  const router = useRouter();
   const { history, checkAndResetDaily } = useAnalysisStore();
 
   useEffect(() => checkAndResetDaily(), [checkAndResetDaily]);
@@ -53,21 +52,23 @@ export default function HistoryIndex() {
                 : 'Unknown';
 
               return (
-                <Pressable
+                <Link
                   key={result.result_id}
-                  onPress={() => router.push(`/history/${result.result_id}`)}
-                  className="mb-3 flex-row items-center rounded-xl bg-white p-4 dark:bg-neutral-800"
+                  href={`/history/${result.result_id}`}
+                  asChild
                 >
-                  <Text className="mr-4 text-3xl">{emoji}</Text>
-                  <View className="flex-1">
-                    <Text className="mb-1 text-base font-semibold capitalize text-neutral-800 dark:text-neutral-200">
-                      {name}
-                    </Text>
-                    <Text className="text-xs text-neutral-500 dark:text-neutral-400">
-                      {date}
-                    </Text>
-                  </View>
-                </Pressable>
+                  <Pressable className="mb-3 flex-row items-center rounded-xl bg-white p-4 dark:bg-neutral-800">
+                    <Text className="mr-4 text-3xl">{emoji}</Text>
+                    <View className="flex-1">
+                      <Text className="mb-1 text-base font-semibold capitalize text-neutral-800 dark:text-neutral-200">
+                        {name}
+                      </Text>
+                      <Text className="text-xs text-neutral-500 dark:text-neutral-400">
+                        {date}
+                      </Text>
+                    </View>
+                  </Pressable>
+                </Link>
               );
             })}
           </View>
