@@ -5,6 +5,7 @@ import { storage } from '@/lib/storage';
 import type { EmotionResult } from '@/types/emotion';
 
 const MAX_HISTORY_ITEMS = 10;
+export const DAILY_LIMIT_FREE = 2;
 
 interface AnalysisState {
   currentImageUri: string | null;
