@@ -8,27 +8,23 @@ import {
   Text,
   View,
 } from '@/components/ui';
-import { BulletList } from '@/features/analysis/components/bullet-list';
-import { EmotionCard } from '@/features/analysis/components/emotion-card';
+import { ActionSuggestionList } from '@/features/analysis/components/ActionSuggestionList';
+import { EmotionBadge } from '@/features/analysis/components/EmotionBadge';
+import { ReasoningList } from '@/features/analysis/components/ReasoningList';
 import { useAnalysisStore } from '@/stores/analysisStore';
 
 export default function AnalyzeResult() {
   const router = useRouter();
   const currentResult = useAnalysisStore((state) => state.currentResult);
+  const isPro = useAnalysisStore((state) => state.isPro);
 
   if (!currentResult) {
     router.replace('/(app)/home');
     return null;
   }
 
-  const {
-    primary_emotion,
-    secondary_emotion,
-    reasoning,
-    suggestions,
-    disclaimer,
-    confidence_note,
-  } = currentResult;
+  const { primary_emotion, reasoning, suggestions, disclaimer, confidence_note } =
+    currentResult;
 
   return (
     <>
@@ -36,17 +32,13 @@ export default function AnalyzeResult() {
       <FocusAwareStatusBar />
       <ScrollView className="flex-1 bg-neutral-50 dark:bg-neutral-900">
         <View className="p-6">
-          <EmotionCard
+          <EmotionBadge
             emotion={primary_emotion}
             confidenceNote={confidence_note}
           />
 
-          {secondary_emotion && (
-            <EmotionCard emotion={secondary_emotion} variant="secondary" />
-          )}
-
-          <BulletList title="What We Observed" items={reasoning} />
-          <BulletList title="Suggestions" items={suggestions} />
+          <ReasoningList items={reasoning} />
+          <ActionSuggestionList items={suggestions} />
 
           <View className="mb-6 rounded-xl bg-amber-50 p-4 dark:bg-amber-950">
             <Text className="mb-2 text-xs font-semibold uppercase text-amber-800 dark:text-amber-200">
@@ -56,6 +48,24 @@ export default function AnalyzeResult() {
               {disclaimer}
             </Text>
           </View>
+
+          {!isPro && (
+            <View className="mb-6 rounded-xl bg-purple-50 p-4 dark:bg-purple-950">
+              <Text className="mb-2 text-sm font-semibold text-purple-900 dark:text-purple-100">
+                Want deeper insights?
+              </Text>
+              <Text className="mb-4 text-xs leading-5 text-purple-800 dark:text-purple-200">
+                Pro members get secondary emotions, confidence scores, and
+                unlimited daily analyses
+              </Text>
+              <Button
+                label="Upgrade to Pro"
+                onPress={() => router.push('/paywall')}
+                variant="outline"
+                size="sm"
+              />
+            </View>
+          )}
 
           <Button
             label="Back to Home"
