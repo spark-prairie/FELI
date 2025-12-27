@@ -1,30 +1,40 @@
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { Button, Image, Text, View } from '@/components/ui';
+import { useAnalyze } from '@/features/analysis';
+import { useAnalysisStore } from '@/stores/analysisStore';
 
 export default function AnalyzePreview() {
   const params = useLocalSearchParams<{ imageUri?: string }>();
   const router = useRouter();
   const { imageUri } = params;
 
-  if (!imageUri) {
-    return (
-      <>
-        <Stack.Screen options={{ title: 'Preview' }} />
-        <View className="flex-1 items-center justify-center p-6">
-          <Text className="text-center text-lg text-neutral-600">
-            No image provided
-          </Text>
-          <Button
-            label="Go Back"
-            onPress={() => router.back()}
-            variant="outline"
-            className="mt-4"
-          />
-        </View>
-      </>
+  const { mutate, isPending } = useAnalyze();
+  const { isPro, clearCurrentResult } = useAnalysisStore();
+
+  useEffect(() => clearCurrentResult(), [clearCurrentResult]);
+
+  const handleAnalyze = useCallback(() => {
+    if (!imageUri) return;
+
+    mutate(
+      {
+        image_base64: decodeURIComponent(imageUri),
+        isPro,
+        timestamp: new Date().toISOString(),
+      },
+      {
+        onSuccess: () => {
+          router.push('/analyze/loading');
+        },
+      }
     );
+  }, [imageUri, isPro, mutate, router]);
+
+  if (!imageUri) {
+    router.back();
+    return null;
   }
 
   return (
@@ -45,8 +55,10 @@ export default function AnalyzePreview() {
           </Text>
 
           <Button
-            label="Analyze (Coming Soon)"
-            disabled
+            label="Analyze"
+            onPress={handleAnalyze}
+            loading={isPending}
+            disabled={isPending}
             size="lg"
             testID="analyze-button"
           />
