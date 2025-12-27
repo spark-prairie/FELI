@@ -8,15 +8,14 @@ import {
   Text,
   View,
 } from '@/components/ui';
-import { useAnalyze } from '@/features/analysis';
 import { useAnalysisStore } from '@/stores/analysisStore';
 
 export default function AnalyzeLoading() {
   const router = useRouter();
   const currentResult = useAnalysisStore((state) => state.currentResult);
   const isAnalyzing = useAnalysisStore((state) => state.isAnalyzing);
-  const { error } = useAnalyze();
 
+  // Navigate to result when analysis completes successfully
   useEffect(() => {
     if (currentResult && !isAnalyzing) {
       setTimeout(() => {
@@ -25,12 +24,10 @@ export default function AnalyzeLoading() {
     }
   }, [currentResult, isAnalyzing, router]);
 
-  if (error) {
-    const is404 = error.response?.status === 404;
-    const errorMessage = is404
-      ? 'Analysis service is not available yet'
-      : error.response?.data?.message || 'Please check your connection and try again';
+  // Error state: mutation finished (!isAnalyzing) but no result saved
+  const hasError = !isAnalyzing && !currentResult;
 
+  if (hasError) {
     return (
       <>
         <Stack.Screen options={{ title: 'Analysis', headerBackVisible: false }} />
@@ -41,7 +38,7 @@ export default function AnalyzeLoading() {
             Unable to Analyze
           </Text>
           <Text className="mb-8 text-center text-sm text-neutral-600 dark:text-neutral-400">
-            {errorMessage}
+            Please check your connection and try again
           </Text>
           <View className="w-full gap-3">
             <Button
