@@ -18,12 +18,18 @@ import { useAnalysisStore } from '@/stores/analysis-store';
 export default function AnalyzeResult() {
   const router = useRouter();
   const currentResult = useAnalysisStore((state) => state.currentResult);
-  const isPro = useAnalysisStore((state) => state.isPro);
+  const globalIsPro = useAnalysisStore((state) => state.isPro);
 
   if (!currentResult) {
     router.replace('/(app)/home');
     return null;
   }
+
+  // Use record's Pro status if it's a stored result, otherwise use global isPro
+  const isStoredResult = 'isProAtSave' in currentResult;
+  const isPro = isStoredResult
+    ? (currentResult as any).isProAtSave ?? globalIsPro
+    : globalIsPro;
 
   const {
     primary_emotion,

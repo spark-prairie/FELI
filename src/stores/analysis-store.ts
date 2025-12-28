@@ -60,11 +60,12 @@ export const useAnalysisStore = create<AnalysisStore>()(
       },
 
       saveResult: (result) => {
-        const { history } = get();
+        const { history, isPro } = get();
         const storedResult: StoredEmotionResult = {
           ...result,
           result_id: `result-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
           created_at: new Date().toISOString(),
+          isProAtSave: isPro, // Capture Pro status at time of save
         };
         const newHistory = [storedResult, ...history].slice(
           0,

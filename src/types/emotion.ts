@@ -61,4 +61,5 @@ export interface StoredEmotionResult extends EmotionResult {
   result_id: string;
   created_at: string;
   image_uri?: string;
+  isProAtSave?: boolean; // Track if user was Pro when this record was saved
 }

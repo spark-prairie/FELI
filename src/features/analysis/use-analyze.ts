@@ -22,34 +22,53 @@ interface AnalyzeErrorResponse {
   message: string;
 }
 
-// Mock data for DEV testing
-// Conforms EXACTLY to EmotionResultSchema
-const MOCK_EMOTION_RESULT: EmotionResult = {
-  primary_emotion: {
-    type: 'relaxed',
-    confidence_percentage: 72,
-  },
-  secondary_emotion: {
-    type: 'alert',
-    confidence_percentage: 38,
-  },
-  reasoning: [
-    'Eyes appear half-closed with soft eyelids, which may indicate contentment',
-    'Whiskers appear relaxed and pointing slightly forward',
-    'Body posture shows a loose and comfortable position without visible tension',
-  ],
-  suggestions: [
-    'Continue providing this calm, comfortable environment',
-    'Gentle interaction may be welcomed while the cat appears relaxed',
-  ],
-  confidence_note: 'high',
-  disclaimer:
-    "This interpretation is based on visible behavioral cues and is not a substitute for professional veterinary advice. Always consult a vet if you have concerns about your cat's health or wellbeing.",
-  meta: {
-    visibility: 'clear',
-    face_coverage: 0.85,
-  },
-};
+// Helper to generate mock data based on Pro status
+function generateMockResult(isPro: boolean): EmotionResult {
+  const baseResult: EmotionResult = {
+    primary_emotion: {
+      type: 'relaxed',
+      confidence_percentage: 72,
+    },
+    secondary_emotion: {
+      type: 'alert',
+      confidence_percentage: 38,
+    },
+    reasoning: isPro
+      ? [
+          'Eyes appear half-closed with soft eyelids, which may indicate contentment',
+          'Whiskers appear relaxed and pointing slightly forward',
+          'Body posture shows a loose and comfortable position without visible tension',
+          'Ears are in a neutral, forward-facing position',
+          'Tail is relaxed without any twitching or puffing',
+          'Breathing pattern appears calm and regular',
+        ]
+      : [
+          'Eyes appear half-closed with soft eyelids, which may indicate contentment',
+          'Whiskers appear relaxed and pointing slightly forward',
+          'Body posture shows a loose and comfortable position without visible tension',
+        ],
+    suggestions: isPro
+      ? [
+          'Continue providing this calm, comfortable environment',
+          'Gentle interaction may be welcomed while the cat appears relaxed',
+          'Maintain consistent feeding and play schedules',
+          'Ensure access to favorite resting spots',
+        ]
+      : [
+          'Continue providing this calm, comfortable environment',
+          'Gentle interaction may be welcomed while the cat appears relaxed',
+        ],
+    confidence_note: 'high',
+    disclaimer:
+      "This interpretation is based on visible behavioral cues and is not a substitute for professional veterinary advice. Always consult a vet if you have concerns about your cat's health or wellbeing.",
+    meta: {
+      visibility: 'clear',
+      face_coverage: 0.85,
+    },
+  };
+
+  return baseResult;
+}
 
 export const useAnalyze = createMutation<
   EmotionResult,
@@ -62,11 +81,15 @@ export const useAnalyze = createMutation<
     // DEV-only mock path
     if (USE_MOCK_ANALYZE) {
       console.log('[useAnalyze] Using mock data (DEV mode)');
+      const isPro = variables.isPro ?? false;
+      console.log('[useAnalyze] Generating mock data for isPro:', isPro);
+
       const delay = 1000 + Math.random() * 500; // 1000-1500ms
       await new Promise((resolve) => setTimeout(resolve, delay));
 
-      console.log('[useAnalyze] Mock response ready:', MOCK_EMOTION_RESULT);
-      return MOCK_EMOTION_RESULT;
+      const mockResult = generateMockResult(isPro);
+      console.log('[useAnalyze] Mock response ready:', mockResult);
+      return mockResult;
     }
 
     // Real API path

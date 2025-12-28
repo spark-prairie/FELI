@@ -16,6 +16,7 @@ export const REVENUE_CAT_CONFIG = {
         ios: process.env.EXPO_PUBLIC_REVENUECAT_IOS_KEY || '',
         android: process.env.EXPO_PUBLIC_REVENUECAT_ANDROID_KEY || '',
       }) || '',
+  USE_MOCK: __DEV__, // Enable mock mode in development (no real SDK calls)
 } as const;
 
 /**
