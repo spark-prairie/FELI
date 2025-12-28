@@ -15,6 +15,7 @@ interface AnalysisState {
   isPro: boolean;
   dailyUsageCount: number;
   lastResetDate: string | null;
+  lastSubscriptionCheck: number | null;
 }
 
 interface AnalysisActions {
@@ -24,6 +25,7 @@ interface AnalysisActions {
   clearCurrentResult: () => void;
   clearHistory: () => void;
   setPro: (isPro: boolean) => void;
+  syncProStatus: (isPro: boolean, timestamp?: number) => void;
   incrementUsage: () => void;
   resetDailyUsage: () => void;
   checkAndResetDaily: () => void;
@@ -40,6 +42,7 @@ const initialState: AnalysisState = {
   isPro: false,
   dailyUsageCount: 0,
   lastResetDate: null,
+  lastSubscriptionCheck: null,
 };
 
 export const useAnalysisStore = create<AnalysisStore>()(
@@ -83,6 +86,13 @@ export const useAnalysisStore = create<AnalysisStore>()(
 
       setPro: (isPro) => {
         set({ isPro });
+      },
+
+      syncProStatus: (isPro, timestamp) => {
+        set({
+          isPro,
+          lastSubscriptionCheck: timestamp ?? Date.now(),
+        });
       },
 
       incrementUsage: () => {
@@ -131,6 +141,7 @@ export const useAnalysisStore = create<AnalysisStore>()(
         isPro: state.isPro,
         dailyUsageCount: state.dailyUsageCount,
         lastResetDate: state.lastResetDate,
+        lastSubscriptionCheck: state.lastSubscriptionCheck,
       }),
     }
   )

@@ -44,7 +44,7 @@ function useConfigureRevenueCat(apiKey: string): [boolean, string | null] {
 }
 
 // ---------- Customer Info ----------
-function useCustomerInfo(setPro: (val: boolean) => void) {
+function useCustomerInfo(syncProStatus: (isPro: boolean, timestamp?: number) => void) {
   const [customerInfo, setCustomerInfo] = useState<CustomerInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -52,13 +52,14 @@ function useCustomerInfo(setPro: (val: boolean) => void) {
     try {
       const info = await Purchases.getCustomerInfo();
       setCustomerInfo(info);
-      setPro(info.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined);
+      const isPro = info.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
+      syncProStatus(isPro, Date.now());
     } catch (err) {
       setError(
         err instanceof Error ? err.message : 'Failed to fetch customer info'
       );
     }
-  }, [setPro]);
+  }, [syncProStatus]);
 
   return { customerInfo, fetchCustomerInfo, error };
 }
@@ -89,13 +90,13 @@ function useOfferings() {
 // ---------- Purchase/Restore ----------
 async function handlePurchase(
   pkg: PurchasesPackage,
-  setPro: (val: boolean) => void
+  syncProStatus: (isPro: boolean, timestamp?: number) => void
 ): Promise<boolean> {
   try {
     const { customerInfo } = await Purchases.purchasePackage(pkg);
     const hasPro =
       customerInfo.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
-    setPro(hasPro);
+    syncProStatus(hasPro, Date.now());
     return hasPro;
   } catch (err) {
     if (err instanceof Error && !err.message.includes('user cancelled')) {
@@ -105,12 +106,14 @@ async function handlePurchase(
   }
 }
 
-async function handleRestore(setPro: (val: boolean) => void): Promise<boolean> {
+async function handleRestore(
+  syncProStatus: (isPro: boolean, timestamp?: number) => void
+): Promise<boolean> {
   try {
     const restored = await Purchases.restorePurchases();
     const hasPro =
       restored.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
-    setPro(hasPro);
+    syncProStatus(hasPro, Date.now());
     return hasPro;
   } catch (err) {
     console.error(err instanceof Error ? err.message : 'Restore failed');
@@ -120,12 +123,12 @@ async function handleRestore(setPro: (val: boolean) => void): Promise<boolean> {
 
 // ---------- Main Hook ----------
 export function useRevenueCat(): UseRevenueCatReturn {
-  const setPro = useAnalysisStore((s) => s.setPro);
+  const syncProStatus = useAnalysisStore((s) => s.syncProStatus);
 
   const [isConfigured, configError] = useConfigureRevenueCat(
     REVENUE_CAT_CONFIG.apiKey
   );
-  const { customerInfo, fetchCustomerInfo } = useCustomerInfo(setPro);
+  const { customerInfo, fetchCustomerInfo } = useCustomerInfo(syncProStatus);
   const { offerings, fetchOfferings, isLoading } = useOfferings();
 
   useEffect(() => {
@@ -146,10 +149,13 @@ export function useRevenueCat(): UseRevenueCatReturn {
       customerInfo?.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !==
       undefined,
     purchasePackage: useCallback(
-      (pkg: PurchasesPackage) => handlePurchase(pkg, setPro),
-      [setPro]
+      (pkg: PurchasesPackage) => handlePurchase(pkg, syncProStatus),
+      [syncProStatus]
     ),
-    restorePurchases: useCallback(() => handleRestore(setPro), [setPro]),
+    restorePurchases: useCallback(
+      () => handleRestore(syncProStatus),
+      [syncProStatus]
+    ),
     error: configError,
   };
 }
