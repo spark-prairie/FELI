@@ -12,6 +12,7 @@ import {
 import { useIsFirstTime } from '@/lib/hooks';
 export default function Onboarding() {
   const [_, setIsFirstTime] = useIsFirstTime();
+  console.log('Onboarding', _);
   const router = useRouter();
   return (
     <View className="flex h-full items-center  justify-center">

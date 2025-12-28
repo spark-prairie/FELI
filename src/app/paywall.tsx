@@ -1,6 +1,7 @@
 import { Stack, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 
+import { RevenueCatPaywall } from '@/components/revenue-cat-paywall';
 import {
   Button,
   FocusAwareStatusBar,
@@ -8,7 +9,6 @@ import {
   Text,
   View,
 } from '@/components/ui';
-import { RevenueCatPaywall } from '@/components/revenue-cat-paywall';
 import { useRevenueCat } from '@/hooks/use-revenue-cat';
 
 export default function Paywall() {
@@ -47,7 +47,7 @@ export default function Paywall() {
               Unlock Pro Features
             </Text>
             <Text className="text-center text-base text-neutral-600 dark:text-neutral-400">
-              Get deeper insights into your cat's emotional state
+              Get deeper insights into your cat{''}s emotional state
             </Text>
           </View>
 

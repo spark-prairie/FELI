@@ -1,4 +1,9 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react-native';
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react-native';
 import React from 'react';
 
 import { useAnalysisStore } from '@/stores/analysis-store';
@@ -50,13 +55,15 @@ describe('SubscriptionGate', () => {
 
   describe('Free User - Modal Mode', () => {
     beforeEach(() => {
-      (useAnalysisStore as unknown as jest.Mock).mockImplementation((selector) => {
-        const state = {
-          isPro: false,
-          setPro: jest.fn(),
-        };
-        return selector(state);
-      });
+      (useAnalysisStore as unknown as jest.Mock).mockImplementation(
+        (selector) => {
+          const state = {
+            isPro: false,
+            setPro: jest.fn(),
+          };
+          return selector(state);
+        }
+      );
     });
 
     it('renders locked state for Free users', () => {
@@ -89,13 +96,15 @@ describe('SubscriptionGate', () => {
 
     it('calls setPro when subscribe button is pressed', async () => {
       const mockSetPro = jest.fn();
-      (useAnalysisStore as unknown as jest.Mock).mockImplementation((selector) => {
-        const state = {
-          isPro: false,
-          setPro: mockSetPro,
-        };
-        return selector(state);
-      });
+      (useAnalysisStore as unknown as jest.Mock).mockImplementation(
+        (selector) => {
+          const state = {
+            isPro: false,
+            setPro: mockSetPro,
+          };
+          return selector(state);
+        }
+      );
 
       render(
         <SubscriptionGate>
@@ -145,10 +154,12 @@ describe('SubscriptionGate', () => {
       const useRouter = require('expo-router').useRouter;
       (useRouter as jest.Mock).mockReturnValue({ push: mockPush });
 
-      (useAnalysisStore as unknown as jest.Mock).mockImplementation((selector) => {
-        const state = { isPro: false, setPro: jest.fn() };
-        return selector(state);
-      });
+      (useAnalysisStore as unknown as jest.Mock).mockImplementation(
+        (selector) => {
+          const state = { isPro: false, setPro: jest.fn() };
+          return selector(state);
+        }
+      );
 
       render(
         <SubscriptionGate mode="navigate">
@@ -165,10 +176,12 @@ describe('SubscriptionGate', () => {
 
   describe('Custom Fallback', () => {
     it('renders custom fallback when provided', () => {
-      (useAnalysisStore as unknown as jest.Mock).mockImplementation((selector) => {
-        const state = { isPro: false, setPro: jest.fn() };
-        return selector(state);
-      });
+      (useAnalysisStore as unknown as jest.Mock).mockImplementation(
+        (selector) => {
+          const state = { isPro: false, setPro: jest.fn() };
+          return selector(state);
+        }
+      );
 
       render(
         <SubscriptionGate fallback={<span>Custom Locked UI</span>}>
@@ -183,10 +196,12 @@ describe('SubscriptionGate', () => {
 
   describe('Accessibility', () => {
     it('has proper accessibility labels', () => {
-      (useAnalysisStore as unknown as jest.Mock).mockImplementation((selector) => {
-        const state = { isPro: false, setPro: jest.fn() };
-        return selector(state);
-      });
+      (useAnalysisStore as unknown as jest.Mock).mockImplementation(
+        (selector) => {
+          const state = { isPro: false, setPro: jest.fn() };
+          return selector(state);
+        }
+      );
 
       render(
         <SubscriptionGate>
@@ -196,7 +211,9 @@ describe('SubscriptionGate', () => {
 
       const lockedState = screen.getByTestId('subscription-gate-locked');
       expect(lockedState.props.accessibilityLabel).toBe('Unlock Pro features');
-      expect(lockedState.props.accessibilityHint).toBe('Open subscription modal');
+      expect(lockedState.props.accessibilityHint).toBe(
+        'Open subscription modal'
+      );
     });
   });
 });

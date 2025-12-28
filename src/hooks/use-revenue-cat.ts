@@ -1,10 +1,10 @@
-import Purchases, {
-  CustomerInfo,
-  LOG_LEVEL,
-  PurchasesOfferings,
-  PurchasesPackage,
-} from 'react-native-purchases';
 import { useCallback, useEffect, useState } from 'react';
+import Purchases, {
+  type CustomerInfo,
+  LOG_LEVEL,
+  type PurchasesOfferings,
+  type PurchasesPackage,
+} from 'react-native-purchases';
 
 import { ENTITLEMENTS, REVENUE_CAT_CONFIG } from '@/config/revenue-cat';
 import { useAnalysisStore } from '@/stores/analysis-store';
@@ -65,7 +65,9 @@ export function useRevenueCat(): UseRevenueCatReturn {
         info.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
       setPro(hasProEntitlement);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch customer info');
+      setError(
+        err instanceof Error ? err.message : 'Failed to fetch customer info'
+      );
     }
   }, [setPro]);
 
@@ -76,7 +78,9 @@ export function useRevenueCat(): UseRevenueCatReturn {
       const availableOfferings = await Purchases.getOfferings();
       setOfferings(availableOfferings);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch offerings');
+      setError(
+        err instanceof Error ? err.message : 'Failed to fetch offerings'
+      );
     } finally {
       setIsLoading(false);
     }
@@ -100,11 +104,13 @@ export function useRevenueCat(): UseRevenueCatReturn {
         setIsLoading(true);
         setError(null);
 
-        const { customerInfo: updatedInfo } = await Purchases.purchasePackage(pkg);
+        const { customerInfo: updatedInfo } =
+          await Purchases.purchasePackage(pkg);
         setCustomerInfo(updatedInfo);
 
         const hasProEntitlement =
-          updatedInfo.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
+          updatedInfo.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !==
+          undefined;
         setPro(hasProEntitlement);
 
         return hasProEntitlement;
@@ -130,12 +136,15 @@ export function useRevenueCat(): UseRevenueCatReturn {
       setCustomerInfo(restoredInfo);
 
       const hasProEntitlement =
-        restoredInfo.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
+        restoredInfo.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !==
+        undefined;
       setPro(hasProEntitlement);
 
       return hasProEntitlement;
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to restore purchases');
+      setError(
+        err instanceof Error ? err.message : 'Failed to restore purchases'
+      );
       return false;
     } finally {
       setIsLoading(false);

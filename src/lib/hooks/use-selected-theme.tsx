@@ -15,6 +15,7 @@ export type ColorSchemeType = 'light' | 'dark' | 'system';
  */
 export const useSelectedTheme = () => {
   const { colorScheme: _color, setColorScheme } = useColorScheme();
+  console.log('colorScheme', _color);
   const [theme, _setTheme] = useMMKVString(SELECTED_THEME, storage);
 
   const setSelectedTheme = React.useCallback(

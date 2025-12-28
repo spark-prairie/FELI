@@ -1,5 +1,5 @@
+import { useEffect } from 'react';
 import RevenueCatUI from 'react-native-purchases-ui';
-import React, { useEffect } from 'react';
 
 interface RevenueCatPaywallProps {
   visible: boolean;
