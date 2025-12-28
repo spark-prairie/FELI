@@ -1,0 +1,237 @@
+appId: com.obytes.feli
+---
+# FELI App - Smoke Test
+# Tests the complete user flow: Onboarding → Mock Purchase → Analysis → History Verification
+
+# ========================================
+# 1. Complete Onboarding
+# ========================================
+- launchApp:
+    clearState: true
+- assertVisible: "Get Started"
+- tapOn: "Get Started"
+
+# Complete onboarding carousel
+- assertVisible: "Next"
+- tapOn: "Next"
+- tapOn: "Next"
+- tapOn: "Get Started"
+
+# ========================================
+# 2. Home Screen - Initial State (Free User)
+# ========================================
+- assertVisible: "Home"
+- assertVisible: "Analyze Cat"
+
+# Verify Free user has daily limit
+- assertVisible:
+    text: "Daily scans:"
+    enabled: true
+
+# ========================================
+# 3. Mock Purchase (Upgrade to Pro)
+# ========================================
+# Navigate to Settings
+- tapOn: "Settings"
+- assertVisible: "Settings"
+
+# Scroll to Developer Tools section (only visible in __DEV__)
+- scrollUntilVisible:
+    element: "Developer Tools"
+    direction: DOWN
+
+# Toggle Mock Pro status
+- tapOn: "Toggle Mock Pro Status"
+
+# Verify Pro is enabled (text should show "Pro: Enabled")
+- assertVisible:
+    text: "Pro: Enabled"
+
+# Navigate back to Home
+- back
+
+# ========================================
+# 4. Analyze Cat (Mock Photo)
+# ========================================
+- assertVisible: "Home"
+- tapOn: "Analyze Cat"
+
+# Mock photo selection (in __DEV__ mode with USE_MOCK_ANALYZE)
+- assertVisible: "Analyzing"
+- waitForAnimationToEnd:
+    timeout: 5000
+
+# ========================================
+# 5. Verify Pro UI Elements on Result Screen
+# ========================================
+- assertVisible: "Results"
+
+# Primary emotion should show exact percentage (Pro feature)
+- assertVisible:
+    text: "% confidence"
+    enabled: true
+
+# Secondary Emotion Card should be visible (Pro only)
+- assertVisible: "Secondary Emotion"
+- assertNotVisible: "🔒" # Lock icon should NOT be present
+
+# Verify 6 reasoning items are shown (Pro gets all items)
+# Free users only see 3 items
+- scrollUntilVisible:
+    element: "Breathing pattern appears calm and regular"
+    direction: DOWN
+    timeout: 3000
+
+# Verify Pro badge is present
+- assertVisible:
+    text: "PRO"
+    enabled: true
+
+# ========================================
+# 6. Save Result and Return to Home
+# ========================================
+- tapOn: "Back to Home"
+- assertVisible: "Home"
+
+# ========================================
+# 7. Navigate to History
+# ========================================
+- tapOn: "History"
+- assertVisible: "History"
+
+# Verify at least 1 record exists
+- assertVisible:
+    text: "relaxed"
+    enabled: true
+
+# ========================================
+# 8. View Saved Record (Verify Pro Data Persists)
+# ========================================
+- tapOn:
+    text: "relaxed"
+    index: 0
+
+# Should navigate to Result screen with stored record
+- assertVisible: "Results"
+
+# Verify Pro features are still present (using isProAtSave)
+- assertVisible:
+    text: "% confidence"
+    enabled: true
+
+# Secondary Emotion should still be visible
+- assertVisible: "Secondary Emotion"
+
+# Verify all 6 reasoning items are present
+- scrollUntilVisible:
+    element: "Breathing pattern appears calm and regular"
+    direction: DOWN
+    timeout: 3000
+
+# ========================================
+# 9. Test Downgrade Scenario
+# ========================================
+- tapOn: "Back to Home"
+- assertVisible: "History"
+- back
+
+# Navigate to Settings and disable Pro
+- tapOn: "Settings"
+- scrollUntilVisible:
+    element: "Developer Tools"
+    direction: DOWN
+- tapOn: "Toggle Mock Pro Status"
+
+# Verify Pro is disabled
+- assertVisible:
+    text: "Pro: Disabled"
+
+# Navigate back to History
+- back
+- tapOn: "History"
+
+# View the SAME record again
+- tapOn:
+    text: "relaxed"
+    index: 0
+
+# ========================================
+# 10. Verify Pro Record Still Shows Pro Data (Critical Test)
+# ========================================
+# Even though user is now Free, this record was saved as Pro
+# So it should STILL show Pro features
+
+- assertVisible: "Results"
+
+# Should STILL show percentage (record has isProAtSave: true)
+- assertVisible:
+    text: "% confidence"
+    enabled: true
+
+# Should STILL show Secondary Emotion
+- assertVisible: "Secondary Emotion"
+
+# Should STILL show all 6 reasoning items
+- scrollUntilVisible:
+    element: "Breathing pattern appears calm and regular"
+    direction: DOWN
+    timeout: 3000
+
+# ========================================
+# 11. Test Free Analysis After Downgrade
+# ========================================
+- tapOn: "Back to Home"
+- back
+- tapOn: "Analyze Cat"
+
+# Wait for analysis
+- waitForAnimationToEnd:
+    timeout: 5000
+
+# Now as a Free user, verify limited features
+- assertVisible: "Results"
+
+# Should show qualitative confidence only (no percentage)
+- assertVisible:
+    text: "high confidence"
+    enabled: true
+
+# Secondary Emotion should be locked
+- assertVisible: "🔒"
+- assertVisible: "Pro Feature"
+
+# Should only show 3 reasoning items
+- assertNotVisible:
+    text: "Ears are in a neutral, forward-facing position"
+    enabled: false
+
+# Verify Pro upgrade CTA is shown
+- scrollUntilVisible:
+    element: "Upgrade to Pro"
+    direction: DOWN
+
+# ========================================
+# 12. Cleanup - Clear All Data
+# ========================================
+- tapOn: "Back to Home"
+- tapOn: "Settings"
+- scrollUntilVisible:
+    element: "Danger Zone"
+    direction: DOWN
+
+- tapOn: "Delete All Data"
+
+# Confirm deletion
+- assertVisible: "Delete All Data?"
+- tapOn: "Delete"
+
+# Should navigate back to Home
+- assertVisible: "Home"
+
+# Verify history is empty
+- tapOn: "History"
+- assertVisible: "No history yet"
+
+# ========================================
+# Test Complete
+# ========================================

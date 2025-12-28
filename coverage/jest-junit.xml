@@ -1,27 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="11" failures="0" errors="0" time="2.939">
-  <testsuite name="src\features\analysis\components\reasoning-list.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-28T10:31:44" time="2.678" tests="11">
-    <testcase classname="ReasoningList › Free User Experience" name="limits to 3 items for free users by default" time="0.042">
+<testsuites name="jest tests" tests="19" failures="0" errors="0" time="7.588">
+  <testsuite name="src\features\analysis\components\emotion-badge.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-28T12:59:32" time="6.159" tests="8">
+    <testcase classname="EmotionBadge › Free User Experience" name="does NOT show percentage when showPercentage is false" time="0.098">
     </testcase>
-    <testcase classname="ReasoningList › Free User Experience" name="shows &quot;more insights available&quot; message for free users" time="0.001">
+    <testcase classname="EmotionBadge › Free User Experience" name="does NOT show Pro badge for free users" time="0.006">
     </testcase>
-    <testcase classname="ReasoningList › Free User Experience" name="does NOT show insight count badge for free users" time="0.005">
+    <testcase classname="EmotionBadge › Free User Experience" name="renders correctly for free users without Pro styling" time="0.002">
     </testcase>
-    <testcase classname="ReasoningList › Free User Experience" name="respects custom limit prop for free users" time="0.002">
+    <testcase classname="EmotionBadge › Pro User Experience" name="shows percentage when showPercentage is true" time="0.003">
     </testcase>
-    <testcase classname="ReasoningList › Pro User Experience" name="shows all items for pro users" time="0.003">
+    <testcase classname="EmotionBadge › Pro User Experience" name="shows Pro badge for pro users" time="0.002">
     </testcase>
-    <testcase classname="ReasoningList › Pro User Experience" name="does NOT show &quot;more insights&quot; message for pro users" time="0.002">
+    <testcase classname="EmotionBadge › Pro User Experience" name="shows Pro badge for pro users with styling" time="0.003">
     </testcase>
-    <testcase classname="ReasoningList › Pro User Experience" name="shows insight count badge for pro users" time="0.001">
+    <testcase classname="EmotionBadge › Emotion Display" name="displays correct emoji for each emotion type" time="0.005">
     </testcase>
-    <testcase classname="ReasoningList › Pro User Experience" name="respects custom limit prop even for pro users" time="0.002">
+    <testcase classname="EmotionBadge › Emotion Display" name="displays emotion name with proper formatting" time="0.001">
     </testcase>
-    <testcase classname="ReasoningList › Edge Cases" name="handles empty items array" time="0">
+  </testsuite>
+  <testsuite name="src\features\analysis\components\reasoning-list.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-28T12:59:32" time="6.181" tests="11">
+    <testcase classname="ReasoningList › Free User Experience" name="limits to 3 items for free users by default" time="0.103">
     </testcase>
-    <testcase classname="ReasoningList › Edge Cases" name="handles items array with fewer than limit" time="0.001">
+    <testcase classname="ReasoningList › Free User Experience" name="shows &quot;more insights available&quot; message for free users" time="0.005">
     </testcase>
-    <testcase classname="ReasoningList › Edge Cases" name="handles singular vs plural in insight count" time="0.001">
+    <testcase classname="ReasoningList › Free User Experience" name="does NOT show insight count badge for free users" time="0.008">
+    </testcase>
+    <testcase classname="ReasoningList › Free User Experience" name="respects custom limit prop for free users" time="0.004">
+    </testcase>
+    <testcase classname="ReasoningList › Pro User Experience" name="shows all items for pro users" time="0.007">
+    </testcase>
+    <testcase classname="ReasoningList › Pro User Experience" name="does NOT show &quot;more insights&quot; message for pro users" time="0.003">
+    </testcase>
+    <testcase classname="ReasoningList › Pro User Experience" name="shows insight count badge for pro users" time="0.005">
+    </testcase>
+    <testcase classname="ReasoningList › Pro User Experience" name="respects custom limit prop even for pro users" time="0.003">
+    </testcase>
+    <testcase classname="ReasoningList › Edge Cases" name="handles empty items array" time="0.002">
+    </testcase>
+    <testcase classname="ReasoningList › Edge Cases" name="handles items array with fewer than limit" time="0.002">
+    </testcase>
+    <testcase classname="ReasoningList › Edge Cases" name="handles singular vs plural in insight count" time="0.002">
     </testcase>
   </testsuite>
 </testsuites>
