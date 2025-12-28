@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 
 import { Button, Text, View } from '@/components/ui';
-import { DAILY_LIMIT_FREE, useAnalysisStore } from '@/stores/analysisStore';
+import { DAILY_LIMIT_FREE, useAnalysisStore } from '@/stores/analysis-store';
 
 export function UsageBanner() {
   const router = useRouter();

@@ -2,7 +2,6 @@ import React from 'react';
 
 import { FocusAwareStatusBar, Pressable, Text, View } from '@/components/ui';
 import type { CatEmotion, StoredEmotionResult } from '@/types/emotion';
-import { Stack } from 'expo-router';
 
 const EMOTION_EMOJI: Record<CatEmotion, string> = {
   relaxed: '😌',
@@ -19,6 +18,7 @@ interface HistoryItemProps {
 
 export function HistoryItem({ result, onPress }: HistoryItemProps) {
   const { primary_emotion, meta } = result;
+  console.log('meta:', meta);
   const emoji = EMOTION_EMOJI[primary_emotion.type];
   const emotionName = primary_emotion.type.replace('_', ' ');
 

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 import { FocusAwareStatusBar, ScrollView, Text, View } from '@/components/ui';
 import { HistoryItem } from '@/features/history/components/history-item';
-import { useAnalysisStore } from '@/stores/analysisStore';
+import { useAnalysisStore } from '@/stores/analysis-store';
 
 export default function HistoryIndex() {
   const router = useRouter();

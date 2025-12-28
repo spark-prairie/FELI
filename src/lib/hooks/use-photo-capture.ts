@@ -13,13 +13,11 @@ export function usePhotoCapture(): PhotoCaptureResult {
   const [hasPermissions, setHasPermissions] = useState(false);
 
   const requestPermissions = useCallback(async (): Promise<boolean> => {
-    const cameraPermission =
-      await ImagePicker.requestCameraPermissionsAsync();
+    const cameraPermission = await ImagePicker.requestCameraPermissionsAsync();
     const mediaLibraryPermission =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-    const granted =
-      cameraPermission.granted && mediaLibraryPermission.granted;
+    const granted = cameraPermission.granted && mediaLibraryPermission.granted;
     setHasPermissions(granted);
     return granted;
   }, []);

@@ -2,7 +2,7 @@ import type { AxiosError } from 'axios';
 import { createMutation } from 'react-query-kit';
 
 import { client } from '@/api/common';
-import { useAnalysisStore } from '@/stores/analysisStore';
+import { useAnalysisStore } from '@/stores/analysis-store';
 import type { EmotionResult } from '@/types/emotion';
 import { EmotionResultSchema } from '@/types/validators';
 

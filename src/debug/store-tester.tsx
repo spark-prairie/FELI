@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Button, ScrollView, Text, View } from '@/components/ui';
-import { useAnalysisStore } from '@/stores/analysisStore';
+import { useAnalysisStore } from '@/stores/analysis-store';
 import type { EmotionResult } from '@/types/emotion';
 
 export function StoreTester() {
@@ -64,7 +64,8 @@ export function StoreTester() {
           </Text>
           <Text className="text-sm">Analyzing: {String(isAnalyzing)}</Text>
           <Text className="text-sm">
-            Current Result: {currentResult ? currentResult.primary_emotion.type : 'null'}
+            Current Result:{' '}
+            {currentResult ? currentResult.primary_emotion.type : 'null'}
           </Text>
           <Text className="text-sm">History Count: {history.length}</Text>
           <Text className="text-sm">Pro Status: {String(isPro)}</Text>
@@ -78,14 +79,9 @@ export function StoreTester() {
           <View className="gap-2">
             <Button
               label="Set Mock Image URI"
-              onPress={() =>
-                setImageUri('file:///mock/path/to/cat-image.jpg')
-              }
+              onPress={() => setImageUri('file:///mock/path/to/cat-image.jpg')}
             />
-            <Button
-              label="Clear Image URI"
-              onPress={() => setImageUri(null)}
-            />
+            <Button label="Clear Image URI" onPress={() => setImageUri(null)} />
           </View>
         </View>
 
@@ -101,7 +97,10 @@ export function StoreTester() {
               label="Stop Analyzing"
               onPress={() => setAnalyzing(false)}
             />
-            <Button label="Save Mock Result" onPress={() => saveResult(mockResult)} />
+            <Button
+              label="Save Mock Result"
+              onPress={() => saveResult(mockResult)}
+            />
             <Button label="Clear Current Result" onPress={clearCurrentResult} />
           </View>
         </View>
@@ -113,10 +112,7 @@ export function StoreTester() {
             <Button label="Toggle Pro Status" onPress={() => setPro(!isPro)} />
             <Button label="Increment Usage" onPress={incrementUsage} />
             <Button label="Reset Daily Usage" onPress={resetDailyUsage} />
-            <Button
-              label="Check & Reset Daily"
-              onPress={checkAndResetDaily}
-            />
+            <Button label="Check & Reset Daily" onPress={checkAndResetDaily} />
           </View>
         </View>
 

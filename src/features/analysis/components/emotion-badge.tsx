@@ -38,7 +38,9 @@ export function EmotionBadge({ emotion, confidenceNote }: Props) {
         {emotionName}
       </Text>
       {confidenceNote && (
-        <Text className={`text-center text-sm font-medium capitalize ${colorClass}`}>
+        <Text
+          className={`text-center text-sm font-medium capitalize ${colorClass}`}
+        >
           {confidenceNote} confidence
         </Text>
       )}

@@ -11,7 +11,7 @@ import {
 import { ActionSuggestionList } from '@/features/analysis/components/action-suggestion-list';
 import { EmotionBadge } from '@/features/analysis/components/emotion-badge';
 import { ReasoningList } from '@/features/analysis/components/reasoning-list';
-import { useAnalysisStore } from '@/stores/analysisStore';
+import { useAnalysisStore } from '@/stores/analysis-store';
 
 export default function HistoryDetail() {
   const router = useRouter();

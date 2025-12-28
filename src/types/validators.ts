@@ -79,5 +79,9 @@ export const StoredEmotionResultSchema = EmotionResultSchema.extend({
  */
 export type EmotionResultInput = z.input<typeof EmotionResultSchema>;
 export type EmotionResultOutput = z.output<typeof EmotionResultSchema>;
-export type StoredEmotionResultInput = z.input<typeof StoredEmotionResultSchema>;
-export type StoredEmotionResultOutput = z.output<typeof StoredEmotionResultSchema>;
+export type StoredEmotionResultInput = z.input<
+  typeof StoredEmotionResultSchema
+>;
+export type StoredEmotionResultOutput = z.output<
+  typeof StoredEmotionResultSchema
+>;

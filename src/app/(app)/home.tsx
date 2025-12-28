@@ -6,7 +6,7 @@ import { PhotoCaptureButton } from '@/components/photo-capture-button';
 import { FocusAwareStatusBar, Text, View } from '@/components/ui';
 import { UsageBanner } from '@/components/usage-banner';
 import { usePhotoCapture } from '@/lib/hooks/use-photo-capture';
-import { DAILY_LIMIT_FREE, useAnalysisStore } from '@/stores/analysisStore';
+import { DAILY_LIMIT_FREE, useAnalysisStore } from '@/stores/analysis-store';
 
 export default function Home() {
   const router = useRouter();
@@ -47,7 +47,7 @@ export default function Home() {
             Cat Emotion Lens
           </Text>
           <Text className="text-center text-sm text-neutral-500 dark:text-neutral-500">
-            A probabilistic guide to understanding your cat's emotional state
+            A probabilistic guide to understanding your cat{''}s emotional state
           </Text>
         </View>
 
@@ -55,7 +55,7 @@ export default function Home() {
 
         <View className="mb-4">
           <Text className="mb-6 text-center text-base text-neutral-600 dark:text-neutral-400">
-            Capture or select a clear photo of your cat's face to begin
+            Capture or select a clear photo of your cat{''}s face to begin
           </Text>
           <PhotoCaptureButton
             onCameraPress={() => handleCapture(launchCamera)}

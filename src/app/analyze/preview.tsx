@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from 'react';
 
 import { Button, Image, Text, View } from '@/components/ui';
 import { useAnalyze } from '@/features/analysis';
-import { useAnalysisStore } from '@/stores/analysisStore';
+import { useAnalysisStore } from '@/stores/analysis-store';
 
 export default function AnalyzePreview() {
   const params = useLocalSearchParams<{ imageUri?: string }>();

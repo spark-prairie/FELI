@@ -1,1 +1,1 @@
-export { useAnalyze } from './useAnalyze';
+export { useAnalyze } from './use-analyze';

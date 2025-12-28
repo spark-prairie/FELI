@@ -17,7 +17,11 @@ type Props = {
   variant?: 'primary' | 'secondary';
 };
 
-export function EmotionCard({ emotion, confidenceNote, variant = 'primary' }: Props) {
+export function EmotionCard({
+  emotion,
+  confidenceNote,
+  variant = 'primary',
+}: Props) {
   if (variant === 'secondary') {
     return (
       <View className="mb-6 rounded-xl bg-white p-4 dark:bg-neutral-800">

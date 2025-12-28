@@ -62,7 +62,10 @@ export const useAnalysisStore = create<AnalysisStore>()(
           result_id: `result-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
           created_at: new Date().toISOString(),
         };
-        const newHistory = [storedResult, ...history].slice(0, MAX_HISTORY_ITEMS);
+        const newHistory = [storedResult, ...history].slice(
+          0,
+          MAX_HISTORY_ITEMS
+        );
         set({
           currentResult: result,
           history: newHistory,
