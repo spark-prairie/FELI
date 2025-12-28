@@ -34,8 +34,13 @@ export default function HistoryDetail() {
     );
   }
 
-  const { primary_emotion, reasoning, suggestions, disclaimer, confidence_note } =
-    result;
+  const {
+    primary_emotion,
+    reasoning,
+    suggestions,
+    disclaimer,
+    confidence_note,
+  } = result;
   const date = new Date(result.created_at).toLocaleDateString();
 
   return (

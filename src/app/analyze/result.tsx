@@ -23,8 +23,13 @@ export default function AnalyzeResult() {
     return null;
   }
 
-  const { primary_emotion, reasoning, suggestions, disclaimer, confidence_note } =
-    currentResult;
+  const {
+    primary_emotion,
+    reasoning,
+    suggestions,
+    disclaimer,
+    confidence_note,
+  } = currentResult;
 
   return (
     <>

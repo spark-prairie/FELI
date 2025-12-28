@@ -3,8 +3,8 @@ import React, { useCallback, useEffect } from 'react';
 import { Alert } from 'react-native';
 
 import { PhotoCaptureButton } from '@/components/photo-capture-button';
-import { UsageBanner } from '@/components/usage-banner';
 import { FocusAwareStatusBar, Text, View } from '@/components/ui';
+import { UsageBanner } from '@/components/usage-banner';
 import { usePhotoCapture } from '@/lib/hooks/use-photo-capture';
 import { DAILY_LIMIT_FREE, useAnalysisStore } from '@/stores/analysisStore';
 
@@ -31,7 +31,8 @@ export default function Home() {
         return;
       }
       const uri = await captureMethod();
-      if (uri) router.push(`/analyze/preview?imageUri=${encodeURIComponent(uri)}`);
+      if (uri)
+        router.push(`/analyze/preview?imageUri=${encodeURIComponent(uri)}`);
     },
     [isLimitReached, router]
   );
