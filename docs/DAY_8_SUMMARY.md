@@ -81,7 +81,7 @@ visibility: 'clear' | 'partial' | 'unclear'
 
 **Usage:**
 ```typescript
-// In useAnalyze.ts
+// In use-analyze.ts
 const validatedData = EmotionResultSchema.parse(response.data);
 ```
 
@@ -107,7 +107,7 @@ const validatedData = EmotionResultSchema.parse(response.data);
 
 ### 5. ✅ Mock API Implementation
 
-**Location:** `src/features/analysis/useAnalyze.ts`
+**Location:** `src/features/analysis/use-analyze.ts`
 
 **Mock Configuration:**
 ```typescript
@@ -162,8 +162,8 @@ const MOCK_EMOTION_RESULT: EmotionResult = {
 ### Modified:
 - ✅ `src/types/emotion.ts` - Frozen interface definitions
 - ✅ `src/types/validators.ts` - Zod schemas
-- ✅ `src/features/analysis/useAnalyze.ts` - Mock implementation
-- ✅ `src/stores/analysisStore.ts` - Uses StoredEmotionResult
+- ✅ `src/features/analysis/use-analyze.ts` - Mock implementation
+- ✅ `src/stores/analysis-store.ts` - Uses StoredEmotionResult
 - ✅ UI components - Consume EmotionResult correctly
 
 ---
@@ -173,7 +173,7 @@ const MOCK_EMOTION_RESULT: EmotionResult = {
 | Requirement | Status | Verification |
 |-------------|--------|--------------|
 | TypeScript types frozen | ✅ | `emotion.ts` immutable contract |
-| Zod validation active | ✅ | `useAnalyze.ts` line 124 |
+| Zod validation active | ✅ | `use-analyze.ts` line 124 |
 | Mock data validates | ✅ | Passes `EmotionResultSchema.parse()` |
 | Production prompt documented | ✅ | `docs/AI_PROMPT.md` |
 | Free/Pro strategy defined | ✅ | Unified API, UI differentiation |
@@ -227,7 +227,7 @@ interface PhotoMeta {
 - Add `image_quality_score` beyond visibility
 
 ### API Integration (when ready):
-1. Replace mock with real API call in `useAnalyze.ts`
+1. Replace mock with real API call in `use-analyze.ts`
 2. Keep `EmotionResultSchema.parse()` validation
 3. Update `USE_MOCK_ANALYZE = false` for production
 4. Monitor validation errors in production logs

@@ -5,7 +5,7 @@ FELI — Architecture & State
 - Clarify the project directory structure (based on Obytes starter)
 - Define core TypeScript types (emotion / result)
 - Define the analysis API request/response contract
-- Implement Zustand store (analysisStore) to support FELI MVP state
+- Implement Zustand store (analysis-store) to support FELI MVP state
 - Integrate TanStack Query for server state management
 
 ## 2. Directory Structure
@@ -20,10 +20,10 @@ src/
 ├─ features/                 # Feature modules
 │  └─ analysis/
 │     ├─ components/         # Analysis-specific components
-│     ├─ useAnalyze.ts       # React Query mutation hook
+│     ├─ use-analyze.ts       # React Query mutation hook
 │     └─ index.ts            # Feature exports
 ├─ stores/                   # Zustand stores
-│  └─ analysisStore.ts       # Analysis state + persistence
+│  └─ analysis-store.ts       # Analysis state + persistence
 ├─ components/               # Shared UI components
 ├─ api/                      # API client + service modules
 ├─ lib/                      # Utilities, hooks, i18n, storage
@@ -38,7 +38,7 @@ src/
 ## 3. State Ownership
 
 ### Zustand Store (Client State)
-**Store**: `src/stores/analysisStore.ts`
+**Store**: `src/stores/analysis-store.ts`
 
 **State**:
 ```typescript
@@ -71,10 +71,10 @@ src/
 - Persisted fields: `history`, `isPro`, `dailyUsageCount`, `lastResetDate`
 
 ### TanStack Query (Server State)
-**Hook**: `src/features/analysis/useAnalyze.ts`
+**Hook**: `src/features/analysis/use-analyze.ts`
 
 **Mutation**: POST `/api/v1/analyze`
-- Automatically updates `analysisStore` on success
+- Automatically updates `analysis-store` on success
 - Handles loading state synchronization
 - Error handling with proper typing
 
@@ -126,7 +126,7 @@ EmotionResult {
 
 ## 5. Implementation Details
 
-### analysisStore Integration
+### analysis-store Integration
 The store provides automatic daily usage reset logic:
 ```typescript
 // On app mount, check if day changed and reset counter
@@ -138,11 +138,11 @@ const checkAndResetDaily = () => {
 };
 ```
 
-### useAnalyze Hook
+### use-analyze Hook
 React Query mutation that:
 1. Validates input with Zod schema
 2. Calls API endpoint
-3. On success: updates `analysisStore.saveResult()`
+3. On success: updates `analysis-store.saveResult()`
 4. On error: provides typed error handling
 5. Manages loading state via store
 
@@ -166,14 +166,14 @@ React Query mutation that:
 - All types compile without errors
 
 ✅ **State Management**:
-- `src/stores/analysisStore.ts` exports `useAnalysisStore`
+- `src/stores/analysis-store.ts` exports `use-analysis-store`
 - Store persists `history`, `isPro`, `dailyUsageCount` via MMKV
 - History capped at 10 most recent items
 - Daily usage auto-resets on date change
 
 ✅ **API Integration**:
-- `src/features/analysis/useAnalyze.ts` implements mutation hook
-- Hook integrates with `analysisStore`
+- `src/features/analysis/use-analyze.ts` implements mutation hook
+- Hook integrates with `analysis-store`
 - Proper error handling and validation
 
 ✅ **Debug/QA**:
