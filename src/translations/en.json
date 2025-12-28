@@ -1,21 +1,97 @@
 {
+  "common": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "back": "Back",
+    "upgrade": "Upgrade",
+    "pro": "PRO",
+    "app_name": "FELI",
+    "app_tagline": "Cat Emotion Lens",
+    "loading": "Loading",
+    "error": "Error"
+  },
   "onboarding": {
-    "message": "Welcome to obytes app site"
+    "message": "Welcome to FELI",
+    "subtitle": "Understand your cat's emotional state through AI-powered analysis",
+    "get_started": "Get Started",
+    "next": "Next"
+  },
+  "home": {
+    "title": "FELI",
+    "tagline": "Cat Emotion Lens",
+    "subtitle": "A probabilistic guide to understanding your cat's emotional state",
+    "instruction": "Capture or select a clear photo of your cat's face to begin",
+    "disclaimer": "Not a medical diagnostic tool. For entertainment and insight only.",
+    "daily_limit_reached_title": "Daily Limit Reached",
+    "daily_limit_reached_message": "You've used all {count} free analyses today. Upgrade to Pro for unlimited analyses.",
+    "analyze_button_camera": "Take Photo",
+    "analyze_button_gallery": "Choose Photo",
+    "accessibility": {
+      "analyze_button": "Start cat emotion analysis",
+      "usage_banner": "Daily usage information"
+    }
+  },
+  "analyze": {
+    "preview_title": "Preview",
+    "loading_title": "Analyzing",
+    "loading_message": "Analyzing visual cues...",
+    "loading_subtitle": "Interpreting expressions and patterns",
+    "loading_note": "This may take a moment",
+    "error_title": "Unable to Analyze",
+    "error_message": "Please check your connection and try again",
+    "retry_button": "Try Again",
+    "back_home_button": "Back to Home",
+    "result_title": "Results",
+    "back_to_home": "Back to Home",
+    "accessibility": {
+      "loading": "Analysis in progress",
+      "photo_preview": "Photo preview of your cat"
+    }
+  },
+  "result": {
+    "primary_emotion_label": "Primary Emotion",
+    "secondary_emotion_label": "Secondary Emotion",
+    "reasoning_label": "Behavioral Observations",
+    "suggestions_label": "Care Suggestions",
+    "disclaimer_title": "Important Note",
+    "disclaimer_message": "This interpretation is based on visible behavioral cues and is not a substitute for professional veterinary advice. Always consult a vet if you have concerns about your cat's health or wellbeing.",
+    "pro_upgrade_title": "Unlock Deeper Insights",
+    "pro_upgrade_message": "Pro members get exact confidence percentages, secondary emotions, full reasoning details, and unlimited daily analyses.",
+    "pro_upgrade_button": "Upgrade to Pro",
+    "locked_secondary_emotion_title": "Secondary Emotion",
+    "locked_secondary_emotion_subtitle": "Tap to unlock secondary emotion insights",
+    "locked_pro_feature": "Pro Feature",
+    "confidence_high": "high confidence",
+    "confidence_medium": "medium confidence",
+    "confidence_low": "low confidence",
+    "confidence_percentage": "{percentage}% confidence",
+    "reasoning_count": "{count} insight",
+    "reasoning_count_plural": "{count} insights",
+    "more_insights_available": "{count} more insights available with Pro",
+    "accessibility": {
+      "emotion_badge": "Emotion: {emotion}, {confidence}",
+      "pro_badge": "Pro feature",
+      "secondary_emotion_locked": "Secondary emotion locked, upgrade to Pro to unlock",
+      "upgrade_prompt": "Upgrade to Pro for full analysis details"
+    }
+  },
+  "history": {
+    "title": "History",
+    "empty_title": "No History Yet",
+    "empty_message": "Your analysis history will appear here",
+    "empty_icon_accessibility": "Empty history illustration",
+    "recent_label": "Recent analyses (max {max})",
+    "view_details": "View Details",
+    "accessibility": {
+      "history_item": "Analysis from {date}, showing {emotion} emotion",
+      "tap_hint": "Double tap to view details"
+    }
   },
   "settings": {
+    "title": "Settings",
     "about": "About",
     "app_name": "App Name",
     "arabic": "Arabic",
-    "danger_zone": "Danger Zone",
-    "delete_all_data": "Delete All Data",
-    "delete_confirm_title": "Delete All Data?",
-    "delete_confirm_message": "This will permanently delete all your analysis history and reset the app. This cannot be undone.",
-    "delete_button": "Delete",
-    "cancel": "Cancel",
-    "developer_tools": "Developer Tools",
-    "toggle_mock_pro": "Toggle Mock Pro Status",
-    "mock_pro_enabled": "Mock Pro: Enabled",
-    "mock_pro_disabled": "Mock Pro: Disabled",
     "english": "English",
     "generale": "General",
     "github": "Github",
@@ -35,9 +111,44 @@
       "system": "System",
       "title": "Theme"
     },
-    "title": "Settings",
     "version": "Version",
-    "website": "Website"
+    "website": "Website",
+    "danger_zone": "Danger Zone",
+    "delete_all_data": "Delete All Data",
+    "delete_confirm_title": "Delete All Data?",
+    "delete_confirm_message": "This will permanently delete all your analysis history and reset the app. This cannot be undone.",
+    "delete_button": "Delete",
+    "cancel": "Cancel",
+    "developer_tools": "Developer Tools",
+    "toggle_mock_pro": "Toggle Mock Pro Status",
+    "mock_pro_enabled": "Mock Pro: Enabled",
+    "mock_pro_disabled": "Mock Pro: Disabled"
   },
-  "welcome": "Welcome to obytes app site"
+  "paywall": {
+    "title": "Upgrade to Pro",
+    "feature_percentages": "Exact confidence percentages",
+    "feature_secondary": "Secondary emotion insights",
+    "feature_reasoning": "Full behavioral observations",
+    "feature_unlimited": "Unlimited daily analyses",
+    "subscribe_button": "Subscribe Now",
+    "restore_button": "Restore Purchases",
+    "terms_and_privacy": "By subscribing, you agree to our Terms of Service and Privacy Policy"
+  },
+  "usage_banner": {
+    "daily_scans": "Daily scans:",
+    "analyses_used": "{used} of {total} used",
+    "unlimited": "Unlimited (Pro)",
+    "upgrade_prompt": "Upgrade for unlimited",
+    "accessibility": {
+      "usage_info": "You have used {used} of {total} daily analyses",
+      "unlimited_info": "Unlimited analyses with Pro membership"
+    }
+  },
+  "emotions": {
+    "relaxed": "Relaxed",
+    "alert": "Alert",
+    "anxious": "Anxious",
+    "irritated": "Irritated",
+    "possible_discomfort": "Possible Discomfort"
+  }
 }

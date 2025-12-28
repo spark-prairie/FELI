@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Text, View } from '@/components/ui';
 import type {
@@ -39,15 +40,30 @@ export function EmotionBadge({
   showPercentage = false,
   isPro = false,
 }: Props) {
+  const { t } = useTranslation();
   const emoji = EMOTION_EMOJI[emotion.type];
-  const emotionName = emotion.type.replace('_', ' ');
+  const emotionName = t(`emotions.${emotion.type}`);
   const colorClass = confidenceNote ? CONFIDENCE_COLORS[confidenceNote] : '';
+
+  // Build accessibility label for screen readers
+  const confidenceText = showPercentage && emotion.confidence_percentage !== undefined
+    ? `${emotion.confidence_percentage} percent confidence`
+    : confidenceNote
+    ? `${confidenceNote} confidence`
+    : '';
+
+  const accessibilityLabel = t('result.accessibility.emotion_badge', {
+    emotion: emotionName,
+    confidence: confidenceText,
+  });
 
   return (
     <View
       className={`mb-6 items-center rounded-2xl bg-white p-6 dark:bg-neutral-800 ${
         isPro ? 'border-2 border-purple-200 dark:border-purple-800' : ''
       }`}
+      accessibilityLabel={accessibilityLabel}
+      accessibilityRole="text"
     >
       {isPro && <ProBadge />}
       <Text className="mb-3 text-6xl">{emoji}</Text>
@@ -73,9 +89,15 @@ export function EmotionBadge({
  * Pro badge indicator
  */
 function ProBadge() {
+  const { t } = useTranslation();
+
   return (
-    <View className="absolute right-3 top-3 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 px-3 py-1">
-      <Text className="text-xs font-bold text-white">PRO</Text>
+    <View
+      className="absolute right-3 top-3 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 px-3 py-1"
+      accessibilityLabel={t('result.accessibility.pro_badge')}
+      accessibilityRole="text"
+    >
+      <Text className="text-xs font-bold text-white">{t('common.pro')}</Text>
     </View>
   );
 }

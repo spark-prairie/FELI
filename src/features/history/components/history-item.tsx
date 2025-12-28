@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { FocusAwareStatusBar, Pressable, Text, View } from '@/components/ui';
 import type { CatEmotion, StoredEmotionResult } from '@/types/emotion';
@@ -17,15 +18,20 @@ interface HistoryItemProps {
 }
 
 export function HistoryItem({ result, onPress }: HistoryItemProps) {
+  const { t } = useTranslation();
   const { primary_emotion, meta } = result;
-  console.log('meta:', meta);
   const emoji = EMOTION_EMOJI[primary_emotion.type];
-  const emotionName = primary_emotion.type.replace('_', ' ');
+  const emotionName = t(`emotions.${primary_emotion.type}`);
 
   const createdAt = new Date(result.created_at).toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
+  });
+
+  const accessibilityLabel = t('history.accessibility.history_item', {
+    date: createdAt,
+    emotion: emotionName,
   });
 
   return (
@@ -35,6 +41,9 @@ export function HistoryItem({ result, onPress }: HistoryItemProps) {
       <Pressable
         onPress={onPress}
         className="mb-3 flex-row items-center rounded-xl bg-white p-4 dark:bg-neutral-800"
+        accessibilityRole="button"
+        accessibilityLabel={accessibilityLabel}
+        accessibilityHint={t('history.accessibility.tap_hint')}
       >
         <Text className="mr-4 text-3xl">{emoji}</Text>
         <View className="flex-1">

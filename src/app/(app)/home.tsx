@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
 import { Alert } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { PhotoCaptureButton } from '@/components/photo-capture-button';
 import { FocusAwareStatusBar, Text, View } from '@/components/ui';
@@ -9,6 +10,7 @@ import { usePhotoCapture } from '@/lib/hooks/use-photo-capture';
 import { DAILY_LIMIT_FREE, useAnalysisStore } from '@/stores/analysis-store';
 
 export default function Home() {
+  const { t } = useTranslation();
   const router = useRouter();
   const { launchCamera, launchGallery, isLoading } = usePhotoCapture();
   const { isPro, dailyUsageCount, checkAndResetDaily } = useAnalysisStore();
@@ -21,11 +23,11 @@ export default function Home() {
     async (captureMethod: () => Promise<string | null>) => {
       if (isLimitReached) {
         Alert.alert(
-          'Daily Limit Reached',
-          `You've used all ${DAILY_LIMIT_FREE} free analyses today.`,
+          t('home.daily_limit_reached_title'),
+          t('home.daily_limit_reached_message', { count: DAILY_LIMIT_FREE }),
           [
-            { text: 'Cancel', style: 'cancel' },
-            { text: 'Upgrade', onPress: () => router.push('/paywall') },
+            { text: t('common.cancel'), style: 'cancel' },
+            { text: t('common.upgrade'), onPress: () => router.push('/paywall') },
           ]
         );
         return;
@@ -34,7 +36,7 @@ export default function Home() {
       if (uri)
         router.push(`/analyze/preview?imageUri=${encodeURIComponent(uri)}`);
     },
-    [isLimitReached, router]
+    [isLimitReached, router, t]
   );
 
   return (
@@ -42,12 +44,12 @@ export default function Home() {
       <FocusAwareStatusBar />
       <View className="flex-1 justify-center px-6">
         <View className="mb-8 items-center">
-          <Text className="mb-4 text-center text-4xl font-bold">FELI</Text>
+          <Text className="mb-4 text-center text-4xl font-bold">{t('home.title')}</Text>
           <Text className="mb-2 text-center text-lg text-neutral-600 dark:text-neutral-400">
-            Cat Emotion Lens
+            {t('home.tagline')}
           </Text>
           <Text className="text-center text-sm text-neutral-500 dark:text-neutral-500">
-            A probabilistic guide to understanding your cat{''}s emotional state
+            {t('home.subtitle')}
           </Text>
         </View>
 
@@ -55,7 +57,7 @@ export default function Home() {
 
         <View className="mb-4">
           <Text className="mb-6 text-center text-base text-neutral-600 dark:text-neutral-400">
-            Capture or select a clear photo of your cat{''}s face to begin
+            {t('home.instruction')}
           </Text>
           <PhotoCaptureButton
             onCameraPress={() => handleCapture(launchCamera)}
@@ -66,7 +68,7 @@ export default function Home() {
         </View>
 
         <Text className="mt-6 text-center text-xs text-neutral-400 dark:text-neutral-500">
-          Not a medical diagnostic tool. For entertainment and insight only.
+          {t('home.disclaimer')}
         </Text>
       </View>
     </>

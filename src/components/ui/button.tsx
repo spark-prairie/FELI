@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import React from 'react';
 import type { PressableProps, View } from 'react-native';
 import { ActivityIndicator, Pressable, Text } from 'react-native';
@@ -90,6 +91,8 @@ interface Props extends ButtonVariants, Omit<PressableProps, 'disabled'> {
   loading?: boolean;
   className?: string;
   textClassName?: string;
+  accessibilityLabel?: string;
+  hapticFeedback?: boolean;
 }
 
 export const Button = React.forwardRef<View, Props>(
@@ -103,6 +106,9 @@ export const Button = React.forwardRef<View, Props>(
       className = '',
       testID,
       textClassName = '',
+      accessibilityLabel,
+      hapticFeedback = false,
+      onPress,
       ...props
     },
     ref
@@ -112,10 +118,24 @@ export const Button = React.forwardRef<View, Props>(
       [variant, disabled, size]
     );
 
+    const handlePress = React.useCallback(
+      (event: any) => {
+        if (hapticFeedback && !disabled && !loading) {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        }
+        onPress?.(event);
+      },
+      [hapticFeedback, disabled, loading, onPress]
+    );
+
     return (
       <Pressable
         disabled={disabled || loading}
         className={styles.container({ className })}
+        onPress={handlePress}
+        accessibilityRole="button"
+        accessibilityLabel={accessibilityLabel || text}
+        accessibilityState={{ disabled: disabled || loading }}
         {...props}
         ref={ref}
         testID={testID}
