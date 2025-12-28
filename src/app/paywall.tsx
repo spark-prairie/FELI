@@ -1,5 +1,5 @@
 import { Stack, useRouter } from 'expo-router';
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Button,
@@ -8,20 +8,23 @@ import {
   Text,
   View,
 } from '@/components/ui';
-import { useAnalysisStore } from '@/stores/analysis-store';
+import { RevenueCatPaywall } from '@/components/revenue-cat-paywall';
+import { useRevenueCat } from '@/hooks/use-revenue-cat';
 
 export default function Paywall() {
   const router = useRouter();
-  const isPro = useAnalysisStore((state) => state.isPro);
-  const setPro = useAnalysisStore((state) => state.setPro);
+  const { isPro } = useRevenueCat();
+  const [showPaywallModal, setShowPaywallModal] = useState(false);
 
-  // DEV-only: Mock subscription flow
   const handleSubscribe = () => {
-    setPro(true);
-    router.back();
+    setShowPaywallModal(true);
   };
 
   const handleMaybeLater = () => {
+    router.back();
+  };
+
+  const handlePurchaseSuccess = () => {
     router.back();
   };
 
@@ -93,17 +96,15 @@ export default function Paywall() {
               testID="maybe-later-button"
             />
           </View>
-
-          {/* DEV Notice */}
-          {__DEV__ && (
-            <View className="mt-6 rounded-lg bg-amber-50 p-4 dark:bg-amber-950">
-              <Text className="text-center text-xs text-amber-800 dark:text-amber-200">
-                DEV MODE: Subscription instantly unlocks Pro features
-              </Text>
-            </View>
-          )}
         </View>
       </ScrollView>
+
+      {/* RevenueCat Paywall Modal */}
+      <RevenueCatPaywall
+        visible={showPaywallModal}
+        onClose={() => setShowPaywallModal(false)}
+        onSuccess={handlePurchaseSuccess}
+      />
     </>
   );
 }

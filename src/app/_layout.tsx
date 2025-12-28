@@ -14,6 +14,7 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { APIProvider } from '@/api';
 import { hydrateAuth, loadSelectedTheme } from '@/lib';
 import { useThemeConfig } from '@/lib/use-theme-config';
+import { RevenueCatProvider } from '@/providers/revenue-cat-provider';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -53,10 +54,12 @@ function Providers({ children }: { children: React.ReactNode }) {
       <KeyboardProvider>
         <ThemeProvider value={theme}>
           <APIProvider>
-            <BottomSheetModalProvider>
-              {children}
-              <FlashMessage position="top" />
-            </BottomSheetModalProvider>
+            <RevenueCatProvider>
+              <BottomSheetModalProvider>
+                {children}
+                <FlashMessage position="top" />
+              </BottomSheetModalProvider>
+            </RevenueCatProvider>
           </APIProvider>
         </ThemeProvider>
       </KeyboardProvider>

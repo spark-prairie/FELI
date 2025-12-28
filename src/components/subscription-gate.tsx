@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import { Modal, Pressable } from 'react-native';
 
 import { Button, Text, View } from '@/components/ui';
-import { useAnalysisStore } from '@/stores/analysis-store';
+import { useRevenueCat } from '@/hooks/use-revenue-cat';
+
+import { RevenueCatPaywall } from './revenue-cat-paywall';
 
 interface SubscriptionGateProps {
   children: React.ReactNode;
@@ -28,9 +30,9 @@ export function SubscriptionGate({
   mode = 'modal',
 }: SubscriptionGateProps) {
   const router = useRouter();
-  const isPro = useAnalysisStore((state) => state.isPro);
-  const setPro = useAnalysisStore((state) => state.setPro);
+  const { isPro } = useRevenueCat();
   const [showModal, setShowModal] = useState(false);
+  const [showPaywall, setShowPaywall] = useState(false);
 
   // Pro users see content directly
   if (isPro) {
@@ -53,8 +55,12 @@ export function SubscriptionGate({
 
   // Modal mode: click shows inline modal
   const handleSubscribe = () => {
-    setPro(true); // DEV mock
     setShowModal(false);
+    setShowPaywall(true);
+  };
+
+  const handlePurchaseSuccess = () => {
+    setShowPaywall(false);
   };
 
   return (
@@ -110,18 +116,16 @@ export function SubscriptionGate({
                 testID="modal-close-button"
               />
             </View>
-
-            {/* DEV Notice */}
-            {__DEV__ && (
-              <View className="mt-4 rounded-lg bg-amber-50 p-3 dark:bg-amber-950">
-                <Text className="text-center text-xs text-amber-800 dark:text-amber-200">
-                  DEV: Instant unlock
-                </Text>
-              </View>
-            )}
           </View>
         </View>
       </Modal>
+
+      {/* RevenueCat Paywall */}
+      <RevenueCatPaywall
+        visible={showPaywall}
+        onClose={() => setShowPaywall(false)}
+        onSuccess={handlePurchaseSuccess}
+      />
     </>
   );
 }
