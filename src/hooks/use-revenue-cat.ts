@@ -20,50 +20,39 @@ interface UseRevenueCatReturn {
   error: string | null;
 }
 
-/**
- * Custom hook for RevenueCat subscription management
- * Handles SDK initialization, purchases, and entitlement checking
- */
-export function useRevenueCat(): UseRevenueCatReturn {
+// ---------- SDK Initialization ----------
+function useConfigureRevenueCat(apiKey: string): [boolean, string | null] {
   const [isConfigured, setIsConfigured] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [customerInfo, setCustomerInfo] = useState<CustomerInfo | null>(null);
-  const [offerings, setOfferings] = useState<PurchasesOfferings | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const setPro = useAnalysisStore((state) => state.setPro);
-
-  // Check if user has Pro entitlement
-  const isPro =
-    customerInfo?.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
-
-  // Configure RevenueCat SDK
-  const configureSDK = useCallback(async () => {
-    try {
-      if (__DEV__) {
-        Purchases.setLogLevel(LOG_LEVEL.DEBUG);
+  useEffect(() => {
+    const configure = async () => {
+      try {
+        if (__DEV__) Purchases.setLogLevel(LOG_LEVEL.DEBUG);
+        await Purchases.configure({ apiKey });
+        setIsConfigured(true);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : 'SDK configuration failed'
+        );
       }
+    };
+    configure();
+  }, [apiKey]);
 
-      Purchases.configure({
-        apiKey: REVENUE_CAT_CONFIG.apiKey,
-      });
+  return [isConfigured, error];
+}
 
-      setIsConfigured(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'SDK configuration failed');
-    }
-  }, []);
+// ---------- Customer Info ----------
+function useCustomerInfo(setPro: (val: boolean) => void) {
+  const [customerInfo, setCustomerInfo] = useState<CustomerInfo | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  // Fetch customer info and update Pro status
   const fetchCustomerInfo = useCallback(async () => {
     try {
       const info = await Purchases.getCustomerInfo();
       setCustomerInfo(info);
-
-      // Sync Pro status with Zustand store
-      const hasProEntitlement =
-        info.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
-      setPro(hasProEntitlement);
+      setPro(info.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : 'Failed to fetch customer info'
@@ -71,12 +60,20 @@ export function useRevenueCat(): UseRevenueCatReturn {
     }
   }, [setPro]);
 
-  // Fetch available offerings
+  return { customerInfo, fetchCustomerInfo, error };
+}
+
+// ---------- Offerings ----------
+function useOfferings() {
+  const [offerings, setOfferings] = useState<PurchasesOfferings | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
   const fetchOfferings = useCallback(async () => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-      const availableOfferings = await Purchases.getOfferings();
-      setOfferings(availableOfferings);
+      const o = await Purchases.getOfferings();
+      setOfferings(o);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : 'Failed to fetch offerings'
@@ -86,79 +83,73 @@ export function useRevenueCat(): UseRevenueCatReturn {
     }
   }, []);
 
-  // Initialize SDK and fetch data
+  return { offerings, fetchOfferings, isLoading, error };
+}
+
+// ---------- Purchase/Restore ----------
+async function handlePurchase(
+  pkg: PurchasesPackage,
+  setPro: (val: boolean) => void
+): Promise<boolean> {
+  try {
+    const { customerInfo } = await Purchases.purchasePackage(pkg);
+    const hasPro =
+      customerInfo.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
+    setPro(hasPro);
+    return hasPro;
+  } catch (err) {
+    if (err instanceof Error && !err.message.includes('user cancelled')) {
+      console.error(err.message);
+    }
+    return false;
+  }
+}
+
+async function handleRestore(setPro: (val: boolean) => void): Promise<boolean> {
+  try {
+    const restored = await Purchases.restorePurchases();
+    const hasPro =
+      restored.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
+    setPro(hasPro);
+    return hasPro;
+  } catch (err) {
+    console.error(err instanceof Error ? err.message : 'Restore failed');
+    return false;
+  }
+}
+
+// ---------- Main Hook ----------
+export function useRevenueCat(): UseRevenueCatReturn {
+  const setPro = useAnalysisStore((s) => s.setPro);
+
+  const [isConfigured, configError] = useConfigureRevenueCat(
+    REVENUE_CAT_CONFIG.apiKey
+  );
+  const { customerInfo, fetchCustomerInfo } = useCustomerInfo(setPro);
+  const { offerings, fetchOfferings, isLoading } = useOfferings();
+
   useEffect(() => {
-    const initialize = async () => {
-      await configureSDK();
+    const init = async () => {
+      if (!isConfigured) return;
       await fetchCustomerInfo();
       await fetchOfferings();
     };
-
-    initialize();
-  }, [configureSDK, fetchCustomerInfo, fetchOfferings]);
-
-  // Purchase a package
-  const purchasePackage = useCallback(
-    async (pkg: PurchasesPackage): Promise<boolean> => {
-      try {
-        setIsLoading(true);
-        setError(null);
-
-        const { customerInfo: updatedInfo } =
-          await Purchases.purchasePackage(pkg);
-        setCustomerInfo(updatedInfo);
-
-        const hasProEntitlement =
-          updatedInfo.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !==
-          undefined;
-        setPro(hasProEntitlement);
-
-        return hasProEntitlement;
-      } catch (err) {
-        if (err instanceof Error && !err.message.includes('user cancelled')) {
-          setError(err.message);
-        }
-        return false;
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [setPro]
-  );
-
-  // Restore previous purchases
-  const restorePurchases = useCallback(async (): Promise<boolean> => {
-    try {
-      setIsLoading(true);
-      setError(null);
-
-      const restoredInfo = await Purchases.restorePurchases();
-      setCustomerInfo(restoredInfo);
-
-      const hasProEntitlement =
-        restoredInfo.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !==
-        undefined;
-      setPro(hasProEntitlement);
-
-      return hasProEntitlement;
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : 'Failed to restore purchases'
-      );
-      return false;
-    } finally {
-      setIsLoading(false);
-    }
-  }, [setPro]);
+    init();
+  }, [isConfigured, fetchCustomerInfo, fetchOfferings]);
 
   return {
     isConfigured,
     isLoading,
     customerInfo,
     offerings,
-    isPro,
-    purchasePackage,
-    restorePurchases,
-    error,
+    isPro:
+      customerInfo?.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !==
+      undefined,
+    purchasePackage: useCallback(
+      (pkg: PurchasesPackage) => handlePurchase(pkg, setPro),
+      [setPro]
+    ),
+    restorePurchases: useCallback(() => handleRestore(setPro), [setPro]),
+    error: configError,
   };
 }
