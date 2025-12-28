@@ -24,26 +24,58 @@ const CONFIDENCE_COLORS: Record<ConfidenceNote, string> = {
 interface Props {
   emotion: EmotionConfidence;
   confidenceNote?: ConfidenceNote;
+  showPercentage?: boolean;
+  isPro?: boolean;
 }
 
-export function EmotionBadge({ emotion, confidenceNote }: Props) {
+/**
+ * EmotionBadge Component
+ * Displays primary emotion with emoji and confidence indicator
+ * Pro users see exact percentage, Free users see general level
+ */
+export function EmotionBadge({
+  emotion,
+  confidenceNote,
+  showPercentage = false,
+  isPro = false,
+}: Props) {
   const emoji = EMOTION_EMOJI[emotion.type];
   const emotionName = emotion.type.replace('_', ' ');
   const colorClass = confidenceNote ? CONFIDENCE_COLORS[confidenceNote] : '';
 
   return (
-    <View className="mb-6 items-center rounded-2xl bg-white p-6 dark:bg-neutral-800">
+    <View
+      className={`mb-6 items-center rounded-2xl bg-white p-6 dark:bg-neutral-800 ${
+        isPro ? 'border-2 border-purple-200 dark:border-purple-800' : ''
+      }`}
+    >
+      {isPro && <ProBadge />}
       <Text className="mb-3 text-6xl">{emoji}</Text>
       <Text className="mb-2 text-center text-2xl font-bold capitalize text-neutral-800 dark:text-neutral-100">
         {emotionName}
       </Text>
-      {confidenceNote && (
+      {showPercentage && emotion.confidence_percentage !== undefined ? (
+        <Text className="text-center text-sm font-medium text-purple-600 dark:text-purple-400">
+          {emotion.confidence_percentage}% confidence
+        </Text>
+      ) : confidenceNote ? (
         <Text
           className={`text-center text-sm font-medium capitalize ${colorClass}`}
         >
           {confidenceNote} confidence
         </Text>
-      )}
+      ) : null}
+    </View>
+  );
+}
+
+/**
+ * Pro badge indicator
+ */
+function ProBadge() {
+  return (
+    <View className="absolute right-3 top-3 rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 px-3 py-1">
+      <Text className="text-xs font-bold text-white">PRO</Text>
     </View>
   );
 }
