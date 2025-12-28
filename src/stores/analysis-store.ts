@@ -30,6 +30,7 @@ interface AnalysisActions {
   resetDailyUsage: () => void;
   checkAndResetDaily: () => void;
   reset: () => void;
+  clearAllLocalData: () => void;
 }
 
 type AnalysisStore = AnalysisState & AnalysisActions;
@@ -119,6 +120,11 @@ export const useAnalysisStore = create<AnalysisStore>()(
       },
 
       reset: () => {
+        set(initialState);
+      },
+
+      clearAllLocalData: () => {
+        storage.clearAll();
         set(initialState);
       },
     }),
