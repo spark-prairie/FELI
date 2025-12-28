@@ -88,10 +88,8 @@ describe('SubscriptionGate', () => {
       const lockedState = screen.getByTestId('subscription-gate-locked');
       fireEvent.press(lockedState);
 
-      await waitFor(() => {
-        expect(screen.getByText('Pro Feature Locked')).toBeTruthy();
-        expect(screen.getByText('Unlock Pro')).toBeTruthy();
-      });
+      await screen.findByText('Pro Feature Locked');
+      await screen.findByText('Unlock Pro');
     });
 
     it('calls setPro when subscribe button is pressed', async () => {
@@ -117,11 +115,10 @@ describe('SubscriptionGate', () => {
       fireEvent.press(lockedState);
 
       // Click subscribe
-      await waitFor(() => {
-        const subscribeButton = screen.getByTestId('modal-subscribe-button');
-        fireEvent.press(subscribeButton);
-      });
-
+      const subscribeButton = await screen.findByTestId(
+        'modal-subscribe-button'
+      );
+      fireEvent.press(subscribeButton);
       expect(mockSetPro).toHaveBeenCalledWith(true);
     });
 
@@ -137,9 +134,10 @@ describe('SubscriptionGate', () => {
       fireEvent.press(lockedState);
 
       // Close modal
+      const closeButton = await screen.findByTestId('modal-close-button');
+      fireEvent.press(closeButton);
       await waitFor(() => {
-        const closeButton = screen.getByTestId('modal-close-button');
-        fireEvent.press(closeButton);
+        expect(screen.queryByText('Pro Feature Locked')).toBeNull();
       });
 
       await waitFor(() => {
