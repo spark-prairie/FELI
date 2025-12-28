@@ -131,6 +131,7 @@ export function useRevenueCat(): UseRevenueCatReturn {
   const { customerInfo, fetchCustomerInfo } = useCustomerInfo(syncProStatus);
   const { offerings, fetchOfferings, isLoading } = useOfferings();
 
+  // Initial fetch on mount
   useEffect(() => {
     const init = async () => {
       if (!isConfigured) return;
@@ -139,6 +140,22 @@ export function useRevenueCat(): UseRevenueCatReturn {
     };
     init();
   }, [isConfigured, fetchCustomerInfo, fetchOfferings]);
+
+  // Listen for CustomerInfo updates (fires after purchases/restores)
+  useEffect(() => {
+    if (!isConfigured) return;
+
+    const listener = (info: CustomerInfo) => {
+      const isPro = info.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
+      syncProStatus(isPro, Date.now());
+    };
+
+    Purchases.addCustomerInfoUpdateListener(listener);
+
+    return () => {
+      Purchases.removeCustomerInfoUpdateListener(listener);
+    };
+  }, [isConfigured, syncProStatus]);
 
   return {
     isConfigured,

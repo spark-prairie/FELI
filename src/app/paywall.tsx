@@ -1,5 +1,5 @@
 import { Stack, useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { RevenueCatPaywall } from '@/components/revenue-cat-paywall';
 import {
@@ -28,11 +28,12 @@ export default function Paywall() {
     router.back();
   };
 
-  // Redirect if already Pro
-  if (isPro) {
-    router.back();
-    return null;
-  }
+  // Redirect if already Pro (moved to useEffect to avoid navigation during render)
+  useEffect(() => {
+    if (isPro) {
+      router.back();
+    }
+  }, [isPro, router]);
 
   return (
     <>
