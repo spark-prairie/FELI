@@ -41,7 +41,6 @@ export default function TabLayout() {
           tabBarButtonTestID: 'feed-tab',
         }}
       />
-
       <Tabs.Screen
         name="style"
         options={{
@@ -58,6 +57,24 @@ export default function TabLayout() {
           headerShown: false,
           tabBarIcon: ({ color }) => <SettingsIcon color={color} />,
           tabBarButtonTestID: 'settings-tab',
+        }}
+      />
+      <Tabs.Screen
+        name="history"
+        options={{
+          title: 'History',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <SettingsIcon color={color} />,
+          tabBarButtonTestID: 'history-tab',
+        }}
+      />
+      <Tabs.Screen
+        name="home"
+        options={{
+          title: 'Home',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <SettingsIcon color={color} />,
+          tabBarButtonTestID: 'home-tab',
         }}
       />
     </Tabs>

@@ -12,7 +12,7 @@ export default function HistoryIndex() {
   useEffect(() => checkAndResetDaily(), [checkAndResetDaily]);
 
   return (
-    <>
+    <View className="flex-1 ">
       <FocusAwareStatusBar />
       {history.length === 0 ? (
         <View className="flex-1 items-center justify-center bg-neutral-50 px-6 dark:bg-neutral-900">
@@ -40,6 +40,6 @@ export default function HistoryIndex() {
           </View>
         </ScrollView>
       )}
-    </>
+    </View>
   );
 }

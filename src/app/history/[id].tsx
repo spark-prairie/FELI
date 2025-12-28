@@ -1,4 +1,4 @@
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React from 'react';
 
 import {
@@ -21,7 +21,7 @@ export default function HistoryDetail() {
 
   if (!result) {
     return (
-      <>
+      <View className="flex-1 p-3 ">
         <FocusAwareStatusBar />
         <View className="flex-1 items-center justify-center bg-neutral-50 px-6 dark:bg-neutral-900">
           <Text className="mb-2 text-4xl">🔍</Text>
@@ -30,7 +30,7 @@ export default function HistoryDetail() {
           </Text>
           <Button label="Back" onPress={() => router.back()} />
         </View>
-      </>
+      </View>
     );
   }
 
@@ -44,7 +44,8 @@ export default function HistoryDetail() {
   const date = new Date(result.created_at).toLocaleDateString();
 
   return (
-    <>
+    <View className="flex-1 p-3 ">
+      <Stack.Screen options={{ title: 'Detail', headerBackTitle: 'History' }} />
       <FocusAwareStatusBar />
       <ScrollView className="flex-1 bg-neutral-50 dark:bg-neutral-900">
         <View className="p-6">
@@ -77,6 +78,6 @@ export default function HistoryDetail() {
           />
         </View>
       </ScrollView>
-    </>
+    </View>
   );
 }

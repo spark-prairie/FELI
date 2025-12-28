@@ -30,7 +30,9 @@ export default function AnalyzeLoading() {
   if (hasError) {
     return (
       <>
-        <Stack.Screen options={{ title: 'Analysis', headerBackVisible: false }} />
+        <Stack.Screen
+          options={{ title: 'Analysis', headerBackVisible: false }}
+        />
         <FocusAwareStatusBar />
         <View className="flex-1 items-center justify-center p-6">
           <Text className="mb-2 text-center text-6xl">😿</Text>
@@ -60,7 +62,9 @@ export default function AnalyzeLoading() {
 
   return (
     <>
-      <Stack.Screen options={{ title: 'Analyzing', headerBackVisible: false }} />
+      <Stack.Screen
+        options={{ title: 'Analyzing', headerBackVisible: false }}
+      />
       <FocusAwareStatusBar />
       <View className="flex-1 items-center justify-center p-6">
         <ActivityIndicator
