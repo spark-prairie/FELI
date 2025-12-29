@@ -107,9 +107,7 @@ describe('ReasoningList', () => {
       expect(screen.getByText('Item 2')).toBeTruthy();
 
       // Should NOT show "more insights" message
-      expect(
-        screen.queryByText(/more insights available/i)
-      ).toBeNull();
+      expect(screen.queryByText(/more insights available/i)).toBeNull();
     });
 
     it('handles singular vs plural in insight count', () => {

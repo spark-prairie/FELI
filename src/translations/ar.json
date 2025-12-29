@@ -1,107 +1,149 @@
 {
-  "common": {
-    "cancel": "إلغاء",
-    "delete": "حذف",
-    "back": "رجوع",
-    "upgrade": "ترقية",
-    "pro": "برو",
-    "app_name": "فيلي",
-    "app_tagline": "عدسة مشاعر القطط",
-    "loading": "جاري التحميل",
-    "error": "خطأ"
-  },
-  "onboarding": {
-    "message": "مرحباً بك في فيلي",
-    "subtitle": "فهم الحالة العاطفية لقطتك من خلال التحليل المدعوم بالذكاء الاصطناعي",
-    "get_started": "ابدأ الآن",
-    "next": "التالي"
-  },
-  "home": {
-    "title": "فيلي",
-    "tagline": "عدسة مشاعر القطط",
-    "subtitle": "دليل احتمالي لفهم الحالة العاطفية لقطتك",
-    "instruction": "التقط أو اختر صورة واضحة لوجه قطتك للبدء",
-    "disclaimer": "ليست أداة تشخيص طبي. للترفيه والفهم فقط.",
-    "daily_limit_reached_title": "تم الوصول إلى الحد اليومي",
-    "daily_limit_reached_message": "لقد استخدمت جميع التحليلات المجانية البالغة {count} اليوم. قم بالترقية إلى برو للحصول على تحليلات غير محدودة.",
-    "analyze_button_camera": "التقط صورة",
-    "analyze_button_gallery": "اختر صورة",
-    "accessibility": {
-      "analyze_button": "بدء تحليل مشاعر القطط",
-      "usage_banner": "معلومات الاستخدام اليومي"
-    }
-  },
   "analyze": {
-    "preview_title": "معاينة",
-    "loading_title": "جاري التحليل",
-    "loading_message": "تحليل الإشارات البصرية...",
-    "loading_subtitle": "تفسير التعبيرات والأنماط",
-    "loading_note": "قد يستغرق هذا لحظة",
-    "error_title": "غير قادر على التحليل",
-    "error_message": "يرجى التحقق من الاتصال والمحاولة مرة أخرى",
-    "retry_button": "حاول مرة أخرى",
-    "back_home_button": "العودة إلى الرئيسية",
-    "result_title": "النتائج",
-    "back_to_home": "العودة إلى الرئيسية",
     "accessibility": {
       "loading": "التحليل قيد التقدم",
       "photo_preview": "معاينة صورة قطتك"
-    }
+    },
+    "back_home_button": "العودة إلى الرئيسية",
+    "back_to_home": "العودة إلى الرئيسية",
+    "error_message": "يرجى التحقق من الاتصال والمحاولة مرة أخرى",
+    "error_title": "غير قادر على التحليل",
+    "loading_message": "تحليل الإشارات البصرية...",
+    "loading_note": "قد يستغرق هذا لحظة",
+    "loading_subtitle": "تفسير التعبيرات والأنماط",
+    "loading_title": "جاري التحليل",
+    "preview_title": "معاينة",
+    "result_title": "النتائج",
+    "retry_button": "حاول مرة أخرى"
+  },
+  "common": {
+    "app_name": "فيلي",
+    "app_tagline": "عدسة مشاعر القطط",
+    "back": "رجوع",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "error": "خطأ",
+    "loading": "جاري التحميل",
+    "pro": "برو",
+    "upgrade": "ترقية"
+  },
+  "emotions": {
+    "alert": "متيقظ",
+    "anxious": "قلق",
+    "irritated": "منزعج",
+    "possible_discomfort": "انزعاج محتمل",
+    "relaxed": "مسترخي"
+  },
+  "history": {
+    "accessibility": {
+      "history_item": "تحليل من {date}، يظهر مشاعر {emotion}",
+      "tap_hint": "انقر مرتين لعرض التفاصيل"
+    },
+    "empty_icon_accessibility": "رسم توضيحي للسجل الفارغ",
+    "empty_message": "سيظهر سجل التحليل الخاص بك هنا",
+    "empty_title": "لا يوجد سجل بعد",
+    "recent_label": "التحليلات الأخيرة (الحد الأقصى {max})",
+    "title": "السجل",
+    "view_details": "عرض التفاصيل"
+  },
+  "home": {
+    "accessibility": {
+      "analyze_button": "بدء تحليل مشاعر القطط",
+      "usage_banner": "معلومات الاستخدام اليومي"
+    },
+    "analyze_button_camera": "التقط صورة",
+    "analyze_button_gallery": "اختر صورة",
+    "daily_limit_reached_message": "لقد استخدمت جميع التحليلات المجانية البالغة {count} اليوم. قم بالترقية إلى برو للحصول على تحليلات غير محدودة.",
+    "daily_limit_reached_title": "تم الوصول إلى الحد اليومي",
+    "disclaimer": "ليست أداة تشخيص طبي. للترفيه والفهم فقط.",
+    "instruction": "التقط أو اختر صورة واضحة لوجه قطتك للبدء",
+    "subtitle": "دليل احتمالي لفهم الحالة العاطفية لقطتك",
+    "tagline": "عدسة مشاعر القطط",
+    "title": "فيلي"
+  },
+  "onboarding": {
+    "get_started": "ابدأ الآن",
+    "message": "مرحباً بك في فيلي",
+    "next": "التالي",
+    "subtitle": "فهم الحالة العاطفية لقطتك من خلال التحليل المدعوم بالذكاء الاصطناعي"
+  },
+  "paywall": {
+    "feature_percentages": "نسب الثقة الدقيقة",
+    "feature_reasoning": "الملاحظات السلوكية الكاملة",
+    "feature_secondary": "رؤى المشاعر الثانوية",
+    "feature_unlimited": "تحليلات يومية غير محدودة",
+    "loading_plans": "جاري تحميل الخطط...",
+    "maybe_later": "ربما لاحقاً",
+    "plan_annual": "سنوي",
+    "plan_lifetime": "مدى الحياة",
+    "plan_monthly": "شهري",
+    "plan_weekly": "أسبوعي",
+    "processing_purchase": "جاري معالجة الشراء...",
+    "processing_restore": "جاري استعادة المشتريات...",
+    "restore_button": "استعادة المشتريات",
+    "restore_error_message": "غير قادر على استعادة المشتريات. يرجى المحاولة مرة أخرى لاحقاً.",
+    "restore_error_title": "فشلت الاستعادة",
+    "restore_nothing_message": "لم نتمكن من العثور على أي مشتريات سابقة لاستعادتها.",
+    "restore_nothing_title": "لم يتم العثور على مشتريات",
+    "restore_success_message": "تم استعادة مشترياتك بنجاح!",
+    "restore_success_title": "نجح",
+    "subscribe_button": "اشترك الآن",
+    "subscription_plans": "خطط الاشتراك",
+    "terms_and_privacy": "بالاشتراك، فإنك توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا",
+    "title": "الترقية إلى برو"
   },
   "result": {
-    "primary_emotion_label": "المشاعر الأساسية",
-    "secondary_emotion_label": "المشاعر الثانوية",
-    "reasoning_label": "الملاحظات السلوكية",
-    "suggestions_label": "اقتراحات الرعاية",
-    "disclaimer_title": "ملاحظة مهمة",
-    "disclaimer_message": "يعتمد هذا التفسير على الإشارات السلوكية المرئية وليس بديلاً عن المشورة البيطرية المهنية. استشر الطبيب البيطري دائماً إذا كانت لديك مخاوف بشأن صحة قطتك أو رفاهيتها.",
-    "pro_upgrade_title": "افتح رؤى أعمق",
-    "pro_upgrade_message": "يحصل أعضاء برو على نسب الثقة الدقيقة والمشاعر الثانوية وتفاصيل الملاحظات الكاملة والتحليلات اليومية غير المحدودة.",
-    "pro_upgrade_button": "الترقية إلى برو",
-    "locked_secondary_emotion_title": "المشاعر الثانوية",
-    "locked_secondary_emotion_subtitle": "انقر لفتح رؤى المشاعر الثانوية",
-    "locked_pro_feature": "ميزة برو",
-    "confidence_high": "ثقة عالية",
-    "confidence_medium": "ثقة متوسطة",
-    "confidence_low": "ثقة منخفضة",
-    "confidence_percentage": "{percentage}٪ ثقة",
-    "reasoning_count": "{count} ملاحظة",
-    "reasoning_count_plural": "{count} ملاحظات",
-    "more_insights_available": "{count} ملاحظات إضافية متاحة مع برو",
     "accessibility": {
       "emotion_badge": "المشاعر: {emotion}، {confidence}",
       "pro_badge": "ميزة برو",
       "secondary_emotion_locked": "المشاعر الثانوية مقفلة، قم بالترقية إلى برو لفتحها",
       "upgrade_prompt": "الترقية إلى برو للحصول على تفاصيل التحليل الكاملة"
-    }
-  },
-  "history": {
-    "title": "السجل",
-    "empty_title": "لا يوجد سجل بعد",
-    "empty_message": "سيظهر سجل التحليل الخاص بك هنا",
-    "empty_icon_accessibility": "رسم توضيحي للسجل الفارغ",
-    "recent_label": "التحليلات الأخيرة (الحد الأقصى {max})",
-    "view_details": "عرض التفاصيل",
-    "accessibility": {
-      "history_item": "تحليل من {date}، يظهر مشاعر {emotion}",
-      "tap_hint": "انقر مرتين لعرض التفاصيل"
-    }
+    },
+    "confidence_high": "ثقة عالية",
+    "confidence_low": "ثقة منخفضة",
+    "confidence_medium": "ثقة متوسطة",
+    "confidence_percentage": "{percentage}٪ ثقة",
+    "disclaimer_message": "يعتمد هذا التفسير على الإشارات السلوكية المرئية وليس بديلاً عن المشورة البيطرية المهنية. استشر الطبيب البيطري دائماً إذا كانت لديك مخاوف بشأن صحة قطتك أو رفاهيتها.",
+    "disclaimer_title": "ملاحظة مهمة",
+    "locked_pro_feature": "ميزة برو",
+    "locked_secondary_emotion_subtitle": "انقر لفتح رؤى المشاعر الثانوية",
+    "locked_secondary_emotion_title": "المشاعر الثانوية",
+    "more_insights_available": "{count} ملاحظات إضافية متاحة مع برو",
+    "primary_emotion_label": "المشاعر الأساسية",
+    "pro_upgrade_button": "الترقية إلى برو",
+    "pro_upgrade_message": "يحصل أعضاء برو على نسب الثقة الدقيقة والمشاعر الثانوية وتفاصيل الملاحظات الكاملة والتحليلات اليومية غير المحدودة.",
+    "pro_upgrade_title": "افتح رؤى أعمق",
+    "reasoning_count": "{count} ملاحظة",
+    "reasoning_count_plural": "{count} ملاحظات",
+    "reasoning_label": "الملاحظات السلوكية",
+    "secondary_emotion_label": "المشاعر الثانوية",
+    "suggestions_label": "اقتراحات الرعاية"
   },
   "settings": {
-    "title": "إعدادات",
     "about": "حول التطبيق",
     "app_name": "اسم التطبيق",
     "arabic": "عربي",
+    "cancel": "إلغاء",
+    "danger_zone": "منطقة خطرة",
+    "delete_all_data": "حذف جميع البيانات",
+    "delete_button": "حذف",
+    "delete_confirm_message": "سيؤدي هذا إلى حذف جميع سجل التحليل بشكل دائم وإعادة تعيين التطبيق. لا يمكن التراجع عن هذا الإجراء.",
+    "delete_confirm_title": "حذف جميع البيانات؟",
+    "developer_tools": "أدوات المطور",
     "english": "إنجليزي",
     "generale": "عام",
     "github": "جيثب",
     "language": "اللغة",
     "links": "الروابط",
     "logout": "تسجيل خروج",
+    "manage_subscription": "إدارة الاشتراك",
+    "mock_pro_disabled": "برو التجريبي: معطل",
+    "mock_pro_enabled": "برو التجريبي: مفعل",
     "more": "المزيد",
     "privacy": "سياسة الخصوصية",
     "rate": "تقييم",
     "share": "مشاركة",
+    "subscription": "الاشتراك",
     "support": "الدعم",
     "support_us": "ادعمنا",
     "terms": "شروط الخدمة",
@@ -111,44 +153,19 @@
       "system": "النظام",
       "title": "المظهر"
     },
-    "version": "الإصدار",
-    "website": "الموقع الإلكتروني",
-    "danger_zone": "منطقة خطرة",
-    "delete_all_data": "حذف جميع البيانات",
-    "delete_confirm_title": "حذف جميع البيانات؟",
-    "delete_confirm_message": "سيؤدي هذا إلى حذف جميع سجل التحليل بشكل دائم وإعادة تعيين التطبيق. لا يمكن التراجع عن هذا الإجراء.",
-    "delete_button": "حذف",
-    "cancel": "إلغاء",
-    "developer_tools": "أدوات المطور",
+    "title": "إعدادات",
     "toggle_mock_pro": "تبديل حالة برو التجريبية",
-    "mock_pro_enabled": "برو التجريبي: مفعل",
-    "mock_pro_disabled": "برو التجريبي: معطل"
-  },
-  "paywall": {
-    "title": "الترقية إلى برو",
-    "feature_percentages": "نسب الثقة الدقيقة",
-    "feature_secondary": "رؤى المشاعر الثانوية",
-    "feature_reasoning": "الملاحظات السلوكية الكاملة",
-    "feature_unlimited": "تحليلات يومية غير محدودة",
-    "subscribe_button": "اشترك الآن",
-    "restore_button": "استعادة المشتريات",
-    "terms_and_privacy": "بالاشتراك، فإنك توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا"
+    "version": "الإصدار",
+    "website": "الموقع الإلكتروني"
   },
   "usage_banner": {
-    "daily_scans": "الفحوصات اليومية:",
-    "analyses_used": "{used} من {total} مستخدم",
-    "unlimited": "غير محدود (برو)",
-    "upgrade_prompt": "الترقية للحصول على تحليلات غير محدودة",
     "accessibility": {
-      "usage_info": "لقد استخدمت {used} من {total} تحليلات يومية",
-      "unlimited_info": "تحليلات غير محدودة مع عضوية برو"
-    }
-  },
-  "emotions": {
-    "relaxed": "مسترخي",
-    "alert": "متيقظ",
-    "anxious": "قلق",
-    "irritated": "منزعج",
-    "possible_discomfort": "انزعاج محتمل"
+      "unlimited_info": "تحليلات غير محدودة مع عضوية برو",
+      "usage_info": "لقد استخدمت {used} من {total} تحليلات يومية"
+    },
+    "analyses_used": "{used} من {total} مستخدم",
+    "daily_scans": "الفحوصات اليومية:",
+    "unlimited": "غير محدود (برو)",
+    "upgrade_prompt": "الترقية للحصول على تحليلات غير محدودة"
   }
 }

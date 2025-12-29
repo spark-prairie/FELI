@@ -20,6 +20,7 @@ interface HistoryItemProps {
 export function HistoryItem({ result, onPress }: HistoryItemProps) {
   const { t } = useTranslation();
   const { primary_emotion, meta } = result;
+  console.log('result', meta);
   const emoji = EMOTION_EMOJI[primary_emotion.type];
   const emotionName = t(`emotions.${primary_emotion.type}`);
 

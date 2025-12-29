@@ -46,11 +46,12 @@ export function EmotionBadge({
   const colorClass = confidenceNote ? CONFIDENCE_COLORS[confidenceNote] : '';
 
   // Build accessibility label for screen readers
-  const confidenceText = showPercentage && emotion.confidence_percentage !== undefined
-    ? `${emotion.confidence_percentage} percent confidence`
-    : confidenceNote
-    ? `${confidenceNote} confidence`
-    : '';
+  const confidenceText =
+    showPercentage && emotion.confidence_percentage !== undefined
+      ? `${emotion.confidence_percentage} percent confidence`
+      : confidenceNote
+        ? `${confidenceNote} confidence`
+        : '';
 
   const accessibilityLabel = t('result.accessibility.emotion_badge', {
     emotion: emotionName,

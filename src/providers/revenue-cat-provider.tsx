@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Purchases, { type CustomerInfo, LOG_LEVEL } from 'react-native-purchases';
+import Purchases, {
+  type CustomerInfo,
+  LOG_LEVEL,
+} from 'react-native-purchases';
 
 import { ENTITLEMENTS, REVENUE_CAT_CONFIG } from '@/config/revenue-cat';
 import { useAnalysisStore } from '@/stores/analysis-store';
@@ -13,6 +16,7 @@ interface RevenueCatProviderProps {
  * Initializes the RevenueCat SDK when the app starts (unless in mock mode)
  * Wraps the app to ensure SDK is configured before any purchases
  */
+// eslint-disable-next-line max-lines-per-function
 export function RevenueCatProvider({ children }: RevenueCatProviderProps) {
   const [isInitialized, setIsInitialized] = useState(false);
   const syncProStatus = useAnalysisStore((s) => s.syncProStatus);
@@ -53,6 +57,25 @@ export function RevenueCatProvider({ children }: RevenueCatProviderProps) {
         };
 
         Purchases.addCustomerInfoUpdateListener(listener);
+
+        // Fetch initial customer info to sync entitlements immediately
+        try {
+          const initialInfo = await Purchases.getCustomerInfo();
+          const isPro =
+            initialInfo.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !==
+            undefined;
+          syncProStatus(isPro, Date.now());
+          console.log(
+            '[RevenueCat] Initial customer info fetched, isPro:',
+            isPro
+          );
+        } catch (error) {
+          console.warn(
+            '[RevenueCat] Failed to fetch initial customer info:',
+            error
+          );
+          // Continue initialization even if fetch fails
+        }
 
         setIsInitialized(true);
       } catch (error) {

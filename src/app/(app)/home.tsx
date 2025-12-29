@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
-import { Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { Alert } from 'react-native';
 
 import { PhotoCaptureButton } from '@/components/photo-capture-button';
 import { FocusAwareStatusBar, Text, View } from '@/components/ui';
@@ -27,7 +27,10 @@ export default function Home() {
           t('home.daily_limit_reached_message', { count: DAILY_LIMIT_FREE }),
           [
             { text: t('common.cancel'), style: 'cancel' },
-            { text: t('common.upgrade'), onPress: () => router.push('/paywall') },
+            {
+              text: t('common.upgrade'),
+              onPress: () => router.push('/paywall'),
+            },
           ]
         );
         return;
@@ -44,7 +47,9 @@ export default function Home() {
       <FocusAwareStatusBar />
       <View className="flex-1 justify-center px-6">
         <View className="mb-8 items-center">
-          <Text className="mb-4 text-center text-4xl font-bold">{t('home.title')}</Text>
+          <Text className="mb-4 text-center text-4xl font-bold">
+            {t('home.title')}
+          </Text>
           <Text className="mb-2 text-center text-lg text-neutral-600 dark:text-neutral-400">
             {t('home.tagline')}
           </Text>

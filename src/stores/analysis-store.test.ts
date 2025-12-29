@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-native';
+import { act, renderHook } from '@testing-library/react-native';
 
 import { storage } from '@/lib/storage';
 import type { EmotionResult } from '@/types/emotion';

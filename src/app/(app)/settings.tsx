@@ -1,7 +1,7 @@
 import { Env } from '@env';
 import { useRouter } from 'expo-router';
 import { useColorScheme } from 'nativewind';
-import { Alert } from 'react-native';
+import { Alert, Linking, Platform } from 'react-native';
 
 import { Item } from '@/components/settings/item';
 import { ItemsContainer } from '@/components/settings/items-container';
@@ -19,6 +19,7 @@ import { Github, Rate, Share, Support, Website } from '@/components/ui/icons';
 import { translate, useAuth } from '@/lib';
 import { useAnalysisStore } from '@/stores/analysis-store';
 
+// eslint-disable-next-line max-lines-per-function
 export default function Settings() {
   const router = useRouter();
   const signOut = useAuth.use.signOut();
@@ -54,6 +55,18 @@ export default function Settings() {
   const handleToggleMockPro = () => {
     syncProStatus(!isPro, Date.now());
   };
+
+  const handleManageSubscription = () => {
+    // Open system subscription settings
+    if (Platform.OS === 'ios') {
+      // iOS: App Store subscriptions
+      Linking.openURL('https://apps.apple.com/account/subscriptions');
+    } else {
+      // Android: Google Play subscriptions
+      Linking.openURL('https://play.google.com/store/account/subscriptions');
+    }
+  };
+
   return (
     <>
       <FocusAwareStatusBar />
@@ -72,6 +85,17 @@ export default function Settings() {
             <Item text="settings.app_name" value={Env.NAME} />
             <Item text="settings.version" value={Env.VERSION} />
           </ItemsContainer>
+
+          {/* Subscription Management (Pro users only) */}
+          {isPro && (
+            <ItemsContainer title="settings.subscription">
+              <Item
+                text="settings.manage_subscription"
+                icon={<Text className="text-xl">⭐</Text>}
+                onPress={handleManageSubscription}
+              />
+            </ItemsContainer>
+          )}
 
           <ItemsContainer title="settings.support_us">
             <Item

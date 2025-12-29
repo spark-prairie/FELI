@@ -5,9 +5,10 @@ const validate = (message = '') => {
   if (typeof message !== 'string') {
     throw new TypeError('Message must be a String.');
   }
+  // Accept both single bracket {variable} and double bracket {{variable}} interpolation
   if (
     (message.includes('{') || message.includes('}')) &&
-    !/{{ ?(?:- |\w+?)(, ?)?\w+? ?}}/g.test(message)
+    !/{{ ?(?:- |\w+?)(, ?)?\w+? ?}}|{ ?\w+ ?}/g.test(message)
   ) {
     throw new SyntaxError(
       'Interpolation error. See: https://www.i18next.com/misc/json-format'

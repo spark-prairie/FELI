@@ -2,6 +2,7 @@ import { Stack, useRouter } from 'expo-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { SubscriptionGate } from '@/components/subscription-gate';
 import {
   Button,
   FocusAwareStatusBar,
@@ -9,7 +10,6 @@ import {
   Text,
   View,
 } from '@/components/ui';
-import { SubscriptionGate } from '@/components/subscription-gate';
 import { ActionSuggestionList } from '@/features/analysis/components/action-suggestion-list';
 import { EmotionBadge } from '@/features/analysis/components/emotion-badge';
 import { ReasoningList } from '@/features/analysis/components/reasoning-list';
@@ -30,7 +30,7 @@ export default function AnalyzeResult() {
   // Use record's Pro status if it's a stored result, otherwise use global isPro
   const isStoredResult = 'isProAtSave' in currentResult;
   const isPro = isStoredResult
-    ? (currentResult as any).isProAtSave ?? globalIsPro
+    ? ((currentResult as any).isProAtSave ?? globalIsPro)
     : globalIsPro;
 
   const {
@@ -44,7 +44,9 @@ export default function AnalyzeResult() {
 
   return (
     <>
-      <Stack.Screen options={{ title: t('analyze.result_title'), headerBackVisible: false }} />
+      <Stack.Screen
+        options={{ title: t('analyze.result_title'), headerBackVisible: false }}
+      />
       <FocusAwareStatusBar />
       <ScrollView className="flex-1 bg-neutral-50 dark:bg-neutral-900">
         <View className="p-6">

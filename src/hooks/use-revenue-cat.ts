@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import { useCallback, useEffect, useState } from 'react';
 import Purchases, {
   type CustomerInfo,
@@ -9,38 +10,55 @@ import Purchases, {
 import { ENTITLEMENTS, REVENUE_CAT_CONFIG } from '@/config/revenue-cat';
 import { useAnalysisStore } from '@/stores/analysis-store';
 
+// ---------- Types ----------
+interface PurchaseResult {
+  success: boolean;
+  cancelled?: boolean;
+  error?: string;
+}
+
+interface RestoreResult {
+  success: boolean;
+  restored: boolean;
+  error?: string;
+}
+
 interface UseRevenueCatReturn {
   isConfigured: boolean;
   isLoading: boolean;
+  isPurchasing: boolean;
+  isRestoring: boolean;
   customerInfo: CustomerInfo | null;
   offerings: PurchasesOfferings | null;
   isPro: boolean;
-  purchasePackage: (pkg: PurchasesPackage) => Promise<boolean>;
-  restorePurchases: () => Promise<boolean>;
+  purchasePackage: (pkg: PurchasesPackage) => Promise<PurchaseResult>;
+  restorePurchases: () => Promise<RestoreResult>;
   error: string | null;
 }
 
 // ---------- Mock Mode Helpers ----------
 async function mockPurchase(
   syncProStatus: (isPro: boolean, timestamp?: number) => void
-): Promise<boolean> {
+): Promise<PurchaseResult> {
   console.log('[RevenueCat Mock] Simulating purchase...');
   // Simulate network delay
   await new Promise((resolve) => setTimeout(resolve, 1000));
+  await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
   syncProStatus(true, Date.now());
   console.log('[RevenueCat Mock] Purchase successful, isPro set to true');
-  return true;
+  return { success: true };
 }
 
 async function mockRestore(
   syncProStatus: (isPro: boolean, timestamp?: number) => void
-): Promise<boolean> {
+): Promise<RestoreResult> {
   console.log('[RevenueCat Mock] Simulating restore...');
   // Simulate network delay
   await new Promise((resolve) => setTimeout(resolve, 1000));
+  await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
   syncProStatus(true, Date.now());
   console.log('[RevenueCat Mock] Restore successful, isPro set to true');
-  return true;
+  return { success: true, restored: true };
 }
 
 // ---------- SDK Initialization ----------
@@ -132,47 +150,106 @@ function useOfferings() {
   return { offerings, fetchOfferings, isLoading, error };
 }
 
-// ---------- Purchase/Restore ----------
+// ---------- Purchase/Restore State Management ----------
+function usePurchaseState() {
+  const [isPurchasing, setIsPurchasing] = useState(false);
+  const [isRestoring, setIsRestoring] = useState(false);
+
+  return {
+    isPurchasing,
+    isRestoring,
+    setIsPurchasing,
+    setIsRestoring,
+  };
+}
+
+// ---------- Purchase/Restore Logic ----------
 async function handlePurchase(
   pkg: PurchasesPackage,
-  syncProStatus: (isPro: boolean, timestamp?: number) => void
-): Promise<boolean> {
+  syncProStatus: (isPro: boolean, timestamp?: number) => void,
+  setIsPurchasing: (value: boolean) => void
+): Promise<PurchaseResult> {
   // Use mock in mock mode
   if (REVENUE_CAT_CONFIG.USE_MOCK) {
-    return mockPurchase(syncProStatus);
+    setIsPurchasing(true);
+    const result = await mockPurchase(syncProStatus);
+    setIsPurchasing(false);
+    return result;
   }
 
   try {
+    setIsPurchasing(true);
     const { customerInfo } = await Purchases.purchasePackage(pkg);
     const hasPro =
       customerInfo.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
+
     syncProStatus(hasPro, Date.now());
-    return hasPro;
-  } catch (err) {
-    if (err instanceof Error && !err.message.includes('user cancelled')) {
-      console.error(err.message);
+    await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+
+    console.log('[RevenueCat] Purchase successful, isPro:', hasPro);
+    return { success: true };
+  } catch (err: any) {
+    // Check if user cancelled (not an error condition)
+    if (
+      err.code === 'USER_CANCELLED' ||
+      err.userCancelled ||
+      err.message?.toLowerCase().includes('user cancelled')
+    ) {
+      console.log('[RevenueCat] User cancelled purchase');
+      return { success: false, cancelled: true };
     }
-    return false;
+
+    // Real error
+    await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+    console.error('[RevenueCat] Purchase error:', err);
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Purchase failed',
+    };
+  } finally {
+    setIsPurchasing(false);
   }
 }
 
 async function handleRestore(
-  syncProStatus: (isPro: boolean, timestamp?: number) => void
-): Promise<boolean> {
+  syncProStatus: (isPro: boolean, timestamp?: number) => void,
+  setIsRestoring: (value: boolean) => void
+): Promise<RestoreResult> {
   // Use mock in mock mode
   if (REVENUE_CAT_CONFIG.USE_MOCK) {
-    return mockRestore(syncProStatus);
+    setIsRestoring(true);
+    const result = await mockRestore(syncProStatus);
+    setIsRestoring(false);
+    return result;
   }
 
   try {
+    setIsRestoring(true);
     const restored = await Purchases.restorePurchases();
     const hasPro =
       restored.entitlements.active[ENTITLEMENTS.PRO_FEATURES] !== undefined;
+
     syncProStatus(hasPro, Date.now());
-    return hasPro;
+
+    if (hasPro) {
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      console.log('[RevenueCat] Restore successful, isPro:', hasPro);
+      return { success: true, restored: true };
+    } else {
+      // No purchases to restore (not an error, but nothing found)
+      console.log('[RevenueCat] No purchases to restore');
+      return { success: true, restored: false };
+    }
   } catch (err) {
-    console.error(err instanceof Error ? err.message : 'Restore failed');
-    return false;
+    await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+    console.error('[RevenueCat] Restore error:', err);
+    return {
+      success: false,
+      restored: false,
+      error: err instanceof Error ? err.message : 'Restore failed',
+    };
+  } finally {
+    setIsRestoring(false);
   }
 }
 
@@ -187,6 +264,8 @@ export function useRevenueCat(): UseRevenueCatReturn {
   );
   const { customerInfo, fetchCustomerInfo } = useCustomerInfo(syncProStatus);
   const { offerings, fetchOfferings, isLoading } = useOfferings();
+  const { isPurchasing, isRestoring, setIsPurchasing, setIsRestoring } =
+    usePurchaseState();
 
   // Initial fetch on mount
   useEffect(() => {
@@ -203,16 +282,19 @@ export function useRevenueCat(): UseRevenueCatReturn {
   return {
     isConfigured,
     isLoading,
+    isPurchasing,
+    isRestoring,
     customerInfo,
     offerings,
     isPro, // Read from Zustand store (reactive)
     purchasePackage: useCallback(
-      (pkg: PurchasesPackage) => handlePurchase(pkg, syncProStatus),
-      [syncProStatus]
+      (pkg: PurchasesPackage) =>
+        handlePurchase(pkg, syncProStatus, setIsPurchasing),
+      [syncProStatus, setIsPurchasing]
     ),
     restorePurchases: useCallback(
-      () => handleRestore(syncProStatus),
-      [syncProStatus]
+      () => handleRestore(syncProStatus, setIsRestoring),
+      [syncProStatus, setIsRestoring]
     ),
     error: configError,
   };
