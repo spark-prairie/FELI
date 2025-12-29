@@ -4,28 +4,28 @@
     "appVersionSource": "remote"
   },
   "build": {
-    "production": {
-      "channel": "production",
-      "distribution": "store",
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "development",
       "pnpm": "9.12.3",
       "ios": {
         "image": "latest"
       },
       "android": {
-        "buildType": "app-bundle",
         "image": "latest"
       },
       "env": {
-        "EXPO_NO_DOTENV": "1",
-        "APP_ENV": "production",
-        "FLIPPER_DISABLE": "1"
+        "APP_ENV": "development",
+        "EXPO_NO_DOTENV": "1"
       }
     },
-    "staging": {
-      "channel": "staging",
+    "preview": {
+      "channel": "preview",
       "distribution": "internal",
       "pnpm": "9.12.3",
       "ios": {
+        "simulator": true,
         "image": "latest"
       },
       "android": {
@@ -38,33 +38,22 @@
         "FLIPPER_DISABLE": "1"
       }
     },
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal",
+    "production": {
+      "channel": "production",
+      "distribution": "store",
+      "autoIncrement": true,
       "pnpm": "9.12.3",
       "ios": {
         "image": "latest"
       },
       "android": {
+        "buildType": "app-bundle",
         "image": "latest"
       },
       "env": {
-        "APP_ENV": "development",
-        "EXPO_NO_DOTENV": "1"
-      }
-    },
-    "simulator": {
-      "pnpm": "9.12.3",
-      "ios": {
-        "simulator": true,
-        "image": "latest"
-      },
-      "android": {
-        "image": "latest"
-      },
-      "env": {
-        "APP_ENV": "development",
-        "EXPO_NO_DOTENV": "1"
+        "EXPO_NO_DOTENV": "1",
+        "APP_ENV": "production",
+        "FLIPPER_DISABLE": "1"
       }
     }
   },
