@@ -11,6 +11,7 @@ import {
 import { ActionSuggestionList } from '@/features/analysis/components/action-suggestion-list';
 import { EmotionBadge } from '@/features/analysis/components/emotion-badge';
 import { ReasoningList } from '@/features/analysis/components/reasoning-list';
+import { SecondaryEmotionCard } from '@/features/analysis/components/secondary-emotion-card';
 import { useAnalysisStore } from '@/stores/analysis-store';
 
 export default function HistoryDetail() {
@@ -34,8 +35,12 @@ export default function HistoryDetail() {
     );
   }
 
+  // Use historical Pro status from when the record was saved
+  const isPro = result.isProAtSave ?? false;
+
   const {
     primary_emotion,
+    secondary_emotion,
     reasoning,
     suggestions,
     disclaimer,
@@ -55,11 +60,21 @@ export default function HistoryDetail() {
             </Text>
           </View>
 
+          {/* Primary Emotion */}
           <EmotionBadge
             emotion={primary_emotion}
             confidenceNote={confidence_note}
+            showPercentage={isPro}
+            isPro={isPro}
           />
-          <ReasoningList items={reasoning} />
+
+          {/* Secondary Emotion (Pro Only) */}
+          {isPro && <SecondaryEmotionCard emotion={secondary_emotion} />}
+
+          {/* Reasoning (Limited for Free) */}
+          <ReasoningList items={reasoning} isPro={isPro} />
+
+          {/* Suggestions */}
           <ActionSuggestionList items={suggestions} />
 
           <View className="mb-6 rounded-xl bg-amber-50 p-4 dark:bg-amber-950">
