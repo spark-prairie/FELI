@@ -42,6 +42,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: true,
     bundleIdentifier: Env.BUNDLE_ID,
+    jsEngine: 'hermes',
     infoPlist: {
       ITSAppUsesNonExemptEncryption: false,
     },
@@ -55,6 +56,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#2E3C4B',
     },
     package: Env.PACKAGE,
+    jsEngine: 'hermes',
   },
   web: {
     favicon: './assets/favicon.png',

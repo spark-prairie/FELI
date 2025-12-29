@@ -9,7 +9,7 @@ type PhotoCaptureResult = {
 };
 
 const IMAGE_PICKER_OPTIONS = {
-  mediaTypes: ImagePicker.MediaTypeOptions.Images, // simplified
+  mediaTypes: ['images'] as ImagePicker.MediaType[],
   allowsEditing: true,
   aspect: [4, 3] as [number, number],
   quality: 0.8,

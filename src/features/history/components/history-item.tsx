@@ -17,7 +17,10 @@ interface HistoryItemProps {
   onPress?: () => void;
 }
 
-export function HistoryItem({ result, onPress }: HistoryItemProps) {
+export const HistoryItem = React.memo(function HistoryItem({
+  result,
+  onPress,
+}: HistoryItemProps) {
   const { t } = useTranslation();
   const { primary_emotion, meta } = result;
   const emoji = EMOTION_EMOJI[primary_emotion.type];
@@ -57,4 +60,4 @@ export function HistoryItem({ result, onPress }: HistoryItemProps) {
       </Pressable>
     </View>
   );
-}
+});

@@ -24,6 +24,18 @@ export const unstable_settings = {
 
 hydrateAuth();
 loadSelectedTheme();
+
+// Performance: Check if Hermes is enabled (DEV only)
+if (__DEV__) {
+  const isHermesEnabled =
+    typeof HermesInternal === 'object' && HermesInternal !== null;
+  console.log('[Performance] Hermes enabled:', isHermesEnabled);
+  console.log(
+    '[Performance] JS Engine:',
+    isHermesEnabled ? 'Hermes' : 'JSC/V8'
+  );
+}
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 // Set the animation options. This is optional.

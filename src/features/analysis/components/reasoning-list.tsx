@@ -62,7 +62,10 @@ interface ReasoningItemProps {
   isLast: boolean;
 }
 
-function ReasoningItem({ text, isLast }: ReasoningItemProps) {
+const ReasoningItem = React.memo(function ReasoningItem({
+  text,
+  isLast,
+}: ReasoningItemProps) {
   return (
     <View className={`flex-row ${!isLast ? 'mb-3' : ''}`}>
       <Text className="mr-2 text-sm text-neutral-500 dark:text-neutral-400">
@@ -73,4 +76,4 @@ function ReasoningItem({ text, isLast }: ReasoningItemProps) {
       </Text>
     </View>
   );
-}
+});

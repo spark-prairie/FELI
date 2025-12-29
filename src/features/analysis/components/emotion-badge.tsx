@@ -33,8 +33,9 @@ interface Props {
  * EmotionBadge Component
  * Displays primary emotion with emoji and confidence indicator
  * Pro users see exact percentage, Free users see general level
+ * Memoized for performance optimization
  */
-export function EmotionBadge({
+export const EmotionBadge = React.memo(function EmotionBadge({
   emotion,
   confidenceNote,
   showPercentage = false,
@@ -84,12 +85,13 @@ export function EmotionBadge({
       ) : null}
     </View>
   );
-}
+});
 
 /**
  * Pro badge indicator
+ * Memoized for performance optimization
  */
-function ProBadge() {
+const ProBadge = React.memo(function ProBadge() {
   const { t } = useTranslation();
 
   return (
@@ -101,4 +103,4 @@ function ProBadge() {
       <Text className="text-xs font-bold text-white">{t('common.pro')}</Text>
     </View>
   );
-}
+});
