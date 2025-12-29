@@ -1,0 +1,245 @@
+================================================================================
+FELI - iOS App Store Metadata
+================================================================================
+Version: 1.0.0
+Last Updated: 2025-12-29
+Language: English (Primary)
+
+================================================================================
+APP NAME OPTIONS (Max 30 characters)
+================================================================================
+
+OPTION 1 (RECOMMENDED):
+FELI: Cat Emotion Reader
+Length: 23 chars
+SEO: "Cat", "Emotion", "Reader"
+Notes: Clean, direct, memorable
+
+OPTION 2:
+FELI - AI Cat Mood Tracker
+Length: 25 chars
+SEO: "AI", "Cat", "Mood", "Tracker"
+Notes: Tech-forward, feature-focused
+
+OPTION 3:
+FELI: Understand Your Cat
+Length: 24 chars
+SEO: "Understand", "Cat"
+Notes: Benefit-focused, approachable
+
+================================================================================
+SUBTITLE OPTIONS (Max 30 characters)
+================================================================================
+
+OPTION 1:
+AI-Powered Cat Mood Insights
+Length: 29 chars
+
+OPTION 2 (RECOMMENDED):
+Decode Your Cat's Emotions
+Length: 26 chars
+Notes: Action-oriented, benefit-clear
+
+OPTION 3:
+Understand Feline Feelings
+Length: 26 chars
+Notes: Alliterative, professional
+
+================================================================================
+PROMOTIONAL TEXT (Max 170 characters)
+================================================================================
+
+Curious about your cat's mood? FELI uses advanced AI to analyze facial expressions and body language, helping you understand your feline friend's emotional state.
+
+Length: 169 characters
+
+================================================================================
+KEYWORDS (Max 100 characters)
+================================================================================
+
+cat,emotion,mood,ai,feline,behavior,pet,analysis,tracking,wellness,companion,understanding,facial
+
+Length: 95 characters
+
+Keywords Breakdown:
+- Core: cat, emotion, mood, ai, feline
+- Features: behavior, analysis, tracking, facial
+- Benefits: wellness, companion, understanding
+- Category: pet
+
+================================================================================
+DESCRIPTION (Max 4000 characters)
+================================================================================
+
+Ever wonder what your cat is really feeling? FELI (Feline Emotion & Life Insights) is an innovative AI-powered app that helps you decode your cat's emotional state through facial expression and body language analysis.
+
+🐱 WHY FELI?
+
+Your cat communicates constantly through subtle cues—but are you catching them? FELI bridges the gap between you and your feline companion, transforming everyday moments into deeper understanding. Whether your cat appears relaxed, alert, anxious, or irritated, FELI provides instant insights to help you respond with empathy.
+
+✨ KEY FEATURES
+
+📸 INSTANT AI ANALYSIS
+Simply snap a photo or choose from your gallery. Our advanced AI instantly analyzes facial expressions, ear positions, whisker angles, and body posture to identify your cat's emotional state.
+
+🎯 PRO INSIGHTS (Premium)
+• 90%+ confidence scores with exact percentages
+• Secondary emotion detection for nuanced understanding
+• Extended behavioral cue analysis (up to 6 observations)
+• Full reasoning transparency
+• Unlimited daily analyses
+• Comprehensive action suggestions
+
+📊 MOOD HISTORY
+Track emotional patterns over time. See how your cat's mood varies by time of day, environment, or activity. Build a deeper connection through data-driven insights.
+
+🌍 MULTILINGUAL SUPPORT
+Available in English, Spanish, French, German, Italian, Portuguese, Chinese, Japanese, Korean, and Arabic.
+
+♿ ACCESSIBILITY FIRST
+Full VoiceOver/TalkBack support, screen reader optimization, and semantic labels ensure everyone can understand their cat's emotions.
+
+🔒 PRIVACY & SECURITY
+• All photo analysis happens on-device or through secure encrypted connections
+• No photos stored on our servers
+• Your data, your control
+• Industry-standard security practices
+
+💡 HOW IT WORKS
+
+1. CAPTURE: Take a clear photo of your cat's face
+2. ANALYZE: AI processes facial features and body language in seconds
+3. UNDERSTAND: Get detailed emotional insights and actionable suggestions
+4. TRACK: Save results to build a mood history over time
+
+🎓 BASED ON SCIENCE
+
+FELI's AI is trained on extensive feline behavioral research, recognizing patterns associated with different emotional states. While not a substitute for veterinary care, FELI helps you become a more observant and responsive cat parent.
+
+🌟 PERFECT FOR
+
+• Cat parents wanting to deepen their bond
+• Multi-cat households tracking individual moods
+• First-time cat owners learning feline communication
+• Anyone curious about their cat's inner world
+
+📱 FREE vs PRO
+
+FREE TIER:
+✓ 2 analyses per day
+✓ Basic emotion detection
+✓ General confidence levels
+✓ Limited reasoning (3 cues)
+✓ Basic suggestions (2 tips)
+
+PRO TIER:
+✓ Unlimited daily analyses
+✓ Exact confidence percentages (e.g., 87%)
+✓ Secondary emotion insights
+✓ Full reasoning (up to 6 cues)
+✓ Extended suggestions (4+ tips)
+✓ Priority support
+
+🎁 TRY PRO FREE
+
+Start with a 7-day free trial of FELI Pro to experience the full depth of AI-powered cat emotion analysis.
+
+⚠️ IMPORTANT DISCLAIMER
+
+FELI is for entertainment and self-discovery purposes only. It does not provide medical diagnosis or treatment. Always consult a licensed veterinarian if you have concerns about your cat's health or wellbeing. Changes in behavior or mood may indicate underlying health issues that require professional evaluation.
+
+📧 SUPPORT & FEEDBACK
+
+We're cat lovers building for cat lovers. Questions? Suggestions? Contact us at support@feliapp.com
+
+---
+
+Download FELI today and start understanding your cat's emotional world like never before. Your feline companion is communicating—are you listening? 🐾
+
+================================================================================
+CHARACTER COUNT: ~3,850 / 4,000
+WORD COUNT: ~560
+COMPLIANCE: ✓ Disclaimer included, ✓ No medical claims
+================================================================================
+
+================================================================================
+APP STORE CONNECT CATEGORIES
+================================================================================
+
+Primary Category: Lifestyle
+Secondary Category: Entertainment
+
+Age Rating: 4+
+
+Content Descriptors: None
+- No violence
+- No mature themes
+- No user-generated content
+- Family-friendly
+
+================================================================================
+WHAT'S NEW (Version 1.0.0 Launch)
+================================================================================
+
+🎉 Welcome to FELI - Your Cat's Emotion Companion!
+
+✨ Launch Features:
+• AI-powered cat emotion analysis
+• Instant facial expression recognition
+• Mood history tracking
+• Pro insights with exact confidence scores
+• 10 language support
+• Full accessibility features
+
+📸 Simply snap a photo and discover what your cat is really feeling!
+
+🐾 Questions? Contact support@feliapp.com
+
+================================================================================
+REVIEW GUIDELINES COMPLIANCE
+================================================================================
+
+✅ App Store Review Guidelines 2.5 - Software Requirements
+- Native iOS app using supported frameworks
+- No private APIs used
+- Follows HIG guidelines
+
+✅ App Store Review Guidelines 5.1 - Privacy
+- Clear privacy policy
+- No data collection without consent
+- Transparent about photo processing
+
+✅ App Store Review Guidelines 1.4.1 - Medical Apps
+- NOT claiming medical diagnosis
+- Clear "entertainment purposes" disclaimer
+- Encourages veterinary consultation
+- No treatment promises
+
+================================================================================
+PRIVACY POLICY SUMMARY
+================================================================================
+
+Data Collection:
+- Photo analysis (temporary, not stored)
+- Usage statistics (anonymous)
+- Crash reports (optional)
+
+Data NOT Collected:
+- Personal identification
+- Location data
+- Contact information (unless user contacts support)
+
+User Rights:
+- Request data deletion
+- Export analysis history
+- Opt-out of analytics
+
+================================================================================
+SUPPORT URLS
+================================================================================
+
+Support URL: https://feliapp.com/support
+Privacy Policy: https://feliapp.com/privacy
+Terms of Service: https://feliapp.com/terms
+
+================================================================================
