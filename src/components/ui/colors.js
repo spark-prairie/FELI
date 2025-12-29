@@ -20,8 +20,8 @@ module.exports = {
     100: '#F5F5F5',
     200: '#F0EFEE',
     300: '#D4D4D4',
-    400: '#A3A3A3',
-    500: '#737373',
+    400: '#9CA3AF', // Darkened for better dark mode readability (was #A3A3A3)
+    500: '#6B7280', // Darkened for better dark mode readability (was #737373)
     600: '#525252',
     700: '#404040',
     800: '#262626',

@@ -1,0 +1,178 @@
+{
+  "analyze": {
+    "accessibility": {
+      "loading": "Análisis en progreso",
+      "photo_preview": "Vista previa de la foto de tu gato"
+    },
+    "back_home_button": "Volver al inicio",
+    "back_to_home": "Volver al inicio",
+    "error_emoji_accessibility": "Cara de gato triste indicando error",
+    "error_message": "Por favor verifica tu conexión e inténtalo de nuevo",
+    "error_network_timeout": "El análisis está tardando más de lo esperado. Por favor verifica tu conexión e inténtalo de nuevo.",
+    "error_title": "No se pudo analizar",
+    "loading_message": "Analizando señales visuales...",
+    "loading_note": "Esto puede tomar un momento",
+    "loading_subtitle": "Interpretando expresiones y patrones",
+    "loading_title": "Analizando",
+    "preview_title": "Vista previa",
+    "result_title": "Resultados",
+    "retry_button": "Intentar de nuevo"
+  },
+  "common": {
+    "app_name": "FELI",
+    "app_tagline": "Lente de emociones felinas",
+    "back": "Atrás",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "error": "Error",
+    "loading": "Cargando",
+    "pro": "PRO",
+    "upgrade": "Actualizar"
+  },
+  "emotions": {
+    "alert": "Alerta",
+    "anxious": "Ansioso",
+    "irritated": "Irritado",
+    "possible_discomfort": "Posible malestar",
+    "relaxed": "Relajado"
+  },
+  "history": {
+    "accessibility": {
+      "history_item": "Análisis del {date}, mostrando emoción {emotion}",
+      "tap_hint": "Toca dos veces para ver detalles"
+    },
+    "empty_icon_accessibility": "Ilustración de historial vacío",
+    "empty_message": "Tu historial de análisis aparecerá aquí",
+    "empty_title": "Sin historial aún",
+    "recent_label": "Análisis recientes (máx {max})",
+    "title": "Historial",
+    "view_details": "Ver detalles"
+  },
+  "home": {
+    "accessibility": {
+      "analyze_button": "Iniciar análisis de emoción de gato",
+      "usage_banner": "Información de uso diario"
+    },
+    "analyze_button_camera": "Tomar foto",
+    "analyze_button_gallery": "Elegir foto",
+    "daily_limit_reached_message": "Has usado todos los {count} análisis gratuitos de hoy. Actualiza a Pro para análisis ilimitados.",
+    "daily_limit_reached_title": "Límite diario alcanzado",
+    "disclaimer": "No es una herramienta de diagnóstico médico. Solo para entretenimiento e información.",
+    "instruction": "Captura o selecciona una foto clara de la cara de tu gato para comenzar",
+    "subtitle": "Una guía probabilística para entender el estado emocional de tu gato",
+    "tagline": "Lente de emociones felinas",
+    "title": "FELI"
+  },
+  "onboarding": {
+    "get_started": "Comenzar",
+    "message": "Bienvenido a FELI",
+    "next": "Siguiente",
+    "subtitle": "Comprende el estado emocional de tu gato a través del análisis impulsado por IA"
+  },
+  "paywall": {
+    "feature_percentages": "Porcentajes de confianza exactos",
+    "feature_reasoning": "Observaciones conductuales completas",
+    "feature_secondary": "Información sobre emociones secundarias",
+    "feature_unlimited": "Análisis diarios ilimitados",
+    "loading_plans": "Cargando planes...",
+    "maybe_later": "Quizás más tarde",
+    "plan_annual": "Anual",
+    "plan_lifetime": "De por vida",
+    "plan_monthly": "Mensual",
+    "plan_weekly": "Semanal",
+    "processing_purchase": "Procesando compra...",
+    "processing_restore": "Restaurando compras...",
+    "restore_button": "Restaurar compras",
+    "restore_error_message": "No se pudieron restaurar las compras. Por favor inténtalo más tarde.",
+    "restore_error_title": "Restauración fallida",
+    "restore_nothing_message": "No encontramos compras anteriores para restaurar.",
+    "restore_nothing_title": "No se encontraron compras",
+    "restore_success_message": "¡Tus compras han sido restauradas exitosamente!",
+    "restore_success_title": "Éxito",
+    "subscribe_button": "Suscribirse ahora",
+    "subscription_plans": "Planes de suscripción",
+    "terms_and_privacy": "Al suscribirte, aceptas nuestros Términos de servicio y Política de privacidad",
+    "title": "Actualizar a Pro"
+  },
+  "permissions": {
+    "camera_denied_message": "FELI necesita acceso a tu cámara y fotos para analizar las emociones de tu gato. Por favor habilita los permisos en Configuración.",
+    "camera_denied_title": "Permiso de cámara requerido",
+    "open_settings": "Abrir configuración"
+  },
+  "result": {
+    "accessibility": {
+      "emotion_badge": "Emoción: {emotion}, {confidence}",
+      "pro_badge": "Función Pro",
+      "secondary_emotion_locked": "Emoción secundaria bloqueada, actualiza a Pro para desbloquear",
+      "upgrade_prompt": "Actualiza a Pro para detalles completos del análisis"
+    },
+    "confidence_high": "confianza alta",
+    "confidence_low": "confianza baja",
+    "confidence_medium": "confianza media",
+    "confidence_percentage": "{percentage}% de confianza",
+    "disclaimer_message": "Esta interpretación se basa en señales conductuales visibles y no sustituye el consejo veterinario profesional. Siempre consulta a un veterinario si tienes preocupaciones sobre la salud o el bienestar de tu gato.",
+    "disclaimer_title": "Nota importante",
+    "locked_pro_feature": "Función Pro",
+    "locked_secondary_emotion_subtitle": "Toca para desbloquear información sobre emociones secundarias",
+    "locked_secondary_emotion_title": "Emoción secundaria",
+    "more_insights_available": "{count} observaciones más disponibles con Pro",
+    "primary_emotion_label": "Emoción primaria",
+    "pro_upgrade_button": "Actualizar a Pro",
+    "pro_upgrade_message": "Los miembros Pro obtienen porcentajes de confianza exactos, emociones secundarias, detalles completos de razonamiento y análisis diarios ilimitados.",
+    "pro_upgrade_title": "Desbloquear conocimientos más profundos",
+    "reasoning_count": "{count} observación",
+    "reasoning_count_plural": "{count} observaciones",
+    "reasoning_label": "Observaciones conductuales",
+    "secondary_emotion_label": "Emoción secundaria",
+    "suggestions_label": "Sugerencias de cuidado"
+  },
+  "settings": {
+    "about": "Acerca de",
+    "app_name": "Nombre de la aplicación",
+    "arabic": "Árabe",
+    "cancel": "Cancelar",
+    "danger_zone": "Zona de peligro",
+    "delete_all_data": "Eliminar todos los datos",
+    "delete_button": "Eliminar",
+    "delete_confirm_message": "Esto eliminará permanentemente todo tu historial de análisis y restablecerá la aplicación. Esto no se puede deshacer.",
+    "delete_confirm_title": "¿Eliminar todos los datos?",
+    "developer_tools": "Herramientas de desarrollador",
+    "english": "Inglés",
+    "generale": "General",
+    "github": "Github",
+    "language": "Idioma",
+    "links": "Enlaces",
+    "logout": "Cerrar sesión",
+    "manage_subscription": "Administrar suscripción",
+    "mock_pro_disabled": "Mock Pro: Deshabilitado",
+    "mock_pro_enabled": "Mock Pro: Habilitado",
+    "more": "Más",
+    "privacy": "Política de privacidad",
+    "rate": "Calificar",
+    "share": "Compartir",
+    "subscription": "Suscripción",
+    "support": "Soporte",
+    "support_us": "Apóyanos",
+    "terms": "Términos de servicio",
+    "theme": {
+      "dark": "Oscuro",
+      "light": "Claro",
+      "system": "Sistema",
+      "title": "Tema"
+    },
+    "title": "Configuración",
+    "toggle_mock_pro": "Alternar estado Mock Pro",
+    "version": "Versión",
+    "website": "Sitio web"
+  },
+  "usage_banner": {
+    "accessibility": {
+      "unlimited_info": "Análisis ilimitados con membresía Pro",
+      "usage_info": "Has usado {used} de {total} análisis diarios"
+    },
+    "analyses_used": "{used} de {total} usados",
+    "daily_scans": "Análisis diarios:",
+    "unlimited": "Ilimitado (Pro)",
+    "upgrade_prompt": "Actualiza para ilimitados"
+  }
+}

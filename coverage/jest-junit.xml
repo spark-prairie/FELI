@@ -1,103 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="90" failures="3" errors="0" time="5.994">
-  <testsuite name="src\stores\analysis-store.test.ts" errors="0" failures="0" skipped="0" timestamp="2025-12-29T07:01:13" time="0.846" tests="23">
-    <testcase classname="AnalysisStore › Daily Usage" name="should start with dailyUsageCount at 0" time="0.011">
+<testsuites name="jest tests" tests="90" failures="3" errors="0" time="18.849">
+  <testsuite name="src\stores\analysis-store.test.ts" errors="0" failures="0" skipped="0" timestamp="2025-12-29T12:32:31" time="2.646" tests="23">
+    <testcase classname="AnalysisStore › Daily Usage" name="should start with dailyUsageCount at 0" time="0.022">
     </testcase>
-    <testcase classname="AnalysisStore › Daily Usage" name="should increment dailyUsageCount" time="0.002">
+    <testcase classname="AnalysisStore › Daily Usage" name="should increment dailyUsageCount" time="0.007">
     </testcase>
-    <testcase classname="AnalysisStore › Daily Usage" name="should reset dailyUsageCount and update lastResetDate" time="0.002">
+    <testcase classname="AnalysisStore › Daily Usage" name="should reset dailyUsageCount and update lastResetDate" time="0.008">
     </testcase>
-    <testcase classname="AnalysisStore › Daily Usage" name="should auto-reset when date changes" time="0.002">
+    <testcase classname="AnalysisStore › Daily Usage" name="should auto-reset when date changes" time="0.003">
     </testcase>
-    <testcase classname="AnalysisStore › Daily Usage" name="should not reset if date is the same" time="0.001">
+    <testcase classname="AnalysisStore › Daily Usage" name="should not reset if date is the same" time="0.002">
     </testcase>
-    <testcase classname="AnalysisStore › Daily Usage" name="should verify DAILY_LIMIT_FREE constant is 2" time="0">
+    <testcase classname="AnalysisStore › Daily Usage" name="should verify DAILY_LIMIT_FREE constant is 2" time="0.001">
     </testcase>
     <testcase classname="AnalysisStore › Pro Status" name="should start with isPro as false" time="0.001">
     </testcase>
-    <testcase classname="AnalysisStore › Pro Status" name="should update isPro with setPro" time="0.003">
+    <testcase classname="AnalysisStore › Pro Status" name="should update isPro with setPro" time="0.001">
     </testcase>
-    <testcase classname="AnalysisStore › Pro Status" name="should update isPro and timestamp with syncProStatus" time="0.001">
+    <testcase classname="AnalysisStore › Pro Status" name="should update isPro and timestamp with syncProStatus" time="0.002">
     </testcase>
-    <testcase classname="AnalysisStore › Pro Status" name="should auto-generate timestamp if not provided to syncProStatus" time="0.001">
+    <testcase classname="AnalysisStore › Pro Status" name="should auto-generate timestamp if not provided to syncProStatus" time="0.003">
     </testcase>
-    <testcase classname="AnalysisStore › Result Management" name="should save result and capture isProAtSave as false when user is free" time="0.001">
+    <testcase classname="AnalysisStore › Result Management" name="should save result and capture isProAtSave as false when user is free" time="0.005">
     </testcase>
     <testcase classname="AnalysisStore › Result Management" name="should save result and capture isProAtSave as true when user is pro" time="0.001">
     </testcase>
-    <testcase classname="AnalysisStore › Result Management" name="should maintain history order (newest first)" time="0.001">
+    <testcase classname="AnalysisStore › Result Management" name="should maintain history order (newest first)" time="0.002">
     </testcase>
-    <testcase classname="AnalysisStore › Result Management" name="should limit history to MAX_HISTORY_ITEMS (10)" time="0.001">
+    <testcase classname="AnalysisStore › Result Management" name="should limit history to MAX_HISTORY_ITEMS (10)" time="0.003">
     </testcase>
-    <testcase classname="AnalysisStore › Result Management" name="should NOT increment usage when saving result (usage incremented separately)" time="0">
+    <testcase classname="AnalysisStore › Result Management" name="should NOT increment usage when saving result (usage incremented separately)" time="0.002">
     </testcase>
     <testcase classname="AnalysisStore › Result Management" name="should set isAnalyzing to false when saving result" time="0.001">
     </testcase>
-    <testcase classname="AnalysisStore › Result Management" name="should clear current result" time="0">
+    <testcase classname="AnalysisStore › Result Management" name="should clear current result" time="0.001">
     </testcase>
-    <testcase classname="AnalysisStore › Result Management" name="should clear history" time="0.001">
+    <testcase classname="AnalysisStore › Result Management" name="should clear history" time="0.002">
     </testcase>
     <testcase classname="AnalysisStore › Image URI" name="should set and clear image URI" time="0.001">
     </testcase>
-    <testcase classname="AnalysisStore › Analyzing State" name="should toggle analyzing state" time="0">
+    <testcase classname="AnalysisStore › Analyzing State" name="should toggle analyzing state" time="0.001">
     </testcase>
     <testcase classname="AnalysisStore › Reset and Clear" name="should reset store to initial state" time="0.002">
     </testcase>
-    <testcase classname="AnalysisStore › Reset and Clear" name="should clear all local data and reset state" time="0.001">
+    <testcase classname="AnalysisStore › Reset and Clear" name="should clear all local data and reset state" time="0.002">
     </testcase>
-    <testcase classname="AnalysisStore › Critical Bug Prevention - Pro History" name="should preserve Pro status in history records even after user downgrades" time="0.002">
+    <testcase classname="AnalysisStore › Critical Bug Prevention - Pro History" name="should preserve Pro status in history records even after user downgrades" time="0.005">
     </testcase>
   </testsuite>
-  <testsuite name="src\components\ui\button.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T07:01:13" time="2.645" tests="11">
-    <testcase classname="Button component " name="should render correctly " time="0.079">
+  <testsuite name="src\components\ui\button.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T12:32:31" time="10.546" tests="11">
+    <testcase classname="Button component " name="should render correctly " time="0.199">
     </testcase>
-    <testcase classname="Button component " name="should render correctly if we add explicit child " time="0.004">
+    <testcase classname="Button component " name="should render correctly if we add explicit child " time="0.008">
     </testcase>
-    <testcase classname="Button component " name="should render the label correctly" time="0.003">
+    <testcase classname="Button component " name="should render the label correctly" time="0.021">
     </testcase>
-    <testcase classname="Button component " name="should render the loading indicator correctly" time="0.019">
+    <testcase classname="Button component " name="should render the loading indicator correctly" time="0.07">
     </testcase>
-    <testcase classname="Button component " name="should call onClick handler when clicked" time="0.18">
+    <testcase classname="Button component " name="should call onClick handler when clicked" time="0.188">
     </testcase>
-    <testcase classname="Button component " name="should be disabled when loading" time="0.015">
+    <testcase classname="Button component " name="should be disabled when loading" time="0.013">
     </testcase>
-    <testcase classname="Button component " name="should be disabled when disabled prop is true" time="0.001">
+    <testcase classname="Button component " name="should be disabled when disabled prop is true" time="0.003">
     </testcase>
-    <testcase classname="Button component " name="shouldn&apos;t call onClick when disabled" time="0.015">
+    <testcase classname="Button component " name="shouldn&apos;t call onClick when disabled" time="0.003">
     </testcase>
-    <testcase classname="Button component " name="should apply correct styles based on size prop" time="0.003">
+    <testcase classname="Button component " name="should apply correct styles based on size prop" time="0.004">
     </testcase>
-    <testcase classname="Button component " name="should apply correct styles for label when variant is secondary" time="0.002">
+    <testcase classname="Button component " name="should apply correct styles for label when variant is secondary" time="0.003">
     </testcase>
     <testcase classname="Button component " name="should apply correct styles for label when is disabled" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="src\components\ui\input.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T07:01:13" time="2.808" tests="11">
-    <testcase classname="Input component " name="renders correctly " time="0.213">
+  <testsuite name="src\components\ui\input.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T12:32:31" time="10.842" tests="11">
+    <testcase classname="Input component " name="renders correctly " time="0.672">
     </testcase>
-    <testcase classname="Input component " name="should use the right direction for rtl layout" time="0.003">
+    <testcase classname="Input component " name="should use the right direction for rtl layout" time="0.006">
     </testcase>
     <testcase classname="Input component " name="should use the right direction for ltr layout" time="0.004">
     </testcase>
     <testcase classname="Input component " name="should render the placeholder correctly " time="0.004">
     </testcase>
-    <testcase classname="Input component " name="should render the label correctly " time="0.008">
+    <testcase classname="Input component " name="should render the label correctly " time="0.004">
     </testcase>
-    <testcase classname="Input component " name="should render the error message correctly " time="0.002">
+    <testcase classname="Input component " name="should render the error message correctly " time="0.007">
     </testcase>
-    <testcase classname="Input component " name="should render the label, error message &amp; placeholder correctly " time="0.002">
+    <testcase classname="Input component " name="should render the label, error message &amp; placeholder correctly " time="0.003">
     </testcase>
-    <testcase classname="Input component " name="should trigger onFocus event correctly " time="0.157">
+    <testcase classname="Input component " name="should trigger onFocus event correctly " time="0.163">
     </testcase>
-    <testcase classname="Input component " name="should trigger onBlur event correctly " time="0.187">
+    <testcase classname="Input component " name="should trigger onBlur event correctly " time="0.168">
     </testcase>
-    <testcase classname="Input component " name="should trigger onChangeText event correctly" time="0.173">
+    <testcase classname="Input component " name="should trigger onChangeText event correctly" time="0.184">
     </testcase>
-    <testcase classname="Input component " name="should be disabled when disabled prop is true" time="0.002">
+    <testcase classname="Input component " name="should be disabled when disabled prop is true" time="0.003">
     </testcase>
   </testsuite>
-  <testsuite name="src\components\subscription-gate.test.tsx" errors="0" failures="3" skipped="0" timestamp="2025-12-29T07:01:13" time="3.602" tests="8">
-    <testcase classname="SubscriptionGate › Pro User" name="renders children directly when user is Pro" time="0.051">
+  <testsuite name="src\components\ui\checkbox.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T12:32:31" time="11.27" tests="9">
+    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Checkbox /&gt; renders correctly and call on change on Press" time="0.55">
+    </testcase>
+    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;CheckBox/&gt; shouldn&apos;t change value while disabled" time="0.013">
+    </testcase>
+    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;CheckBox/&gt; Should render the correct label" time="0.015">
+    </testcase>
+    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Radio /&gt; renders correctly and call on change on Press" time="0.183">
+    </testcase>
+    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Radio /&gt; should render the correct label" time="0.184">
+    </testcase>
+    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Radio/&gt; shouldn&apos;t change value while disabled" time="0.015">
+    </testcase>
+    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Switch /&gt; renders correctly and call on change on Press" time="0.185">
+    </testcase>
+    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Switch /&gt; should render the correct label" time="0.185">
+    </testcase>
+    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Switch/&gt; shouldn&apos;t change value while disabled" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="src\features\analysis\components\emotion-badge.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T12:32:31" time="15.699" tests="8">
+    <testcase classname="EmotionBadge › Free User Experience" name="does NOT show percentage when showPercentage is false" time="0.082">
+    </testcase>
+    <testcase classname="EmotionBadge › Free User Experience" name="does NOT show Pro badge for free users" time="0.005">
+    </testcase>
+    <testcase classname="EmotionBadge › Free User Experience" name="renders correctly for free users without Pro styling" time="0.003">
+    </testcase>
+    <testcase classname="EmotionBadge › Pro User Experience" name="shows percentage when showPercentage is true" time="0.006">
+    </testcase>
+    <testcase classname="EmotionBadge › Pro User Experience" name="shows Pro badge for pro users" time="0.004">
+    </testcase>
+    <testcase classname="EmotionBadge › Pro User Experience" name="shows Pro badge for pro users with styling" time="0.003">
+    </testcase>
+    <testcase classname="EmotionBadge › Emotion Display" name="displays correct emoji for each emotion type" time="0.013">
+    </testcase>
+    <testcase classname="EmotionBadge › Emotion Display" name="displays emotion name with proper formatting" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="src\features\analysis\components\reasoning-list.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T12:32:31" time="15.7" tests="11">
+    <testcase classname="ReasoningList › Free User Experience" name="limits to 3 items for free users by default" time="0.081">
+    </testcase>
+    <testcase classname="ReasoningList › Free User Experience" name="shows &quot;more insights available&quot; message for free users" time="0.004">
+    </testcase>
+    <testcase classname="ReasoningList › Free User Experience" name="does NOT show insight count badge for free users" time="0.003">
+    </testcase>
+    <testcase classname="ReasoningList › Free User Experience" name="respects custom limit prop for free users" time="0.004">
+    </testcase>
+    <testcase classname="ReasoningList › Pro User Experience" name="shows all items for pro users" time="0.006">
+    </testcase>
+    <testcase classname="ReasoningList › Pro User Experience" name="does NOT show &quot;more insights&quot; message for pro users" time="0.003">
+    </testcase>
+    <testcase classname="ReasoningList › Pro User Experience" name="shows insight count badge for pro users" time="0.01">
+    </testcase>
+    <testcase classname="ReasoningList › Pro User Experience" name="respects custom limit prop even for pro users" time="0.003">
+    </testcase>
+    <testcase classname="ReasoningList › Edge Cases" name="handles empty items array" time="0.001">
+    </testcase>
+    <testcase classname="ReasoningList › Edge Cases" name="handles items array with fewer than limit" time="0.003">
+    </testcase>
+    <testcase classname="ReasoningList › Edge Cases" name="handles singular vs plural in insight count" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="src\components\ui\select.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T12:32:31" time="15.708" tests="5">
+    <testcase classname="Select component " name="should render correctly " time="0.215">
+    </testcase>
+    <testcase classname="Select component " name="should render the label correctly " time="0.01">
+    </testcase>
+    <testcase classname="Select component " name="should render the error correctly " time="0.01">
+    </testcase>
+    <testcase classname="Select component " name="should open options modal on press" time="0.187">
+    </testcase>
+    <testcase classname="Select component " name="should call onSelect on selecting an option" time="0.383">
+    </testcase>
+  </testsuite>
+  <testsuite name="src\components\subscription-gate.test.tsx" errors="0" failures="3" skipped="0" timestamp="2025-12-29T12:32:31" time="15.92" tests="8">
+    <testcase classname="SubscriptionGate › Pro User" name="renders children directly when user is Pro" time="0.096">
       <failure>Error: Unable to find an element with text: Pro Content
 
 &lt;span&gt;
@@ -120,11 +194,11 @@
     at runTest (D:\Data\JetBrains\WebStorm\FELI\node_modules\jest-runner\build\runTest.js:444:34)
     at Object.worker (D:\Data\JetBrains\WebStorm\FELI\node_modules\jest-runner\build\testWorker.js:106:12)</failure>
     </testcase>
-    <testcase classname="SubscriptionGate › Free User - Modal Mode" name="renders locked state" time="0.012">
+    <testcase classname="SubscriptionGate › Free User - Modal Mode" name="renders locked state" time="0.013">
     </testcase>
-    <testcase classname="SubscriptionGate › Free User - Modal Mode" name="shows modal when locked state is tapped" time="0.008">
+    <testcase classname="SubscriptionGate › Free User - Modal Mode" name="shows modal when locked state is tapped" time="0.028">
     </testcase>
-    <testcase classname="SubscriptionGate › Free User - Modal Mode" name="calls setPro on subscribe" time="0.015">
+    <testcase classname="SubscriptionGate › Free User - Modal Mode" name="calls setPro on subscribe" time="0.094">
       <failure>Error: expect(jest.fn()).toHaveBeenCalledWith(...expected)
 
 Expected: true
@@ -135,11 +209,11 @@ Number of calls: 0
     at asyncGeneratorStep (D:\Data\JetBrains\WebStorm\FELI\node_modules\@babel\runtime\helpers\asyncToGenerator.js:3:17)
     at _next (D:\Data\JetBrains\WebStorm\FELI\node_modules\@babel\runtime\helpers\asyncToGenerator.js:17:9)</failure>
     </testcase>
-    <testcase classname="SubscriptionGate › Free User - Modal Mode" name="closes modal when &quot;Not Now&quot; is pressed" time="0.006">
+    <testcase classname="SubscriptionGate › Free User - Modal Mode" name="closes modal when &quot;Not Now&quot; is pressed" time="0.005">
     </testcase>
     <testcase classname="SubscriptionGate › Free User - Navigate Mode" name="navigates to /paywall" time="0.003">
     </testcase>
-    <testcase classname="SubscriptionGate › Custom Fallback" name="renders fallback UI" time="0.003">
+    <testcase classname="SubscriptionGate › Custom Fallback" name="renders fallback UI" time="0.002">
       <failure>Error: Unable to find an element with text: Custom Locked UI
 
 &lt;View
@@ -171,88 +245,14 @@ Number of calls: 0
     <testcase classname="SubscriptionGate › Accessibility" name="sets proper accessibility labels" time="0.002">
     </testcase>
   </testsuite>
-  <testsuite name="src\features\analysis\components\emotion-badge.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T07:01:13" time="3.649" tests="8">
-    <testcase classname="EmotionBadge › Free User Experience" name="does NOT show percentage when showPercentage is false" time="0.055">
+  <testsuite name="src\components\login-form.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T12:32:31" time="16.911" tests="4">
+    <testcase classname="LoginForm Form " name="renders correctly" time="0.097">
     </testcase>
-    <testcase classname="EmotionBadge › Free User Experience" name="does NOT show Pro badge for free users" time="0.004">
+    <testcase classname="LoginForm Form " name="should display required error when values are empty" time="0.187">
     </testcase>
-    <testcase classname="EmotionBadge › Free User Experience" name="renders correctly for free users without Pro styling" time="0.001">
+    <testcase classname="LoginForm Form " name="should display matching error when email is invalid" time="0.416">
     </testcase>
-    <testcase classname="EmotionBadge › Pro User Experience" name="shows percentage when showPercentage is true" time="0.001">
-    </testcase>
-    <testcase classname="EmotionBadge › Pro User Experience" name="shows Pro badge for pro users" time="0.001">
-    </testcase>
-    <testcase classname="EmotionBadge › Pro User Experience" name="shows Pro badge for pro users with styling" time="0.001">
-    </testcase>
-    <testcase classname="EmotionBadge › Emotion Display" name="displays correct emoji for each emotion type" time="0.003">
-    </testcase>
-    <testcase classname="EmotionBadge › Emotion Display" name="displays emotion name with proper formatting" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="src\components\ui\checkbox.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T07:01:13" time="3.642" tests="9">
-    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Checkbox /&gt; renders correctly and call on change on Press" time="0.366">
-    </testcase>
-    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;CheckBox/&gt; shouldn&apos;t change value while disabled" time="0.013">
-    </testcase>
-    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;CheckBox/&gt; Should render the correct label" time="0.016">
-    </testcase>
-    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Radio /&gt; renders correctly and call on change on Press" time="0.189">
-    </testcase>
-    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Radio /&gt; should render the correct label" time="0.188">
-    </testcase>
-    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Radio/&gt; shouldn&apos;t change value while disabled" time="0.016">
-    </testcase>
-    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Switch /&gt; renders correctly and call on change on Press" time="0.189">
-    </testcase>
-    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Switch /&gt; should render the correct label" time="0.186">
-    </testcase>
-    <testcase classname="Checkbox, Radio &amp; Switch components " name="&lt;Switch/&gt; shouldn&apos;t change value while disabled" time="0.015">
-    </testcase>
-  </testsuite>
-  <testsuite name="src\features\analysis\components\reasoning-list.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T07:01:13" time="3.683" tests="11">
-    <testcase classname="ReasoningList › Free User Experience" name="limits to 3 items for free users by default" time="0.045">
-    </testcase>
-    <testcase classname="ReasoningList › Free User Experience" name="shows &quot;more insights available&quot; message for free users" time="0.005">
-    </testcase>
-    <testcase classname="ReasoningList › Free User Experience" name="does NOT show insight count badge for free users" time="0.002">
-    </testcase>
-    <testcase classname="ReasoningList › Free User Experience" name="respects custom limit prop for free users" time="0.002">
-    </testcase>
-    <testcase classname="ReasoningList › Pro User Experience" name="shows all items for pro users" time="0.002">
-    </testcase>
-    <testcase classname="ReasoningList › Pro User Experience" name="does NOT show &quot;more insights&quot; message for pro users" time="0.002">
-    </testcase>
-    <testcase classname="ReasoningList › Pro User Experience" name="shows insight count badge for pro users" time="0.002">
-    </testcase>
-    <testcase classname="ReasoningList › Pro User Experience" name="respects custom limit prop even for pro users" time="0.001">
-    </testcase>
-    <testcase classname="ReasoningList › Edge Cases" name="handles empty items array" time="0.001">
-    </testcase>
-    <testcase classname="ReasoningList › Edge Cases" name="handles items array with fewer than limit" time="0.001">
-    </testcase>
-    <testcase classname="ReasoningList › Edge Cases" name="handles singular vs plural in insight count" time="0.001">
-    </testcase>
-  </testsuite>
-  <testsuite name="src\components\ui\select.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T07:01:13" time="4.013" tests="5">
-    <testcase classname="Select component " name="should render correctly " time="0.137">
-    </testcase>
-    <testcase classname="Select component " name="should render the label correctly " time="0.006">
-    </testcase>
-    <testcase classname="Select component " name="should render the error correctly " time="0.005">
-    </testcase>
-    <testcase classname="Select component " name="should open options modal on press" time="0.182">
-    </testcase>
-    <testcase classname="Select component " name="should call onSelect on selecting an option" time="0.375">
-    </testcase>
-  </testsuite>
-  <testsuite name="src\components\login-form.test.tsx" errors="0" failures="0" skipped="0" timestamp="2025-12-29T07:01:13" time="5.011" tests="4">
-    <testcase classname="LoginForm Form " name="renders correctly" time="0.054">
-    </testcase>
-    <testcase classname="LoginForm Form " name="should display required error when values are empty" time="0.179">
-    </testcase>
-    <testcase classname="LoginForm Form " name="should display matching error when email is invalid" time="0.427">
-    </testcase>
-    <testcase classname="LoginForm Form " name="Should call LoginForm with correct values when values are valid" time="0.673">
+    <testcase classname="LoginForm Form " name="Should call LoginForm with correct values when values are valid" time="0.631">
     </testcase>
   </testsuite>
 </testsuites>

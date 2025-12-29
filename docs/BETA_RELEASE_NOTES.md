@@ -1,9 +1,50 @@
 # FELI Beta Release - Internal Testing Guide
 
-**Version:** 1.0.0 (Build 1)
+**Current Version:** 1.0.1 (Build 2) - Day 21 Patch
+**Initial Version:** 1.0.0 (Build 1)
 **Release Date:** 2025-12-29
 **Platform:** iOS (TestFlight) & Android (Play Internal Testing)
 **Status:** 🧪 Internal Beta Testing
+
+---
+
+## 🆕 What's New in Build 2 (v1.0.1) - Day 21 Patch
+
+**Release Date:** 2025-12-30
+
+### Bug Fixes
+
+✅ **Fixed error screen state management (Critical)**
+- Error screen now properly resets analysis state before retrying
+- "Try Again" button now correctly clears stale data and allows re-analysis
+- "Back to Home" button properly cleans up state before navigation
+
+✅ **Added multilingual support for error messages**
+- Error screen now uses translation system (was hardcoded English)
+- Supports all 10 app languages
+- Improved accessibility with screen reader support for error emoji
+
+✅ **Spanish language support (Complete)**
+- Added complete Spanish translation file (`es.json`)
+- All UI text now properly translates to Spanish
+- Fixed "Analizar" button spelling (was showing as "Analisar")
+
+✅ **Improved dark mode readability**
+- Adjusted neutral-400 and neutral-500 colors for better dark mode contrast
+- Text is now more comfortable to read in low light conditions
+- Reduced eye strain from overly bright text colors
+
+### Technical Improvements
+
+- Enhanced state cleanup when navigating away from analysis flows
+- Improved error handling with proper accessibility labels
+- Better memory management for analysis state
+
+### Known Issues
+
+- ⚠️ Some subscription-gate tests failing (pre-existing, not related to this patch)
+- ⚠️ Mock AI still returns pre-determined results (expected for beta)
+- ⚠️ Developer tools still visible in Settings (will be hidden in production)
 
 ---
 
