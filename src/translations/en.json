@@ -92,6 +92,11 @@
     "terms_and_privacy": "By subscribing, you agree to our Terms of Service and Privacy Policy",
     "title": "Upgrade to Pro"
   },
+  "permissions": {
+    "camera_denied_message": "FELI needs access to your camera and photos to analyze your cat's emotions. Please enable permissions in Settings.",
+    "camera_denied_title": "Camera Permission Required",
+    "open_settings": "Open Settings"
+  },
   "result": {
     "accessibility": {
       "emotion_badge": "Emotion: {emotion}, {confidence}",

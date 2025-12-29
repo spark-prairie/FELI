@@ -1,7 +1,7 @@
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert } from 'react-native';
+import { Alert, Linking, Platform } from 'react-native';
 
 import { PhotoCaptureButton } from '@/components/photo-capture-button';
 import { FocusAwareStatusBar, Text, View } from '@/components/ui';
@@ -12,7 +12,8 @@ import { DAILY_LIMIT_FREE, useAnalysisStore } from '@/stores/analysis-store';
 export default function Home() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { launchCamera, launchGallery, isLoading } = usePhotoCapture();
+  const { launchCamera, launchGallery, isLoading, hasPermissions } =
+    usePhotoCapture();
   const {
     isPro,
     dailyUsageCount,
@@ -45,11 +46,34 @@ export default function Home() {
       }
 
       const uri = await captureMethod();
+
+      // Check if permission was denied
+      if (!uri && !hasPermissions) {
+        Alert.alert(
+          t('permissions.camera_denied_title'),
+          t('permissions.camera_denied_message'),
+          [
+            { text: t('common.cancel'), style: 'cancel' },
+            {
+              text: t('permissions.open_settings'),
+              onPress: () => {
+                if (Platform.OS === 'ios') {
+                  Linking.openURL('app-settings:');
+                } else {
+                  Linking.openSettings();
+                }
+              },
+            },
+          ]
+        );
+        return;
+      }
+
       if (uri) {
         router.push(`/analyze/preview?imageUri=${encodeURIComponent(uri)}`);
       }
     },
-    [isLimitReached, router, t, clearCurrentResult]
+    [isLimitReached, router, t, clearCurrentResult, hasPermissions]
   );
 
   return (
