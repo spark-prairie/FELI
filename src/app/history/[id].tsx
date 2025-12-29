@@ -35,8 +35,11 @@ export default function HistoryDetail() {
     );
   }
 
-  // Use historical Pro status from when the record was saved
-  const isPro = result.isProAtSave ?? false;
+  // Determine if Pro features should be shown
+  // Check both isProAtSave flag AND presence of Pro data fields
+  // This ensures records with Pro data are always displayed correctly
+  const hasProData = result.primary_emotion.confidence_percentage > 0;
+  const isPro = result.isProAtSave === true || hasProData;
 
   const {
     primary_emotion,

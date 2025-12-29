@@ -1,5 +1,5 @@
 import { Stack, useRouter } from 'expo-router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { SubscriptionGate } from '@/components/subscription-gate';
@@ -22,16 +22,26 @@ export default function AnalyzeResult() {
   const currentResult = useAnalysisStore((state) => state.currentResult);
   const globalIsPro = useAnalysisStore((state) => state.isPro);
 
+  // Navigate away if no result (must be in useEffect to avoid render-time navigation)
+  useEffect(() => {
+    if (!currentResult) {
+      router.replace('/(app)/home');
+    }
+  }, [currentResult, router]);
+
+  // Early return to prevent rendering with undefined data
   if (!currentResult) {
-    router.replace('/(app)/home');
     return null;
   }
 
-  // Use record's Pro status if it's a stored result, otherwise use global isPro
+  // Determine if Pro features should be shown
+  // Check both isProAtSave flag AND presence of Pro data fields
   const isStoredResult = 'isProAtSave' in currentResult;
-  const isPro = isStoredResult
-    ? ((currentResult as any).isProAtSave ?? globalIsPro)
-    : globalIsPro;
+  const hasProData = currentResult.primary_emotion.confidence_percentage > 0;
+  const isPro =
+    (isStoredResult && (currentResult as any).isProAtSave) ||
+    hasProData ||
+    globalIsPro;
 
   const {
     primary_emotion,
