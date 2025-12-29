@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import type { AxiosError } from 'axios';
 import { createMutation } from 'react-query-kit';
 
@@ -8,6 +9,24 @@ import { EmotionResultSchema } from '@/types/validators';
 
 // DEV-only mock flag - set to true to test without backend
 const USE_MOCK_ANALYZE = __DEV__ && true;
+
+/**
+ * SECURITY NOTICE - PRODUCTION DEPLOYMENT
+ *
+ * ⚠️  CRITICAL: In production, the backend MUST NOT trust the client-sent `isPro` flag.
+ *
+ * The `isPro` variable sent to the API can be manipulated by sophisticated users.
+ * The backend MUST:
+ * 1. Extract the user ID from the verified JWT token
+ * 2. Query the database for the user's ACTUAL Pro status
+ * 3. Use the database value to determine response filtering
+ * 4. IGNORE the client-sent `isPro` flag entirely
+ *
+ * Client-sent `isPro` is ONLY for development/testing convenience.
+ * Production security relies on server-side entitlement checks.
+ *
+ * See: docs/API_SECURITY.md for complete security architecture
+ */
 
 interface AnalyzeVariables {
   image?: File;
@@ -20,6 +39,8 @@ interface AnalyzeVariables {
 interface AnalyzeErrorResponse {
   error?: string;
   message: string;
+  code?: string;
+  upgrade_url?: string;
 }
 
 // Helper to generate mock data based on Pro status
@@ -105,6 +126,10 @@ export const useAnalyze = createMutation<
       formData.append('deviceId', variables.deviceId);
     }
 
+    // TODO: PRODUCTION SECURITY
+    // In production, the backend MUST ignore this client-sent isPro flag
+    // and instead verify entitlements from the database (synced via webhooks).
+    // This flag is sent for backward compatibility and development/testing only.
     if (variables.isPro !== undefined) {
       formData.append('isPro', String(variables.isPro));
     }
@@ -139,6 +164,28 @@ export const useAnalyze = createMutation<
   },
   onError: (error) => {
     console.log('[useAnalyze] onError called:', error);
+
+    // Detect entitlement/payment errors from backend
+    // 403 Forbidden = User lacks Pro entitlement
+    // 402 Payment Required = Feature requires payment
+    const status = error.response?.status;
+    const errorData = error.response?.data;
+
+    if (status === 403 || status === 402) {
+      console.log('[useAnalyze] Entitlement error detected, redirecting to paywall');
+
+      // Check if backend provided a specific error code
+      if (errorData?.code === 'PRO_REQUIRED') {
+        console.log('[useAnalyze] Backend confirmed: Pro subscription required');
+      }
+
+      // Navigate to paywall
+      // Use setTimeout to ensure navigation happens after error handling
+      setTimeout(() => {
+        router.push('/paywall');
+      }, 100);
+    }
+
     useAnalysisStore.getState().setAnalyzing(false);
   },
   onSettled: () => {
