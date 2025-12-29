@@ -19,12 +19,18 @@ export function PhotoCaptureButton({
 
   const handleCameraPress = useCallback(() => {
     dismiss();
-    onCameraPress();
+    // Small delay to ensure modal dismissal completes before navigation
+    setTimeout(() => {
+      onCameraPress();
+    }, 100);
   }, [dismiss, onCameraPress]);
 
   const handleGalleryPress = useCallback(() => {
     dismiss();
-    onGalleryPress();
+    // Small delay to ensure modal dismissal completes before navigation
+    setTimeout(() => {
+      onGalleryPress();
+    }, 100);
   }, [dismiss, onGalleryPress]);
 
   return (

@@ -13,7 +13,12 @@ export default function Home() {
   const { t } = useTranslation();
   const router = useRouter();
   const { launchCamera, launchGallery, isLoading } = usePhotoCapture();
-  const { isPro, dailyUsageCount, checkAndResetDaily } = useAnalysisStore();
+  const {
+    isPro,
+    dailyUsageCount,
+    checkAndResetDaily,
+    clearCurrentResult,
+  } = useAnalysisStore();
 
   const isLimitReached = !isPro && dailyUsageCount >= DAILY_LIMIT_FREE;
 
@@ -21,6 +26,9 @@ export default function Home() {
 
   const handleCapture = useCallback(
     async (captureMethod: () => Promise<string | null>) => {
+      // Reset analysis state BEFORE starting new capture flow
+      clearCurrentResult();
+
       if (isLimitReached) {
         Alert.alert(
           t('home.daily_limit_reached_title'),
@@ -35,11 +43,13 @@ export default function Home() {
         );
         return;
       }
+
       const uri = await captureMethod();
-      if (uri)
+      if (uri) {
         router.push(`/analyze/preview?imageUri=${encodeURIComponent(uri)}`);
+      }
     },
-    [isLimitReached, router, t]
+    [isLimitReached, router, t, clearCurrentResult]
   );
 
   return (
