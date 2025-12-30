@@ -80,7 +80,7 @@ export default function Paywall() {
               {translate('paywall.title')}
             </Text>
             <Text className="text-center text-base text-neutral-600 dark:text-neutral-400">
-              Get deeper insights into your cat&apos;s emotional state
+              {translate('paywall.subtitle')}
             </Text>
           </View>
 
@@ -88,28 +88,28 @@ export default function Paywall() {
           <View className="mb-8 gap-4">
             <BenefitItem
               icon="📊"
-              title="Confidence Percentages"
-              description="See exact confidence scores (e.g., 72%) instead of general levels"
+              title={translate('paywall.benefit_percentages_title')}
+              description={translate('paywall.benefit_percentages_desc')}
             />
             <BenefitItem
               icon="🔍"
-              title="Secondary Emotion Insights"
-              description="Understand nuanced emotional states with secondary emotion analysis"
+              title={translate('paywall.benefit_secondary_title')}
+              description={translate('paywall.benefit_secondary_desc')}
             />
             <BenefitItem
               icon="💡"
-              title="Full Reasoning Details"
-              description="Access complete behavioral cue analysis (up to 6 observations)"
+              title={translate('paywall.benefit_reasoning_title')}
+              description={translate('paywall.benefit_reasoning_desc')}
             />
             <BenefitItem
               icon="🚀"
-              title="Unlimited Daily Analyses"
-              description="No daily limits—analyze as many photos as you need"
+              title={translate('paywall.benefit_unlimited_title')}
+              description={translate('paywall.benefit_unlimited_desc')}
             />
             <BenefitItem
               icon="📝"
-              title="Extended Suggestions"
-              description="Get up to 4 actionable recommendations per analysis"
+              title={translate('paywall.benefit_suggestions_title')}
+              description={translate('paywall.benefit_suggestions_desc')}
             />
           </View>
 

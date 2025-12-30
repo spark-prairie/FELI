@@ -3,6 +3,7 @@ import { Alert } from 'react-native';
 import RevenueCatUI from 'react-native-purchases-ui';
 
 import { REVENUE_CAT_CONFIG } from '@/config/revenue-cat';
+import { translate } from '@/lib';
 import { useAnalysisStore } from '@/stores/analysis-store';
 
 interface RevenueCatPaywallProps {
@@ -35,11 +36,11 @@ export function RevenueCatPaywall({
 
   const presentMockPaywall = () => {
     Alert.alert(
-      '🧪 Mock Purchase',
-      'Simulate a successful purchase?\n\n(This is mock mode - no real purchase will be made)',
+      translate('dev.mock_purchase_title'),
+      translate('dev.mock_purchase_message'),
       [
         {
-          text: 'Cancel',
+          text: translate('dev.mock_purchase_cancel'),
           style: 'cancel',
           onPress: () => {
             console.log('[RevenueCat Mock] Purchase cancelled');
@@ -47,7 +48,7 @@ export function RevenueCatPaywall({
           },
         },
         {
-          text: 'Simulate Success',
+          text: translate('dev.mock_purchase_confirm'),
           onPress: async () => {
             console.log('[RevenueCat Mock] Simulating purchase...');
             // Simulate delay

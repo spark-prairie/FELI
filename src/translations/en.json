@@ -1,19 +1,19 @@
 {
   "analyze": {
     "accessibility": {
-      "loading": "Analysis in progress",
+      "loading": "Reading your cat's emotions",
       "photo_preview": "Photo preview of your cat"
     },
     "back_home_button": "Back to Home",
     "back_to_home": "Back to Home",
     "error_emoji_accessibility": "Sad cat face indicating error",
-    "error_message": "Please check your connection and try again",
-    "error_network_timeout": "The analysis is taking longer than expected. Please check your connection and try again.",
-    "error_title": "Unable to Analyze",
-    "loading_message": "Analyzing visual cues...",
-    "loading_note": "This may take a moment",
-    "loading_subtitle": "Interpreting expressions and patterns",
-    "loading_title": "Analyzing",
+    "error_message": "We couldn't read your cat's mood this time. Check your connection and we'll try again together!",
+    "error_network_timeout": "Your cat is being extra mysterious today! The analysis is taking longer than usual. Let's give it another try.",
+    "error_title": "Hmm, Something Went Wrong",
+    "loading_message": "Decoding those whiskers and ears...",
+    "loading_note": "Just a moment while we observe",
+    "loading_subtitle": "Looking for the subtle signs",
+    "loading_title": "Reading Your Cat...",
     "preview_title": "Preview",
     "result_title": "Results",
     "retry_button": "Try Again"
@@ -42,8 +42,8 @@
       "tap_hint": "Double tap to view details"
     },
     "empty_icon_accessibility": "Empty history illustration",
-    "empty_message": "Your analysis history will appear here",
-    "empty_title": "No History Yet",
+    "empty_message": "Start analyzing to build your cat's emotional journal",
+    "empty_title": "No Memories Yet",
     "recent_label": "Recent analyses (max {max})",
     "title": "History",
     "view_details": "View Details"
@@ -55,11 +55,11 @@
     },
     "analyze_button_camera": "Take Photo",
     "analyze_button_gallery": "Choose Photo",
-    "daily_limit_reached_message": "You've used all {count} free analyses today. Upgrade to Pro for unlimited analyses.",
-    "daily_limit_reached_title": "Daily Limit Reached",
+    "daily_limit_reached_message": "You've checked in {count} times today! Upgrade to Pro to keep understanding your cat unlimited.",
+    "daily_limit_reached_title": "You've Used Your Free Analyses Today",
     "disclaimer": "Not a medical diagnostic tool. For entertainment and insight only.",
-    "instruction": "Capture or select a clear photo of your cat's face to begin",
-    "subtitle": "A probabilistic guide to understanding your cat's emotional state",
+    "instruction": "Snap a clear photo of your cat's face and let's decode their mood together",
+    "subtitle": "Your companion guide to understanding what your cat is feeling",
     "tagline": "Cat Emotion Lens",
     "title": "FELI"
   },
@@ -70,10 +70,20 @@
     "subtitle": "Understand your cat's emotional state through AI-powered analysis"
   },
   "paywall": {
-    "feature_percentages": "Exact confidence percentages",
-    "feature_reasoning": "Full behavioral observations",
-    "feature_secondary": "Secondary emotion insights",
-    "feature_unlimited": "Unlimited daily analyses",
+    "benefit_percentages_desc": "Get precise confidence scores like 72% instead of just 'high'",
+    "benefit_percentages_title": "Know Exactly How They Feel",
+    "benefit_reasoning_desc": "Access all 6 behavioral cues we noticed in your cat",
+    "benefit_reasoning_title": "See What They're Really Saying",
+    "benefit_secondary_desc": "Understand the nuances—relaxed with a hint of alertness?",
+    "benefit_secondary_title": "Uncover Hidden Emotions",
+    "benefit_suggestions_desc": "Receive up to 4 personalized care recommendations",
+    "benefit_suggestions_title": "Get Personalized Guidance",
+    "benefit_unlimited_desc": "No limits—analyze as many moments as you want",
+    "benefit_unlimited_title": "Check In Anytime",
+    "feature_percentages": "Know exactly how your cat feels",
+    "feature_reasoning": "See what your cat is really telling you",
+    "feature_secondary": "Uncover hidden emotions",
+    "feature_unlimited": "Check in whenever you need",
     "loading_plans": "Loading plans...",
     "maybe_later": "Maybe Later",
     "plan_annual": "Annual",
@@ -91,20 +101,21 @@
     "restore_success_title": "Success",
     "subscribe_button": "Subscribe Now",
     "subscription_plans": "Subscription Plans",
+    "subtitle": "Deeper insights into your cat's emotional world",
     "terms_and_privacy": "By subscribing, you agree to our Terms of Service and Privacy Policy",
-    "title": "Upgrade to Pro"
+    "title": "Unlock the Full Picture"
   },
   "permissions": {
-    "camera_denied_message": "FELI needs access to your camera and photos to analyze your cat's emotions. Please enable permissions in Settings.",
-    "camera_denied_title": "Camera Permission Required",
+    "camera_denied_message": "To read your cat's emotions, we need access to your camera and photos. You can enable this in Settings.",
+    "camera_denied_title": "We Need Camera Access",
     "open_settings": "Open Settings"
   },
   "result": {
     "accessibility": {
       "emotion_badge": "Emotion: {emotion}, {confidence}",
       "pro_badge": "Pro feature",
-      "secondary_emotion_locked": "Secondary emotion locked, upgrade to Pro to unlock",
-      "upgrade_prompt": "Upgrade to Pro for full analysis details"
+      "secondary_emotion_locked": "Hidden emotions locked, upgrade to Pro to discover",
+      "upgrade_prompt": "Unlock the full picture with Pro"
     },
     "confidence_high": "high confidence",
     "confidence_low": "low confidence",
@@ -113,18 +124,18 @@
     "disclaimer_message": "FELI provides AI-generated insights for entertainment only and is not a substitute for professional veterinary advice.",
     "disclaimer_title": "Important Note",
     "locked_pro_feature": "Pro Feature",
-    "locked_secondary_emotion_subtitle": "Tap to unlock secondary emotion insights",
-    "locked_secondary_emotion_title": "Secondary Emotion",
+    "locked_secondary_emotion_subtitle": "Tap to discover the hidden feelings",
+    "locked_secondary_emotion_title": "Subtle Undertones",
     "more_insights_available": "{count} more insights available with Pro",
-    "primary_emotion_label": "Primary Emotion",
-    "pro_upgrade_button": "Upgrade to Pro",
-    "pro_upgrade_message": "Pro members get exact confidence percentages, secondary emotions, full reasoning details, and unlimited daily analyses.",
-    "pro_upgrade_title": "Unlock Deeper Insights",
+    "primary_emotion_label": "Main Feeling",
+    "pro_upgrade_button": "Unlock Full Picture",
+    "pro_upgrade_message": "See exactly how your cat feels, uncover hidden emotions, understand all the behavioral cues, and check in unlimited times.",
+    "pro_upgrade_title": "Want the Complete Story?",
     "reasoning_count": "{count} insight",
     "reasoning_count_plural": "{count} insights",
-    "reasoning_label": "Behavioral Observations",
-    "secondary_emotion_label": "Secondary Emotion",
-    "suggestions_label": "Care Suggestions"
+    "reasoning_label": "What We Noticed",
+    "secondary_emotion_label": "Subtle Undertones",
+    "suggestions_label": "What You Can Do"
   },
   "settings": {
     "about": "About",
@@ -134,8 +145,8 @@
     "danger_zone": "Danger Zone",
     "delete_all_data": "Delete All Local Data",
     "delete_button": "Delete",
-    "delete_confirm_message": "This will permanently delete all your analysis history and reset the app. This cannot be undone.",
-    "delete_confirm_title": "Delete All Data?",
+    "delete_confirm_message": "This will erase all your cat's emotional memories and reset FELI. Once deleted, they can't be recovered.",
+    "delete_confirm_title": "Delete Everything?",
     "privacy_and_data": "Privacy & Data",
     "developer_tools": "Developer Tools",
     "english": "English",
@@ -175,5 +186,11 @@
     "daily_scans": "Daily scans:",
     "unlimited": "Unlimited (Pro)",
     "upgrade_prompt": "Upgrade for unlimited"
+  },
+  "dev": {
+    "mock_purchase_cancel": "Cancel",
+    "mock_purchase_confirm": "Simulate Success",
+    "mock_purchase_message": "Simulate a successful purchase?\n\n(This is mock mode - no real purchase will be made)",
+    "mock_purchase_title": "🧪 Mock Purchase"
   }
 }
