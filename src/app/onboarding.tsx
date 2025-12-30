@@ -20,34 +20,35 @@ export default function Onboarding() {
       <View className="w-full flex-1">
         <Cover />
       </View>
-      <View className="justify-end ">
-        <Text className="my-3 text-center text-5xl font-bold">
-          Obytes Starter
+      <View className="justify-end px-4">
+        <Text className="my-3 text-center text-5xl font-bold text-neutral-800 dark:text-neutral-100">
+          FELI
         </Text>
-        <Text className="mb-2 text-center text-lg text-gray-600">
-          The right way to build your mobile app
+        <Text className="mb-2 text-center text-lg text-neutral-600 dark:text-neutral-400">
+          Cat Emotion Lens
         </Text>
 
-        <Text className="my-1 pt-6 text-left text-lg">
-          🚀 Production-ready{' '}
+        <Text className="my-1 pt-6 text-left text-base text-neutral-700 dark:text-neutral-300">
+          😺 AI-powered emotion analysis
         </Text>
-        <Text className="my-1 text-left text-lg">
-          🥷 Developer experience + Productivity
+        <Text className="my-1 text-left text-base text-neutral-700 dark:text-neutral-300">
+          📊 Understand your cat&apos;s feelings
         </Text>
-        <Text className="my-1 text-left text-lg">
-          🧩 Minimal code and dependencies
+        <Text className="my-1 text-left text-base text-neutral-700 dark:text-neutral-300">
+          💡 Get care suggestions
         </Text>
-        <Text className="my-1 text-left text-lg">
-          💪 well maintained third-party libraries
+        <Text className="my-1 text-left text-base text-neutral-700 dark:text-neutral-300">
+          📝 Track emotional history
         </Text>
       </View>
-      <SafeAreaView className="mt-6">
+      <SafeAreaView className="mt-6 px-4">
         <Button
-          label="Let's Get Started "
+          label="Get Started"
           onPress={() => {
             setIsFirstTime(false);
             router.replace('/login');
           }}
+          size="lg"
         />
       </SafeAreaView>
     </View>

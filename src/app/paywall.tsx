@@ -72,7 +72,7 @@ export default function Paywall() {
       <Stack.Screen options={{ title: 'Upgrade to Pro', headerShown: true }} />
       <FocusAwareStatusBar />
       <ScrollView className="flex-1 bg-neutral-50 dark:bg-neutral-900">
-        <View className="p-6">
+        <View className="px-4 py-6">
           {/* Hero Section */}
           <View className="mb-8 items-center">
             <Text className="mb-4 text-center text-4xl">⭐</Text>

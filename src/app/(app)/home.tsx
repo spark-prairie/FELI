@@ -79,7 +79,7 @@ export default function Home() {
   return (
     <>
       <FocusAwareStatusBar />
-      <View className="flex-1 justify-center px-6">
+      <View className="flex-1 justify-center px-4">
         <View className="mb-8 items-center">
           <Text className="mb-4 text-center text-4xl font-bold">
             {t('home.title')}

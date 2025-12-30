@@ -8,12 +8,12 @@ type PhotoCaptureResult = {
   hasPermissions: boolean;
 };
 
-const IMAGE_PICKER_OPTIONS = {
-  mediaTypes: ImagePicker.MediaType.Images,
+const IMAGE_PICKER_OPTIONS: ImagePicker.ImagePickerOptions = {
+  mediaTypes: ['images'],
   allowsEditing: true,
   aspect: [4, 3] as [number, number],
   quality: 0.8,
-} as const;
+};
 
 const getImageUri = (result: ImagePicker.ImagePickerResult): string | null => {
   if (!result.canceled && result.assets?.[0]?.uri) {
