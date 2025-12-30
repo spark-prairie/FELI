@@ -155,8 +155,8 @@ export default function Settings() {
             </ItemsContainer>
           )}
 
-          {/* Danger Zone */}
-          <ItemsContainer title="settings.danger_zone">
+          {/* Privacy & Data */}
+          <ItemsContainer title="settings.privacy_and_data">
             <Pressable
               onPress={handleDeleteData}
               className="flex-1 flex-row items-center justify-between px-4 py-2"
