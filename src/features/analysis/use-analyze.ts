@@ -97,19 +97,25 @@ export const useAnalyze = createMutation<
   AxiosError<AnalyzeErrorResponse>
 >({
   mutationFn: async (variables) => {
-    console.log('[useAnalyze] mutationFn called with:', variables);
+    if (__DEV__) {
+      console.log('[useAnalyze] mutationFn called with:', variables);
+    }
 
     // DEV-only mock path
     if (USE_MOCK_ANALYZE) {
-      console.log('[useAnalyze] Using mock data (DEV mode)');
+      if (__DEV__) {
+        console.log('[useAnalyze] Using mock data (DEV mode)');
+        console.log('[useAnalyze] Generating mock data for isPro:', variables.isPro ?? false);
+      }
       const isPro = variables.isPro ?? false;
-      console.log('[useAnalyze] Generating mock data for isPro:', isPro);
 
       const delay = 1000 + Math.random() * 500; // 1000-1500ms
       await new Promise((resolve) => setTimeout(resolve, delay));
 
       const mockResult = generateMockResult(isPro);
-      console.log('[useAnalyze] Mock response ready:', mockResult);
+      if (__DEV__) {
+        console.log('[useAnalyze] Mock response ready:', mockResult);
+      }
       return mockResult;
     }
 
@@ -138,7 +144,9 @@ export const useAnalyze = createMutation<
       formData.append('timestamp', variables.timestamp);
     }
 
-    console.log('[useAnalyze] Sending API request...');
+    if (__DEV__) {
+      console.log('[useAnalyze] Sending API request...');
+    }
     const response = await client({
       url: '/api/v1/analyze',
       method: 'POST',
@@ -148,22 +156,32 @@ export const useAnalyze = createMutation<
       },
     });
 
-    console.log('[useAnalyze] Response received:', response.data);
+    if (__DEV__) {
+      console.log('[useAnalyze] Response received:', response.data);
+    }
     const validatedData = EmotionResultSchema.parse(response.data);
-    console.log('[useAnalyze] Validation successful');
+    if (__DEV__) {
+      console.log('[useAnalyze] Validation successful');
+    }
     return validatedData;
   },
   onMutate: () => {
-    console.log('[useAnalyze] onMutate called');
+    if (__DEV__) {
+      console.log('[useAnalyze] onMutate called');
+    }
     useAnalysisStore.getState().setAnalyzing(true);
   },
   onSuccess: (data) => {
-    console.log('[useAnalyze] onSuccess called with:', data);
+    if (__DEV__) {
+      console.log('[useAnalyze] onSuccess called with:', data);
+    }
     useAnalysisStore.getState().saveResult(data);
     useAnalysisStore.getState().incrementUsage();
   },
   onError: (error) => {
-    console.log('[useAnalyze] onError called:', error);
+    if (__DEV__) {
+      console.log('[useAnalyze] onError called:', error);
+    }
 
     // Detect entitlement/payment errors from backend
     // 403 Forbidden = User lacks Pro entitlement
@@ -172,10 +190,12 @@ export const useAnalyze = createMutation<
     const errorData = error.response?.data;
 
     if (status === 403 || status === 402) {
-      console.log('[useAnalyze] Entitlement error detected, redirecting to paywall');
+      if (__DEV__) {
+        console.log('[useAnalyze] Entitlement error detected, redirecting to paywall');
+      }
 
       // Check if backend provided a specific error code
-      if (errorData?.code === 'PRO_REQUIRED') {
+      if (errorData?.code === 'PRO_REQUIRED' && __DEV__) {
         console.log('[useAnalyze] Backend confirmed: Pro subscription required');
       }
 
@@ -189,7 +209,9 @@ export const useAnalyze = createMutation<
     useAnalysisStore.getState().setAnalyzing(false);
   },
   onSettled: () => {
-    console.log('[useAnalyze] onSettled called');
+    if (__DEV__) {
+      console.log('[useAnalyze] onSettled called');
+    }
     useAnalysisStore.getState().setAnalyzing(false);
   },
 });

@@ -14,7 +14,6 @@ import { useRevenueCat } from '@/hooks/use-revenue-cat';
 export default function CustomerCenterPage() {
   const router = useRouter();
   const { isPro, customerInfo, isLoading } = useRevenueCat();
-  console.log('customerInfo', customerInfo);
 
   // Redirect non-Pro users
   if (!isLoading && !isPro) {

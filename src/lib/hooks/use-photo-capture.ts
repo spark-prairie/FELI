@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import * as ImagePicker from 'expo-image-picker';
 import { useCallback, useState } from 'react';
 
@@ -45,6 +46,8 @@ export function usePhotoCapture(): PhotoCaptureResult {
         let result: ImagePicker.ImagePickerResult;
 
         if (action === 'camera') {
+          // Trigger haptic feedback for camera capture
+          await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
           result = await ImagePicker.launchCameraAsync(IMAGE_PICKER_OPTIONS);
         } else {
           result =

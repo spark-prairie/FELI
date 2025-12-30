@@ -43,18 +43,24 @@ export function RevenueCatPaywall({
           text: translate('dev.mock_purchase_cancel'),
           style: 'cancel',
           onPress: () => {
-            console.log('[RevenueCat Mock] Purchase cancelled');
+            if (__DEV__) {
+              console.log('[RevenueCat Mock] Purchase cancelled');
+            }
             onClose();
           },
         },
         {
           text: translate('dev.mock_purchase_confirm'),
           onPress: async () => {
-            console.log('[RevenueCat Mock] Simulating purchase...');
+            if (__DEV__) {
+              console.log('[RevenueCat Mock] Simulating purchase...');
+            }
             // Simulate delay
             await new Promise((resolve) => setTimeout(resolve, 500));
             syncProStatus(true, Date.now());
-            console.log('[RevenueCat Mock] Purchase successful');
+            if (__DEV__) {
+              console.log('[RevenueCat Mock] Purchase successful');
+            }
             onSuccess?.();
             onClose();
           },
